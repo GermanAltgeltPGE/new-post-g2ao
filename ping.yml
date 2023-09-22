@@ -8,6 +8,5 @@
   - name: Host name
     win_shell: $env:computername
   
-  - name: Debug 
-    ansible.builtin.debug:
-      msg: "Testing"
+  - debug: item
+    with_dict: ansible_facts
