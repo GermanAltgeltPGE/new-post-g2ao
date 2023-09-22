@@ -2,11 +2,11 @@
 - name:  Win_Ping! - main 
   hosts: all 
   tasks: 
-  - name: Win_Ping! - tasks  
-    win_ping: 
+  #- name: Win_Ping! - tasks  
+  #  win_ping: 
   
-  - name: Host name
-    win_shell: $env:computername
+  #- name: Host name
+  #  win_shell: $env:computername
   
   - debug: var=ansible_date_time
-  - debug: msg="the current date is {{ ansible_date_time.date | to_datetime ("%Y%m%d")}}"
+  - debug: msg="the current date is {{ ansible_date_time.date | to_datetime (\"%Y%m%d\")}}"
