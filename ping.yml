@@ -4,5 +4,9 @@
   tasks: 
   - name: Win_Ping! - tasks  
     win_ping: 
+  
   - name: Host name
     win_shell: $env:computername
+  
+  - debug: 
+    msg: "Testing"
