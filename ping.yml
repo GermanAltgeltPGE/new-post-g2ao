@@ -1,0 +1,6 @@
+--- 
+- name:  Win_Ping! - main 
+  hosts: all 
+  tasks: 
+  - name: Win_Ping! - tasks  
+    win_ping: 
