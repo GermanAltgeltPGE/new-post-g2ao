@@ -7,6 +7,7 @@
   
   #- name: Host name
   #  win_shell: $env:computername
-  
+  - var: 
+    d1: {{ ansible_date_time.date | to_datetime (\"%Y%m%d\")}}
   - debug: var=ansible_date_time
-  - debug: msg="the current date is {{ ansible_date_time.date | to_datetime (\"%Y%m%d\")}}"
+  - debug: msg="the current date is {{ d1 }}"
