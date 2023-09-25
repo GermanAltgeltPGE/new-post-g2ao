@@ -10,7 +10,11 @@
       path: "{{ OutFile }}"
       state: touch  
 
-  - debug: var=ansible_date_time
-  - debug: msg="the current date is {{ ansible_date_time.date }}"
+- name: Insert line in file
+  ansible.builtin.blockinfile:
+    path: "{{ OutFile }}"
+    block: |
+      "{{ ansible_hostname }}"
+      "{{ Today }}"
   - debug: msg="Today is {{ Today }}"
   - debug: msg="OutFile is {{ OutFile }}"
