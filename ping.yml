@@ -5,7 +5,9 @@
     Today: "{{ lookup('pipe', 'date +\"%Y%m%d\"') }}"
     OutFile: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}.txt"
   tasks: 
-  - name: Touch a file (creates if not present, updates modification time if present)
+  - name: get hotfixes
+    win_shell: get_hotfixes
+  - name: Create post file
     ansible.windows.win_copy:
       content: | 
         {{ ansible_hostname }}
