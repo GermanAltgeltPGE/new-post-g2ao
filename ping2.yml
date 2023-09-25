@@ -1,0 +1,48 @@
+--- 
+- name:  post=g2ao - main 
+  hosts: all 
+  vars:
+    Today: "{{ lookup('pipe', 'date +\"%Y%m%d\"') }}"
+    OutFile: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}.txt"
+
+  tasks: 
+  - name: check for file
+  
+  - name: Read file
+    ansible.builtin.slurp:
+      src: "{{ OutFile }}"
+    register: Infile
+
+  - name: Change post file
+    ansible.windows.win_copy:
+      content: | 
+        First
+        {{ Infile['content'] | b64decode }}
+        {{ ansible_hostname }}
+        {{ ansible_date_time.time}}
+        First
+      dest: "{{ OutFile }}"
+
+#  - name: Create post file
+#    ansible.windows.win_copy:
+#      content: | 
+#        {{ ansible_hostname }}
+#        {{ ansible_date_time.time}}
+#      dest: "{{ OutFile }}"
+
+  - name: Read file
+    ansible.builtin.slurp:
+      src: "{{ OutFile }}"
+    register: Infile
+
+  - name: Change post file
+    ansible.windows.win_copy:
+      content: | 
+        {{ Infile['content'] | b64decode }}
+        Second
+        {{ ansible_date_time.date}}
+        Second
+        Done Appending 
+      dest: "{{ OutFile }}"
+
+  
