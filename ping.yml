@@ -21,7 +21,7 @@
 
   - name: Read file
     ansible.builtin.slurp:
-      src: "{{ Outfile }}"
+      src: "{{ OutFile }}"
     register: Infile
 
   - name: Print file content
