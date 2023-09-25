@@ -22,6 +22,14 @@
       src: "{{ OutFile }}"
     register: Infile
 
+  - name: Change post file
+    ansible.windows.win_copy:
+      content: | 
+        {{ Infile }}
+        {{ ansible_date_time.date}}
+        Done Appending 
+      dest: "{{ OutFile }}"
+
   - name: print file content + extra
     ansible.builtin.debug:
       msg: "{{ Infile['content'] | b64decode }}+{{ ansible_hostname }}"
