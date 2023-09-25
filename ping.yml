@@ -25,7 +25,7 @@
   - name: Change post file
     ansible.windows.win_copy:
       content: | 
-        {{ Infile }}
+        {{ Infile['content'] | b64decode }}
         {{ ansible_date_time.date}}
         Done Appending 
       dest: "{{ OutFile }}"
