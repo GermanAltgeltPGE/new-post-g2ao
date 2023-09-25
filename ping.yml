@@ -8,7 +8,7 @@
   - name: Touch a file (creates if not present, updates modification time if present)
     ansible.windows.win_file:
 #      path: d:\installs\test.txt
-      path: {{ OutFile }}
+      path: "{{ OutFile }}"
 
       state: touch  
 
