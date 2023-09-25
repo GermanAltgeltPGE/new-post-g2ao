@@ -8,7 +8,7 @@
   tasks: 
   - name: get hotfixes
     win_shell: get-hotfix
-    register: hotfixes
+    register: Hotfixes
 
   - name: Create post file
     ansible.windows.win_copy:
@@ -16,5 +16,5 @@
         {{ ansible_hostname }}
         {{ ansible_date_time.time}}
         "Hotfixes"
-        {{HotFixes}}
+        {{Hotfixes}}
       dest: "{{ OutFile }}"
