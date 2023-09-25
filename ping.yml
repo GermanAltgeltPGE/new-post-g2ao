@@ -13,9 +13,7 @@
   - name: Insert line in file
     ansible.builtin.blockinfile:
       path: "{{ OutFile }}"
-      block: |
-        {{ ansible_hostname }}
-        {{ Today }}
+      block: This is a testfile
     
   - debug: msg="Today is {{ Today }}"
   - debug: msg="OutFile is {{ OutFile }}"
