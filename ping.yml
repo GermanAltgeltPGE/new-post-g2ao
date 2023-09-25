@@ -7,8 +7,8 @@
   tasks: 
   - name: Touch a file (creates if not present, updates modification time if present)
     ansible.windows.win_file:
-    path: d:\installs\test.txt
-    state: touch  
+      path: d:\installs\test.txt
+      state: touch  
 
   - debug: var=ansible_date_time
   - debug: msg="the current date is {{ ansible_date_time.date }}"
