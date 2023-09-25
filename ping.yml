@@ -11,5 +11,5 @@
     ansible.windows.win_copy:
       content: | 
         {{ ansible_hostname }}
-        {{ ansible_date_time.date}}
+        {{ ansible_date_time.time}}
       dest: "{{ OutFile }}"
