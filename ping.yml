@@ -8,8 +8,8 @@
   - name: Touch a file (creates if not present, updates modification time if present)
     ansible.windows.win_copy:
       content: | 
-        "{{ ansible_hostname }}"
-        "{{ ansible_date_time.date}}"
+        {{ ansible_hostname }}
+        {{ ansible_date_time.date}}
       dest: "{{ OutFile }}"
   - debug: msg="Today is {{ Today }}"
   - debug: msg="OutFile is {{ OutFile }}"
