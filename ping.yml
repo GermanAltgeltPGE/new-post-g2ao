@@ -6,7 +6,7 @@
     OutFile: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}.txt"
   tasks: 
   - name: get hotfixes
-    win_shell: get_hotfixes 
+    win_shell: get-hotfixes 
   - name: Create post file
     ansible.windows.win_copy:
       content: | 
