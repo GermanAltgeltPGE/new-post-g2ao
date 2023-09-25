@@ -13,7 +13,10 @@
         {{ ansible_hostname }}
         {{ ansible_date_time.time}}
       dest: "{{ OutFile }}"
-  - name: append 'Hello World' to /tmp/foo.txt
-    lineinfile:
-      path: "{{ OutFile }}"
-      line: "Hello World"
+  - name: get content of file
+    win_shell: 'type "{{ Outfile }}"'
+    register: file_contents
+
+  - name: display content
+    debug:
+    msg: "{{ file_contents.stdout_lines }} "
