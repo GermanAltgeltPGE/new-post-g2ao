@@ -14,8 +14,8 @@
     ansible.builtin.blockinfile:
       path: "{{ OutFile }}"
       block: |
-        "{{ ansible_hostname }}"
-        "{{ Today }}"
+        {{ ansible_hostname }}
+        {{ Today }}
     
   - debug: msg="Today is {{ Today }}"
   - debug: msg="OutFile is {{ OutFile }}"
