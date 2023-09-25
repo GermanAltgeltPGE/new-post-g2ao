@@ -36,8 +36,8 @@
   - name: Change post file
     ansible.windows.win_copy:
       content: | 
-        Second
         {{ Infile['content'] | b64decode }}
+        Second
         {{ ansible_date_time.date}}
         Second
         Done Appending 
