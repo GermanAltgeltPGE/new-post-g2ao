@@ -13,3 +13,7 @@
         {{ ansible_hostname }}
         {{ ansible_date_time.time}}
       dest: "{{ OutFile }}"
+  - name: append 'Hello World' to /tmp/foo.txt
+    lineinfile:
+      path: "{{ OutFile }}"
+      line: "Hello World"
