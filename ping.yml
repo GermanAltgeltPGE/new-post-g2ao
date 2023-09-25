@@ -4,10 +4,10 @@
   tasks: 
   #- name: Win_Ping! - tasks  
   #  win_ping: 
-  
+  # new comm
   #- name: Host name
   #  win_shell: $env:computername
   - vars: 
-    d1: {{ ansible_date_time.date }}
+    d1: "{{ ansible_date_time.date }}"
   - debug: var=ansible_date_time
   - debug: msg="the current date is {{ d1 }}"
