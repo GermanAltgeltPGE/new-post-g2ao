@@ -6,16 +6,27 @@
     OutFile: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}.txt"
 
   tasks: 
- # - name: get hotfixes
- #   win_shell: get-hotfix
- #   register: Hotfixes
+  - name: Read file
+    ansible.builtin.slurp:
+      src: "{{ OutFile }}"
+    register: Infile
 
-  - name: Create post file
+  - name: Change post file
     ansible.windows.win_copy:
       content: | 
+        First
+        {{ Infile['content'] | b64decode }}
         {{ ansible_hostname }}
         {{ ansible_date_time.time}}
+        First
       dest: "{{ OutFile }}"
+
+#  - name: Create post file
+#    ansible.windows.win_copy:
+#      content: | 
+#        {{ ansible_hostname }}
+#        {{ ansible_date_time.time}}
+#      dest: "{{ OutFile }}"
 
   - name: Read file
     ansible.builtin.slurp:
@@ -25,12 +36,11 @@
   - name: Change post file
     ansible.windows.win_copy:
       content: | 
+        Second
         {{ Infile['content'] | b64decode }}
         {{ ansible_date_time.date}}
+        Second
         Done Appending 
       dest: "{{ OutFile }}"
 
-  - name: print file content + extra
-    ansible.builtin.debug:
-      msg: "{{ Infile['content'] | b64decode }}+{{ ansible_hostname }}"
   
