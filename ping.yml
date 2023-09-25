@@ -15,8 +15,6 @@
       content: | 
         {{ ansible_hostname }}
         {{ ansible_date_time.time}}
-        "Hotfixes"
-        {{ Hotfixes }}
       dest: "{{ OutFile }}"
 
   - name: Read file
@@ -24,7 +22,7 @@
       src: "{{ OutFile }}"
     register: Infile
 
-  - name: Print file content
+  - name: print file content + extra
     ansible.builtin.debug:
       msg: "{{ Infile['content'] | b64decode }}+{{ ansible_hostname }}"
   
