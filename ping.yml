@@ -4,19 +4,17 @@
   vars:
     Today: "{{ lookup('pipe', 'date +\"%Y%m%d\"') }}"
     OutFile: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}.txt"
+
   tasks: 
   - name: get hotfixes
     win_shell: get-hotfix
+    register: hotfixes
+
   - name: Create post file
     ansible.windows.win_copy:
       content: | 
         {{ ansible_hostname }}
         {{ ansible_date_time.time}}
+        "Hotfixes"
+        {{HotFixes}}
       dest: "{{ OutFile }}"
-  - name: get content of file
-    win_shell: 'type "{{ Outfile }}"'
-    register: file_contents
-
-  - name: display content
-    debug:
-    msg: "{{ file_contents.stdout_lines }} "
