@@ -10,11 +10,12 @@
       path: "{{ OutFile }}"
       state: touch  
 
-- name: Insert line in file
-  ansible.builtin.blockinfile:
-    path: "{{ OutFile }}"
-    block: |
-      "{{ ansible_hostname }}"
-      "{{ Today }}"
+  - name: Insert line in file
+    ansible.builtin.blockinfile:
+      path: "{{ OutFile }}"
+      block: |
+        "{{ ansible_hostname }}"
+        "{{ Today }}"
+    
   - debug: msg="Today is {{ Today }}"
   - debug: msg="OutFile is {{ OutFile }}"
