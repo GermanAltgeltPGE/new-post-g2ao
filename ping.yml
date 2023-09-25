@@ -3,8 +3,10 @@
   hosts: all 
   vars:
     Today: "{{ lookup('pipe', 'date +\"%Y%m%d\"') }}"
+    OutFile: "d:\\installs\\{{ansible_hostname}}_{{ Today }}.txt"
   tasks: 
+    
   - debug: var=ansible_date_time
-  #- debug: var=Today
   - debug: msg="the current date is {{ ansible_date_time.date }}"
   - debug: msg="Today is {{ Today }}"
+  - debug: msg="OutFile is {{ OutFile }}"
