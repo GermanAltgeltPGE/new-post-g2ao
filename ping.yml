@@ -2,8 +2,8 @@
 - name:  post=g2ao - main 
   hosts: all 
   vars:
-    time: "{{ lookup('pipe', 'date -d \"1 day ago\" +\"%Y%m%d\"') }}"
-    today: "{{ lookup('pipe', 'date +\"%Y%m%d\"') }}"
+    Time: "{{ lookup('pipe', 'date -d \"1 day ago\" +\"%Y%m%d\"') }}"
+    Today: "{{ lookup('pipe', 'date +\"%Y%m%d\"') }}"
   tasks: 
   - debug: var=ansible_date_time
   - debug: msg="the current date is {{ ansible_date_time.date }}"
