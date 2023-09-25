@@ -5,7 +5,13 @@
     Today: "{{ lookup('pipe', 'date +\"%Y%m%d\"') }}"
     OutFile: "d:\\installs\\{{ansible_hostname}}_{{ Today }}.txt"
   tasks: 
-    
+  - name: Touch a file (creates if not present, updates modification time if present)
+    ansible.windows.win_file:
+    path: {{ OutFile }}
+    state: touch  
+   #
+   #
+   # 
   - debug: var=ansible_date_time
   - debug: msg="the current date is {{ ansible_date_time.date }}"
   - debug: msg="Today is {{ Today }}"
