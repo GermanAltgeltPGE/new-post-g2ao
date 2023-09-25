@@ -1,0 +1,15 @@
+--- 
+- name:  post=g2ao - main 
+  hosts: all 
+  vars:
+    Today: "{{ lookup('pipe', 'date +\"%Y%m%d\"') }}"
+    OutFile: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}.txt"
+
+  tasks: 
+    - name: Check if file is there
+      stat:
+        path: "{{ OutFile }}"
+      register: myvar
+    - debug:
+        msg: "The contents of myvar: {{ myvar }}"
+  

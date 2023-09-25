@@ -6,6 +6,8 @@
     OutFile: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}.txt"
 
   tasks: 
+  - name: check for file
+  
   - name: Read file
     ansible.builtin.slurp:
       src: "{{ OutFile }}"
