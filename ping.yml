@@ -7,9 +7,7 @@
   tasks: 
   - name: Touch a file (creates if not present, updates modification time if present)
     ansible.windows.win_file:
-#      path: d:\installs\test.txt
       path: "{{ OutFile }}"
-
       state: touch  
 
   - debug: var=ansible_date_time
