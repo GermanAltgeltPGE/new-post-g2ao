@@ -6,9 +6,9 @@
     OutFile: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}.txt"
 
   tasks: 
-  - name: get hotfixes
-    win_shell: get-hotfix
-    register: Hotfixes
+ # - name: get hotfixes
+ #   win_shell: get-hotfix
+ #   register: Hotfixes
 
   - name: Create post file
     ansible.windows.win_copy:
@@ -26,5 +26,5 @@
 
   - name: Print file content
     ansible.builtin.debug:
-      msg: "{{ Infile['content'] | b64decode }}"
+      msg: "{{ Infile['content'] | b64decode }}+{{ ansible_hostname }}"
   
