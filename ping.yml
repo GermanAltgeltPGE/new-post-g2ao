@@ -13,5 +13,3 @@
         {{ ansible_hostname }}
         {{ ansible_date_time.date}}
       dest: "{{ OutFile }}"
-  - debug: msg="Today is {{ Today }}"
-  - debug: msg="OutFile is {{ OutFile }}"
