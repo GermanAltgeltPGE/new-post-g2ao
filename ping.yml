@@ -2,7 +2,5 @@
 - name:  post=g2ao - main 
   hosts: all 
   tasks: 
-  - vars: 
-    d1: "{{ ansible_date_time }}"
   - debug: var=ansible_date_time
-  - debug: msg="the current date is {{ d1 }}"
+  - debug: msg="the current date is {{ ansible_date_time.date }}"
