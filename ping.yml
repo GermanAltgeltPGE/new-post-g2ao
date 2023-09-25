@@ -18,3 +18,13 @@
         "Hotfixes"
         {{ Hotfixes }}
       dest: "{{ OutFile }}"
+
+  - name: Read file
+    ansible.builtin.slurp:
+      src: "{{ Outfile }}"
+    register: Infile
+
+  - name: Print file content
+    ansible.builtin.debug:
+      msg: "{{ Infile['content'] | b64decode }}"
+  
