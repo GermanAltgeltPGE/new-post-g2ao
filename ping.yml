@@ -4,7 +4,7 @@
   vars:
     Today: "{{ lookup('pipe', 'date +\"%Y%m%d\"') }}"
     OutFile: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}.txt"
-# another change
+# another changes asdasd
   tasks: 
     - name: Check if file is there
       stat:
