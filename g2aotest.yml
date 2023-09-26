@@ -5,5 +5,6 @@
     Today: "{{ lookup('pipe', 'date +\"%Y%m%d\"') }}"
     OutFile: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}.txt"
   tasks: 
-    - name: ping
-      win_ping:
+    - name: Check if file is there
+      stat:
+        path: "{{ OutFile }}"
