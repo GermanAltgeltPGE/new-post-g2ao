@@ -10,11 +10,11 @@
   - name: Touch a file
     ansible.windows.win_file:
       path: "{{ OutFile }}"
-    state: touch
+      state: touch
   
-  - name: Read file
-    ansible.builtin.slurp:
-      src: "{{ OutFile }}"
-    register: Infile
+#  - name: Read file
+#   ansible.builtin.slurp:
+#      src: "{{ OutFile }}"
+#    register: Infile
     
     
