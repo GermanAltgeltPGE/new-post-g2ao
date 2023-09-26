@@ -18,15 +18,14 @@
     register: Infile
   
   - debug:
-      msg: "The contents of Infile: {{ Infile }}"
+      msg: "The contents of Infile: {{ Infile | b64decode }}"
 
   - name: Change post file
     ansible.windows.win_copy:
       content: | 
         {{ Infile['content'] | b64decode }}
         {{ ansible_hostname | upper }}
-        {{ ansible_date_time.date}}
-        {{ ansible_date_time.time}}
+        {{ ansible_date_time.date}} {{ ansible_date_time.time}}
         Done Appending 
       dest: "{{ OutFile }}"
 
@@ -36,4 +35,4 @@
     register: Infile2
   
   - debug:
-      msg: "The contents of Infile2: {{ Infile2 }}"
+      msg: "The contents of Infile2: {{ Infile2 | b64decode }}"
