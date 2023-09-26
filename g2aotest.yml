@@ -3,10 +3,11 @@
   hosts: all 
   vars:
     Today: "{{ lookup('pipe', 'date +\"%Y%m%d\"') }}"
-    OutFile: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}.txt"
-    OutFile2: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}_test.txt"
+    OutFile: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}..txt"
+
 
   tasks:
+  ##### G2ao
   - name: Touch a file
     ansible.windows.win_file:
       path: "{{ OutFile }}"
@@ -16,9 +17,6 @@
     ansible.builtin.slurp:
       src: "{{ OutFile }}"
     register: Infile
-  
-  - debug:
-      msg: "The contents of Infile: {{ Infile['content'] | b64decode }}"
 
   - name: Change post file
     ansible.windows.win_copy:
@@ -26,13 +24,5 @@
         {{ Infile['content'] | b64decode }}
         {{ ansible_hostname | upper }}
         {{ ansible_date_time.date}} {{ ansible_date_time.time}}
-        Done Appending 
       dest: "{{ OutFile }}"
-
-  - name: Read file
-    ansible.builtin.slurp:
-      src: "{{ OutFile }}"
-    register: Infile2
-  
-  - debug:
-      msg: "The contents of Infile2: {{ Infile2['content'] | b64decode }}"
+##### G2ao
