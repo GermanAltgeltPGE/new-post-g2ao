@@ -1,0 +1,9 @@
+--- 
+- name:  post=g2ao - main 
+  hosts: all 
+  vars:
+    Today: "{{ lookup('pipe', 'date +\"%Y%m%d\"') }}"
+    OutFile: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}.txt"
+  tasks: 
+    - name: ping
+      win_ping:
