@@ -18,7 +18,7 @@
     register: Infile
   
   - debug:
-      msg: "The contents of Infile: {{ Infile | b64decode }}"
+      msg: "The contents of Infile: {{ Infile['content'] | b64decode }}"
 
   - name: Change post file
     ansible.windows.win_copy:
@@ -35,4 +35,4 @@
     register: Infile2
   
   - debug:
-      msg: "The contents of Infile2: {{ Infile2 | b64decode }}"
+      msg: "The contents of Infile2: {{ Infile2['content'] | b64decode }}"
