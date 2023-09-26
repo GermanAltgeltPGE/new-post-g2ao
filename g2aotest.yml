@@ -7,14 +7,14 @@
     OutFile2: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}_test.txt"
 
   tasks:
-    - name: create windows file
-      win_file:
-        path: "{{ OutFile }}"
-      status: touch
-
-    - name: Read file
-      ansible.builtin.slurp:
-        src: "{{ OutFile }}"
-      register: Infile
+  - name: Touch a file (creates if not present, updates modification time if present)
+    ansible.windows.win_file:
+      path: C:\Temp\foo.conf
+    state: touch
+  
+  - name: Read file
+    ansible.builtin.slurp:
+      src: "{{ OutFile }}"
+    register: Infile
     
     
