@@ -9,8 +9,8 @@
   tasks:
     - name: create windows file
       win_file:
-        src: "{{ OutFile }}"
-      status: Touch
+        path: "{{ OutFile }}"
+      status: touch
 
     - name: Read file
       ansible.builtin.slurp:
