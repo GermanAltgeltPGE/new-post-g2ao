@@ -36,4 +36,4 @@
     register: Infile2
   
   - debug:
-      msg: "The contents of Infile2: {{ Infile }}"
+      msg: "The contents of Infile2: {{ Infile2 }}"
