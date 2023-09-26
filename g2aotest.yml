@@ -4,7 +4,15 @@
   vars:
     Today: "{{ lookup('pipe', 'date +\"%Y%m%d\"') }}"
     OutFile: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}.txt"
+    OutFile2: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}_test.txt"
+
   tasks: 
-    - name: Check if file is there
-      stat:
-        path: "{{ OutFile }}"
+    - name: Read file
+      ansible.builtin.slurp:
+        src: "{{ OutFile }}"
+      register: Infile
+    
+    - name: Read file
+      ansible.builtin.slurp:
+        src: "{{ OutFile2 }}"
+      register: Infile2
