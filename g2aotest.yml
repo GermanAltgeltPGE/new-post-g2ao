@@ -12,7 +12,7 @@
         src: "{{ OutFile }}"
       register: Infile
     
-    - name: Read file
+    - name: Read file 2
       ansible.builtin.slurp:
         src: "{{ OutFile2 }}"
       register: Infile2
