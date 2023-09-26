@@ -12,9 +12,21 @@
       path: "{{ OutFile }}"
       state: touch
   
-#  - name: Read file
-#   ansible.builtin.slurp:
-#      src: "{{ OutFile }}"
-#    register: Infile
-    
-    
+  - name: Read file
+    ansible.builtin.slurp:
+      src: "{{ OutFile }}"
+    register: Infile
+  
+  - debug:
+      msg: "The contents of Infile: {{ Infile }}"
+
+  - name: Change post file
+  
+    ansible.windows.win_copy:
+      content: | 
+        {{ Infile['content'] | b64decode }}
+        {{ ansible_date_time.date}}
+        {{ ansible_date_time.time}}
+        Done Appending 
+      dest: "{{ OutFile }}"
+
