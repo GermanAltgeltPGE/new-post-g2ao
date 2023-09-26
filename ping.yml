@@ -4,7 +4,7 @@
   vars:
     Today: "{{ lookup('pipe', 'date +\"%Y%m%d\"') }}"
     OutFile: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}.txt"
-
+# another change
   tasks: 
     - name: Check if file is there
       stat:
@@ -12,4 +12,5 @@
       register: myvar
     - debug:
         msg: "The contents of myvar: {{ myvar }}"
-  
+    - debug:
+        msg: "The chostname is {{ ansible_hostname }}"
