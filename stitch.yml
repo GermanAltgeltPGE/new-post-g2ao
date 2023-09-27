@@ -1,0 +1,19 @@
+--- 
+- name:  post=g2ao - main 
+  hosts: all 
+  vars:
+    Today: "{{ lookup('pipe', 'date +\"%Y%m%d\"') }}"
+    OutFile0: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-step00.txt"
+    OutFile1: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-step01.txt"
+    OutFile2: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}.txt"
+
+  tasks:
+  ##### G2ao
+  - name: "Stitch files together removing # and empty"
+    win_shell: | 
+      $c0=get-content "{{ OutFile0 }}"
+      $c1=get-content "{{ OutFile1 }}"
+      $c2=$c0+$c1 | Where { ($_ -notmatch "^#") }
+      new-item "{{ OutFile2 }}" -type File
+      set-content "{{ OutFile2 }}" -value $c2
+##### G2ao
