@@ -48,7 +48,7 @@
 
   - name: Remove blank lines in {{ Outfile1 }}
     replace:
-      path: "{{ Outfile1 }}"
+      path: "{{ OutFile1 }}"
       regexp: '(^\s*$)'
       replace: ''
 ##### G2ao
