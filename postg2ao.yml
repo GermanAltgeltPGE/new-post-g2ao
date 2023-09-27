@@ -47,8 +47,7 @@
       dest: "{{ OutFile1 }}"
 
   - name: Remove blank lines in {{ Outfile1 }}
-    replace:
-      path: "{{ OutFile1 }}"
-      regexp: '(^\s*$)'
-      replace: ''
+    win_shell: |
+      $env:computername
+      get-content "{{ Outfile1 }}"
 ##### G2ao
