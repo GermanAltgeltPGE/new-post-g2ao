@@ -47,5 +47,8 @@
       dest: "{{ OutFile1 }}"
 
   - name: Remove blank lines in {{ Outfile1 }}
-    win_shell: $env:computername
+    win_shell: get-content "{{ OutFile1 }}"
+    register: ReadFromPWS
+  - debug:
+      msg: "Powershell read {{ ReadFromPWS }}"
 ##### G2ao
