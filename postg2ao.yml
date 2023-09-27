@@ -31,21 +31,21 @@
     ansible.windows.win_copy:
       content: | 
         {{ Infile0['content'] | b64decode }}
-        ##### Step 0 - Header
+        ##### Step00 - Header
         HostName: {{ ansible_hostname | upper }}
         Time: {{ ansible_date_time.date}} {{ ansible_date_time.time}}
-        ##### Step 0 - Header
+        ##### Step00 - Header
       dest: "{{ OutFile0 }}"
 
   - name: Change post file step 1
     ansible.windows.win_copy:
       content: | 
         {{ Infile1['content'] | b64decode }}
-        ##### Step 1 - G2ao
+        ##### Step01 - G2ao
         OS Name and architecture: {{ ansible_os_name }} {{ ansible_architecture2 }}
         IP Addresses: {{ ansible_ip_addresses }}
         Vendor: {{ ansible_system_vendor }}
-        ##### Step 1 - G2ao
+        ##### Step01 - G2ao
       dest: "{{ OutFile1 }}"
 
 ##### G2ao

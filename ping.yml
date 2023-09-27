@@ -1,0 +1,8 @@
+---
+- name: Ping Windows Server
+  hosts: "{{ nodes }}"
+  gather_facts: true
+
+  tasks:
+  - name: Ping an arbitrary Windows server
+    ansible.builtin.win_ping:
