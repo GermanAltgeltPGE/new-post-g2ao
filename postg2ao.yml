@@ -46,7 +46,7 @@
       content: | 
         {{ Infile1['content'] | b64decode }}
         ##### Step 1 - G2ao
-        Disks: {{ hostvars[inventory_hostname].ansible_devices }}
+        Vendor: {{ ansible_system_vendor }}
         ##### Step 1 - G2ao
       dest: "{{ OutFile1 }}"
 ##### G2ao
