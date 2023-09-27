@@ -5,7 +5,7 @@
     Today: "{{ lookup('pipe', 'date +\"%Y%m%d\"') }}"
     OutFile0: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-step00.txt"
     OutFile1: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-step01.txt"
-    OutFile2: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-step01.txt"
+    OutFile2: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}.txt"
 
   tasks:
   ##### G2ao
@@ -49,7 +49,9 @@
       dest: "{{ OutFile1 }}"
 
   - name: Remove blank lines in {{ Outfile1 }}
-    win_shell: get-content "{{ OutFile1 }}"
+    win_shell: |
+      get-content "{{ OutFile0 }}"
+      get-content "{{ OutFile1 }}"
     register: ReadFromPWS
 
   - name: Change post file from powershell
