@@ -3,28 +3,50 @@
   hosts: all 
   vars:
     Today: "{{ lookup('pipe', 'date +\"%Y%m%d\"') }}"
-    OutFile: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-step01.txt"
+    OutFile0: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-step00.txt"
+    OutFile1: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-step01.txt"
   tasks:
   ##### G2ao
   - name: Touch a file
     ansible.windows.win_file:
-      path: "{{ OutFile }}"
+      path: "{{ OutFile0 }}"
+      state: touch
+  - name: Touch a file
+    ansible.windows.win_file:
+      path: "{{ OutFile1 }}"
       state: touch
   
   - name: Read file
     ansible.builtin.slurp:
-      src: "{{ OutFile }}"
-    register: Infile
+      src: "{{ OutFile0 }}"
+    register: Infile0
+  - name: Read file
+    ansible.builtin.slurp:
+      src: "{{ OutFile1 }}"
+    register: Infile1
 
   - name: Change post file
     ansible.windows.win_copy:
       content: | 
-        {{ Infile['content'] | b64decode }}
-        ##### Step 1 - G2ao
+        {{ Infile0['content'] | b64decode }}
+        ##### Step 0 - G2ao
         HostName: {{ ansible_hostname | upper }}
         Time: {{ ansible_date_time.date}} {{ ansible_date_time.time}}
         OS Name and architecture: {{ ansible_os_name }} {{ ansible_architecture2 }}
         IP Addresses: {{ ansible_ip_addresses }}
+        ##### Step 0 - G2ao
+      dest: "{{ OutFile0 }}"
+
+  - name: Output disk information
+    debug:
+      var: hostvars[inventory_hostname].ansible_devices
+
+  - name: Change post file
+    ansible.windows.win_copy:
+      content: | 
+        {{ Infile1['content'] | b64decode }}
         ##### Step 1 - G2ao
-      dest: "{{ OutFile }}"
+        Disks: {{ hostvars[inventory_hostname].ansible_devices }}
+        ##### Step 1 - G2ao
+      dest: "{{ OutFile1 }}"
 ##### G2ao
