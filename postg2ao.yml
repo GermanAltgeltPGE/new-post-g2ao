@@ -53,7 +53,7 @@
       $c0=get-content "{{ OutFile0 }}"
       $c1=get-content "{{ OutFile1 }}"
       $c2=$c0+c1
-      new-item "{{ Outfile2 }}" -type File
+      new-item "{{ OutFile2 }}" -type File
       set-content "{{ OutFile2 }}" -value $c2
 
 
