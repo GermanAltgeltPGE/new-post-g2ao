@@ -1,6 +1,6 @@
 ---
-- name: Ping Windows Server
-  hosts: All
+- name: Ping Windows Server listed in playbook
+  hosts: "{{ nodes }}"
   gather_facts: true
 
   tasks:
