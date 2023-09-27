@@ -24,7 +24,7 @@
         HostName: {{ ansible_hostname | upper }}
         Time: {{ ansible_date_time.date}} {{ ansible_date_time.time}}
         OS Name and architecture: {{ ansible_os_name }} {{ ansible_architecture2 }}
-        IP Address: {{ ansible_host }}
+        IP Addresses: {{ ansible_all_ipv4_addresses }}
         ##### Step 1 - G2ao
       dest: "{{ OutFile }}"
 ##### G2ao
