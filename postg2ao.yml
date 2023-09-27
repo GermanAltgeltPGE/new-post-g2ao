@@ -3,7 +3,7 @@
   hosts: all 
   vars:
     Today: "{{ lookup('pipe', 'date +\"%Y%m%d\"') }}"
-    OutFile: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}.txt"
+    OutFile: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-step01.txt"
 
 
   tasks:
@@ -22,7 +22,11 @@
     ansible.windows.win_copy:
       content: | 
         {{ Infile['content'] | b64decode }}
+        ##### Step 1 - G2ao
         {{ ansible_hostname | upper }}
         {{ ansible_date_time.date}} {{ ansible_date_time.time}}
+        {{ ansible_os_name }} {{ ansible_architecture2 }}
+        {{ interface_index.ipv4 }}
+        ##### Step 1 - G2ao
       dest: "{{ OutFile }}"
 ##### G2ao
