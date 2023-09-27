@@ -47,7 +47,5 @@
       dest: "{{ OutFile1 }}"
 
   - name: Remove blank lines in {{ Outfile1 }}
-    win_shell: |
-      $env:computername
-      get-content "{{ Outfile1 }}"
+    win_shell: $env:computername
 ##### G2ao
