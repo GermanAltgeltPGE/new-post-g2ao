@@ -45,4 +45,10 @@
         Vendor: {{ ansible_system_vendor }}
         ##### Step 1 - G2ao
       dest: "{{ OutFile1 }}"
+
+  - name: Remove blank lines in {{ Outfile1 }}
+    replace:
+      path: "{{ Outfile1 }}"
+      regexp: '(^\s*$)'
+      replace: ''
 ##### G2ao
