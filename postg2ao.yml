@@ -7,45 +7,41 @@
     OutFile1: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-step01.txt"
   tasks:
   ##### G2ao
-  - name: Touch a file
+  - name: Touch a file - step 0
     ansible.windows.win_file:
       path: "{{ OutFile0 }}"
       state: touch
-  - name: Touch a file
+  - name: Touch a file - step 1
     ansible.windows.win_file:
       path: "{{ OutFile1 }}"
       state: touch
   
-  - name: Read file
+  - name: Read file - step 0
     ansible.builtin.slurp:
       src: "{{ OutFile0 }}"
     register: Infile0
-  - name: Read file
+  - name: Read file - step 1
     ansible.builtin.slurp:
       src: "{{ OutFile1 }}"
     register: Infile1
 
-  - name: Change post file
+  - name: Change post file - step 0
     ansible.windows.win_copy:
       content: | 
         {{ Infile0['content'] | b64decode }}
-        ##### Step 0 - G2ao
+        ##### Step 0 - Header
         HostName: {{ ansible_hostname | upper }}
         Time: {{ ansible_date_time.date}} {{ ansible_date_time.time}}
-        OS Name and architecture: {{ ansible_os_name }} {{ ansible_architecture2 }}
-        IP Addresses: {{ ansible_ip_addresses }}
-        ##### Step 0 - G2ao
+        ##### Step 0 - Header
       dest: "{{ OutFile0 }}"
 
-  - name: Output disk information
-    debug:
-      var: hostvars[inventory_hostname].ansible_devices
-
-  - name: Change post file
+  - name: Change post file step 1
     ansible.windows.win_copy:
       content: | 
         {{ Infile1['content'] | b64decode }}
         ##### Step 1 - G2ao
+        OS Name and architecture: {{ ansible_os_name }} {{ ansible_architecture2 }}
+        IP Addresses: {{ ansible_ip_addresses }}
         Vendor: {{ ansible_system_vendor }}
         ##### Step 1 - G2ao
       dest: "{{ OutFile1 }}"
