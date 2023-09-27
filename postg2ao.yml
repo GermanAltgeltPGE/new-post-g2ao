@@ -54,7 +54,7 @@
 
   - name: Change post file from powershell
     ansible.windows.win_copy:
-      content: {{ ReadFromPWS }}
+      content: "{{ ReadFromPWS }}"
       dest: "{{ OutFile2 }}"
 
 ##### G2ao
