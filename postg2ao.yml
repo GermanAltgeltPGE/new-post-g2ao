@@ -26,7 +26,7 @@
         {{ ansible_hostname | upper }}
         {{ ansible_date_time.date}} {{ ansible_date_time.time}}
         {{ ansible_os_name }} {{ ansible_architecture2 }}
-        {{ interface_index.ipv4 }}
+        {{ ansible_default_ipv4.address }}
         ##### Step 1 - G2ao
       dest: "{{ OutFile }}"
 ##### G2ao
