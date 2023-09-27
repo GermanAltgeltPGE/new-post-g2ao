@@ -1,8 +1,0 @@
----
-- name:  Win_Ping! - main
-  hosts: all
-  collections:
-    - ansible.windows
-  tasks:
-  - name: Win_Ping! - tasks -g2ao 
-    win_ping:
