@@ -49,15 +49,12 @@
       dest: "{{ OutFile1 }}"
 
   - name: Remove blank lines in {{ Outfile1 }}
-    win_shell: |
-      get-content "{{ OutFile0 }}"
-      get-content "{{ OutFile1 }}"
+    win_shell: get-content "{{ OutFile0 }}"
     register: ReadFromPWS
 
   - name: Change post file from powershell
     ansible.windows.win_copy:
-      content: | 
-        {{ ReadFromPWS }}
+      content: {{ ReadFromPWS }}
       dest: "{{ OutFile2 }}"
 
 ##### G2ao
