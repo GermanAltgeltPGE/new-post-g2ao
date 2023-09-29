@@ -14,6 +14,5 @@
                       papm_token=papm_token) }}'
       when: ansible_password is not defined
 
- 
-
     - name: Test basic connection to windows host
+      ansible.windows.win_ping:
