@@ -1,19 +1,17 @@
----
-- name: Initial run
-  Hosts: All
+--- 
+- name:  Check - main 
+  hosts: all 
+  ansible.builtin.set_fact:
+  ansible_user: "{{ papm_cred.account ~ '@' ~ papm_cred.domain | upper }}"
+  ansible_password: "{{ papm_cred.password }}"
+  run_once: true
+  no_log: true
+  vars:
+    papm_cred: '{{ lookup("pge_util.papm_util.papm_lookup",
+      papm_account="Utility.pge.com\SVC-A1315-Qa-ANSBLE",
+      papm_token=papm_token) }}'
+    when: ansible_password is not defined
   tasks:
-  - name: Grab credentials
-    ansible.builtin.set_fact:
-    ansible_user: "{{ papm_cred.account ~ '@' ~ papm_cred.domain | upper }}"
-    ansible_password: "{{ papm_cred.password }}"
-    run_once: true
-    no_log: true
-    vars:
-      papm_cred: '{{ lookup("pge_util.papm_util.papm_lookup",
-        papm_account="Utility.pge.com\SVC-A1315-Qa-ANSBLE",
-        papm_token=papm_token) }}'
-      when: ansible_password is not defined
-#
   - name: Test basic connection to windows host
     ansible.windows.win_ping:
 #
