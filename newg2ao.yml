@@ -1,5 +1,5 @@
 ---
-- include: playbookone.yml
+- import_playbook: playbookone.yml
   tasks:
     - debug:
         msg: "In new playbook"
