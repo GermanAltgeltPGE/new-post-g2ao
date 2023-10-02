@@ -1,6 +1,7 @@
 ---
 - name: Gather credentials - PB1
-  hosts: all
+#  hosts: all
+  hosts: "{{ nodes }}"
   gather_facts: false
   tasks:
 # 
@@ -13,7 +14,8 @@
 # Separate playbook with ansible facts
 #    
 - name: hostname from powershell and facts- PB2
-  hosts: all
+#  hosts: all
+  hosts: "{{ nodes }}"
   tasks:
   - name: get hostname from powershell
     ansible.windows.win_shell: |
