@@ -1,7 +1,7 @@
 ---
 - name: Ping Windows Server listed in playbook - multiple playbooks 
   hosts: all
-  #gather_facts: false
+  gather_facts: false
   tasks:
   - name: Grab credentials from PAPM - playbook 1
     ansible.builtin.set_fact:
@@ -26,5 +26,6 @@
     ansible.builtin.win_ping:
   
   - debug: 
+      gather_facts: true
       msg: "Hostname {{ ansible_hostname }}"
     
