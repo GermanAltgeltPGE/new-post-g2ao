@@ -1,9 +1,9 @@
 ---
-- name: Ping Windows Server listed in playbook
+- name: Ping Windows Server listed in playbook - multiple playbooks 
   hosts: all
 
   tasks:
-  - name: Grab credentials from PAPM
+  - name: Grab credentials from PAPM - playbook 1
     ansible.builtin.set_fact:
       ansible_user: "{{ papm_cred.account ~ '@' ~ papm_cred.domain | upper }}"
       ansible_password: "{{ papm_cred.password }}"
@@ -22,7 +22,7 @@
     delegate_to: localhost
     when: ansible_password is not defined
 
-  - name: Ping an arbitrary Windows server
+  - name: Ping an arbitrary Windows server - playbook 2
     ansible.builtin.win_ping:
     register: Ping
   - debug:
