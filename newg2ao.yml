@@ -1,5 +1,7 @@
 ---
-- import_playbook: playbookone.yml
+- name: Include a play after another play
+  import_playbook: playbookone.yaml
+
   tasks:
     - debug:
         msg: "In new playbook"
