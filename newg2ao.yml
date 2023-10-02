@@ -17,8 +17,6 @@
 
 - hosts: all
   tasks:
-  - name: Hostname from facts - Task 3 
-
   - debug: 
       msg: "Hostname {{ ansible_hostname }}"
     
