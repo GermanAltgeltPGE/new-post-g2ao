@@ -35,7 +35,8 @@
   tasks:
   - Name: Newplaybook 2
     ansible.windows.win_shell: |
-      "Powershell hostname {0}" -f $env:computername
+      $host=$env:computername
+      "Powershell hostname $host" 
 
   - debug: 
       msg: "Hostname {{ ansible_hostname }}"
