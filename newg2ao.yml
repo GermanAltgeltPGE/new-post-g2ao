@@ -6,13 +6,13 @@
   - name: Include task list in play - import - task 1
     ansible.builtin.import_tasks:
       file: playbookone.yml
-
-  - name: win_ping - tASK 2
-    ansible.builtin.win_ping:
-    register: Ping
+#
+#  - name: win_ping - tASK 2
+#    ansible.builtin.win_ping:
+#    register: Ping
   
-  - debug: 
-      msg: "Ping {{ Ping.ping }}"
+#  - debug: 
+#      msg: "Ping {{ Ping.ping }}"
     
 - name: hostname - multiple playbooks - PB2
   hosts: all
