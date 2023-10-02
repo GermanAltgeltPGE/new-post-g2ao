@@ -33,11 +33,6 @@
 - hosts: all
   gather_facts: true
   tasks:
-  - Name: Newplaybook 2
-    ansible.windows.win_shell: |
-      $host=$env:computername
-      "Powershell hostname $host" 
-
   - debug: 
       msg: "Hostname {{ ansible_hostname }}"
     
