@@ -27,11 +27,10 @@
     register: Ping
   
   - debug: 
-      msg: "Ping {{ Ping }}"
+      msg: "Ping {{ Ping.ping }}"
     
 
 - hosts: all
-  gather_facts: true
   tasks:
   - debug: 
       msg: "Hostname {{ ansible_hostname }}"
