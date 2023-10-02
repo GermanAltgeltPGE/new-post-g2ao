@@ -1,6 +1,6 @@
 ---
 - name: Ping Windows Server listed in playbook - multiple playbooks 
-  
+  hosts: all
   tasks:
   - name: Grab credentials from PAPM - playbook 1
     ansible.builtin.set_fact:
