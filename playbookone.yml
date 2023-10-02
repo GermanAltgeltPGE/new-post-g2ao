@@ -1,8 +1,4 @@
 ---
-- name: Ping Windows Server listed in playbook - multiple playbooks 
-  hosts: all
-  gather_facts: false
-  tasks:
   - name: Grab credentials from PAPM - playbook 1
     ansible.builtin.set_fact:
       ansible_user: "{{ papm_cred.account ~ '@' ~ papm_cred.domain | upper }}"

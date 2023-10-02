@@ -1,10 +1,22 @@
 ---
-- name: Include a play after another play
-  import_playbook: playbookone.yaml
-
+- name: Ping Windows Server listed in playbook - multiple playbooks 
+  hosts: all
+  gather_facts: false
   tasks:
-    - debug:
-        msg: "In new playbook"
-    - name: win_ping
-      ansible.builtin.win_ping:
-      register: Ping
+  - import_playbook: Playbookone.yml
+
+  - name: win_ping - tASK 2
+    ansible.builtin.win_ping:
+    register: Ping
+  
+  - debug: 
+      msg: "Ping {{ Ping.ping }}"
+    
+
+- hosts: all
+  tasks:
+  - name: Hostname from facts - Task 3 
+
+  - debug: 
+      msg: "Hostname {{ ansible_hostname }}"
+    
