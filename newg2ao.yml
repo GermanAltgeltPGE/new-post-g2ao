@@ -1,9 +1,9 @@
 ---
-- name: Ping Windows Server listed in playbook - multiple playbooks 
+- name: Ping Windows Server listed in playbook - multiple playbooks - PB1
   hosts: all
   gather_facts: false
   tasks:
-  - name: Include task list in play
+  - name: Include task list in play - import - task 1
     ansible.builtin.import_tasks:
       file: playbookone.yml
 
@@ -14,7 +14,7 @@
   - debug: 
       msg: "Ping {{ Ping.ping }}"
     
-
+- name: hostname - multiple playbooks - PB2
 - hosts: all
   tasks:
   - debug: 
