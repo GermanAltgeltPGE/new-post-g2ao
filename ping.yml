@@ -24,4 +24,7 @@
 
   - name: win_ping
     ansible.builtin.win_ping:
+  
+  - debug: 
+      msg: "Hostname {{ ansible_hostname }}"
     
