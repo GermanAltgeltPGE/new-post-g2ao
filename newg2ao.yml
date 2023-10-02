@@ -17,8 +17,8 @@
   tasks:
   - name: get hostname from powershell
     ansible.windows.win_shell: |
-      $host=$env:computername
-      "Powershell host $host"
+      $server=$env:computername
+      "Powershell host $server"
 
   - debug: 
       msg: "Hostname {{ ansible_hostname }}"
