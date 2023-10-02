@@ -1,6 +1,8 @@
 ---
 - include: playbookone.yml
   tasks:
+    - debug:
+        msg: "In new playbook"
     - name: win_ping
       ansible.builtin.win_ping:
       register: Ping
