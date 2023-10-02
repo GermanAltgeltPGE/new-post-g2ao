@@ -22,6 +22,5 @@
     delegate_to: localhost
     when: ansible_password is not defined
 
-  - name: Ping an arbitrary Windows server - playbook 2
   - debug:
       msg: "Ping={{ ansible_hostname }}"
