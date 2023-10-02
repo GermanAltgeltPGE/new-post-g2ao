@@ -24,8 +24,15 @@
 
   - name: win_ping
     ansible.builtin.win_ping:
+    register: Ping
   
   - debug: 
-      gather_facts: true
+      msg: "Pimg {{ Pimg }}"
+    
+
+- hosts: all
+  ansible_facts: true
+  tasks:
+  - debug: 
       msg: "Hostname {{ ansible_hostname }}"
     
