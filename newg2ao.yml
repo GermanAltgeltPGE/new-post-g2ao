@@ -17,6 +17,11 @@
 - name: hostname - multiple playbooks - PB2
 - hosts: all
   tasks:
+  - name: get hostname from powershell
+    ansible.windows.win_shell: |
+      $host=$env:computername
+      "Powershell host $host"
+      
   - debug: 
       msg: "Hostname {{ ansible_hostname }}"
     
