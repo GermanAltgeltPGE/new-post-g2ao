@@ -1,3 +1,4 @@
+---
 - name: New PAPM
   hosts: all
   ansible.builtin.set_fact:
