@@ -31,9 +31,9 @@
     
 
 - hosts: all
-  ansible_facts: true
+  gather_facts: true
   tasks:
-  - Name: Newplaybook
+  - Name: Newplaybook 2
     ansible.windows.win_shell: |
       "Powershell hostname {0}" -f $env:computername
 
