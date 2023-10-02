@@ -27,7 +27,7 @@
     register: Ping
   
   - debug: 
-      msg: "Pimg {{ Pimg }}"
+      msg: "Ping {{ Ping }}"
     
 
 - hosts: all
