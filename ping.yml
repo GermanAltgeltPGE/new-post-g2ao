@@ -2,34 +2,27 @@
   hosts: all
 #  gather_facts: false
   tasks:
-    - name: Grab credentials
-      ansible.builtin.set_fact:
-        ansible_user: "{{ papm_cred.account ~ '@' ~ papm_cred.domain | upper }}"
-        ansible_password: "{{ papm_cred.password }}"
-      run_once: true
-      no_log: true
-      vars:
-      papm_cred: '{{lookup("pge_util.papm_util.papm_lookup",
-                    papm_account="Utility.pge.com\svc-a1315-qa-ansble",
-                    papm_host="SvcAcctMgmtServer",
-                    papm_base_url="https://papm.utility.pge.com/BeyondTrust/api/public/v3/",
-                    papm_runas="ansibleqaapiuser",
-                    papm_groupname="ansibleqaapigroup",
-                    papm_reason="test",
-                    papm_duration=60,
-                    papm_token="daac58f4acc54dfdeeb533c28239a803f73c7fcb4cac868ce27479f9a4235b9b5e058e0aafae645a9d61a2d099e472e074a32a598d91d65737fac5c029e608c3")}}'
-      delegate_to: localhost
-      when: ansible_password is not defined
+  - name: Grab credentials
+    ansible.builtin.set_fact:
+      ansible_user: "{{ papm_cred.account ~ '@' ~ papm_cred.domain | upper }}"
+      ansible_password: "{{ papm_cred.password }}"
+    run_once: true
+    no_log: true
+    vars:
+    papm_cred: '{{lookup("pge_util.papm_util.papm_lookup",
+                  papm_account="Utility.pge.com\svc-a1315-qa-ansble",
+                  papm_host="SvcAcctMgmtServer",
+                  papm_base_url="https://papm.utility.pge.com/BeyondTrust/api/public/v3/",
+                  papm_runas="ansibleqaapiuser",
+                  papm_groupname="ansibleqaapigroup",
+                  papm_reason="test",
+                  papm_duration=60,
+                  papm_token="daac58f4acc54dfdeeb533c28239a803f73c7fcb4cac868ce27479f9a4235b9b5e058e0aafae645a9d61a2d099e472e074a32a598d91d65737fac5c029e608c3")}}'
+    delegate_to: localhost
+    when: ansible_password is not defined
       
-    - name: Test basic connection to windows host
-      ansible.windows.win_ping:
-      register: Ping
-    - debug:
-        msg: "ping {{ Ping }}"      
-
-    - name: powershell
-      win_shell: $env:computername
-
-    - name: ansible gather_facts
-      debug:
-        msg: "hostname from facts {{ ansible_hostname}}"
+  - name: Test basic connection to windows host
+    ansible.windows.win_ping:
+    register: Ping
+  - debug:
+      msg: "ping {{ Ping }}"      
