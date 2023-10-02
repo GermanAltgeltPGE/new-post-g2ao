@@ -1,0 +1,6 @@
+---
+- include: playbook-one.yml
+  tasks:
+    - name: win_ping
+      ansible.builtin.win_ping:
+      register: Ping
