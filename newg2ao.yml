@@ -21,5 +21,5 @@
       "Powershell host $server"
 
   - debug: 
-      msg: "Hostname {{ ansible_hostname }}"
+      msg: "Hostname {{ ansible_hostname | upper }}"
     
