@@ -3,7 +3,9 @@
   hosts: all
   gather_facts: false
   tasks:
-  - import_playbook: Playbookone.yml
+  - name: Include task list in play
+    ansible.builtin.import_tasks:
+      file: playbookone.yml
 
   - name: win_ping - tASK 2
     ansible.builtin.win_ping:
