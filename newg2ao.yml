@@ -1,29 +1,31 @@
 ---
 - name: Gather credentials - PB1
-#  hosts: all
-  hosts: "{{ nodes }}"
+  hosts: all
   gather_facts: false
+# prerequisites = have a collections folder in your repo
+# with requirements.yml in it with the following:
+#---
+#collections:
+# - pge_util.papm_util
+#
   tasks:
 # 
 # task needed for credentials in playbookone.yml
 #
   - name: Include task list in play - import - task 1
     ansible.builtin.import_tasks:
+      # make sure to have playbookeone in your repo 
       file: playbookone.yml
 #
 # Separate playbook with ansible facts
 #    
-- name: hostname from powershell and facts- PB2
-#  hosts: all
-  hosts: "{{ nodes }}"
+# Change the following lines with your playbook
+#
+- name: hostname from ansible facts- PlayBook 2 
+  hosts: all
+  vars:
+    HostName: "{{ ansible_hostname }}"
   tasks:
-  - name: get hostname from powershell
-    ansible.windows.win_shell: |
-      $server=$env:computername
-      "Powershell host $server"
-    register: Servername
   - debug: 
-      msg: "Hostname {{ ansible_hostname | upper }}"
-  - debug: 
-      msg: "Servername - from Powershell {{ Servername | upper }}"
+      msg: "Hostname from ansible facts and variable HostName {{ HostName | upper }}"
     
