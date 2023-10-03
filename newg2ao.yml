@@ -31,6 +31,18 @@
 
   tasks:
   ##### G2ao
+  - name: list remote desktop users
+    ansible.windows.win_group_membership:
+      name: Remote Desktop Users
+      members:
+    Register: RDPmembers
+
+  - name: list administrators
+    ansible.windows.win_group_membership:
+      name: Administrators
+      members:
+    Register: AdminMembers
+
   - name: Touch a file - step 0
     ansible.windows.win_file:
       path: "{{ OutFile0 }}"
@@ -67,6 +79,10 @@
         OS Name and architecture: {{ ansible_os_name }} {{ ansible_architecture2 }}
         IP Addresses: {{ ansible_ip_addresses }}
         Vendor: {{ ansible_system_vendor }}
+        Remote Desktop Users
+        {{ RDPmembers }}
+        Administrators
+        {{ AdminMembers }}
         ##### Step01 - G2ao
       dest: "{{ OutFile1 }}"
 
