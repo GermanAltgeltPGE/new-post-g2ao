@@ -21,11 +21,62 @@
 #    
 # Change the following lines with your playbook
 #
-- name: hostname from ansible facts- PlayBook 2 
-  hosts: all
+- name:  post=g2ao - PB2 
+  hosts: all 
   vars:
-    HostName: "{{ ansible_hostname }}"
+    Today: "{{ lookup('pipe', 'date +\"%Y%m%d\"') }}"
+    OutFile0: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-step00.txt"
+    OutFile1: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-step01.txt"
+    OutFile2: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}.txt"
+
   tasks:
-  - debug: 
-      msg: "Hostname from ansible facts and variable HostName {{ HostName | upper }}"
-    
+  ##### G2ao
+  - name: Touch a file - step 0
+    ansible.windows.win_file:
+      path: "{{ OutFile0 }}"
+      state: touch
+  - name: Touch a file - step 1
+    ansible.windows.win_file:
+      path: "{{ OutFile1 }}"
+      state: touch
+  
+  - name: Read file - step 0
+    ansible.builtin.slurp:
+      src: "{{ OutFile0 }}"
+    register: Infile0
+  - name: Read file - step 1
+    ansible.builtin.slurp:
+      src: "{{ OutFile1 }}"
+    register: Infile1
+
+  - name: Change post file - step 0
+    ansible.windows.win_copy:
+      content: | 
+        {{ Infile0['content'] | b64decode }}
+        ##### Step00 - Header
+        HostName: {{ ansible_hostname | upper }}
+        Time: {{ ansible_date_time.date}} {{ ansible_date_time.time}}
+        ##### Step00 - Header
+      dest: "{{ OutFile0 }}"
+
+  - name: Change post file step 1
+    ansible.windows.win_copy:
+      content: | 
+        {{ Infile1['content'] | b64decode }}
+        ##### Step01 - G2ao
+        OS Name and architecture: {{ ansible_os_name }} {{ ansible_architecture2 }}
+        IP Addresses: {{ ansible_ip_addresses }}
+        Vendor: {{ ansible_system_vendor }}
+        ##### Step01 - G2ao
+      dest: "{{ OutFile1 }}"
+
+  - name: Stitch files together removing comments and empty
+    win_shell: | 
+      $c0=get-content "{{ OutFile0 }}"
+      $c1=get-content "{{ OutFile1 }}"
+      $c2=$c0+$c1 | Where { ($_ -notmatch "^#") }  
+      $c2=$c2 | ? {$_.trim() -ne ""}
+      new-item "{{ OutFile2 }}" -type File
+      set-content "{{ OutFile2 }}" -value $c2
+
+##### G2ao

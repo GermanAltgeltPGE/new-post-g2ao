@@ -48,4 +48,13 @@
         ##### Step01 - G2ao
       dest: "{{ OutFile1 }}"
 
+  - name: Stitch files together removing comments and empty
+    win_shell: | 
+      $c0=get-content "{{ OutFile0 }}"
+      $c1=get-content "{{ OutFile1 }}"
+      $c2=$c0+$c1 | Where { ($_ -notmatch "^#") }  
+      $c2=$c2 | ? {$_.trim() -ne ""}
+      new-item "{{ OutFile2 }}" -type File
+      set-content "{{ OutFile2 }}" -value $c2
+
 ##### G2ao
