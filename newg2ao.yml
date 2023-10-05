@@ -35,6 +35,8 @@
   tasks:
   ##### G2ao
   - debug:
+      msg: "Members of Local Administrators"
+  - debug:
       msg: "Members .. {{ groupdict }}"
   
   - name: Touch a file - step 0
