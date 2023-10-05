@@ -28,16 +28,19 @@
     OutFile0: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-step00.txt"
     OutFile1: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-step01.txt"
     OutFile2: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}.txt"
-    groupdict:
-      - name: 'Administrators'
-      - path: 'WinNT://Workgroup/{{ ansible-hostname }}/Administrators' 
 
   tasks:
   ##### G2ao
   - debug:
       msg: "Members of Local Administrators"
+  - name: list administrators
+    ansible.windows.win_group_membership:
+      name: Remote Desktop Users
+      memberslist:
+    register: memberslist
+  
   - debug:
-      msg: "Members .. {{ groupdict }}"
+      msg: "{{ memberslist }}"
   
   - name: Touch a file - step 0
     ansible.windows.win_file:
