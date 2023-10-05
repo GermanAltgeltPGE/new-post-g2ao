@@ -35,7 +35,7 @@
     ansible.windows.win_group_membership:
       name: Administrators
       members:
-       -PGE\g2aoadmin
+       - PGE\g2aoadmin
       state: present
     Register: Admins
   - debug:
