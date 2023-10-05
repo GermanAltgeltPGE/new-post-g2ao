@@ -34,16 +34,8 @@
 
   tasks:
   ##### G2ao
-  #- name: list administrators
-  #  ansible.windows.win_group_membership:
-  #    name: Administrators
-  #    members:
-  #     - PGE\g2aoadmin
-  #    state: present
-  #  Register: Admins
-
-  #- debug:
-  #    msg: "Members {{ Admins.members }}"
+  - debug:
+      msg: "Members .. {{ groupdict }}"
   
   - name: Touch a file - step 0
     ansible.windows.win_file:
