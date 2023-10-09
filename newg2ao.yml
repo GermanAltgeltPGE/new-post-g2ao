@@ -40,7 +40,7 @@
       register: ADmininfo
   
   - debug:
-      msg: "Administrator Group member info {{ ADmininfo.members }}"
+      msg: "Administrator Group member info {{ ADmininfo }}"
 
   - name: Initiate {{ OutFile0 }}
     ansible.windows.win_file:
