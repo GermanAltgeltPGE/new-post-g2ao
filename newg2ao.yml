@@ -78,7 +78,9 @@
         Vendor: {{ ansible_system_vendor }}
         --------
         Remote Desktop Users
-        {{RDU.MEMBERS}}
+        {{RDU.members}}
+        ---
+        Administrators
         ---
         ##### Step01 - G2ao
       dest: "{{ OutFile1 }}"
