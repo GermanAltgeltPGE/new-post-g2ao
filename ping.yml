@@ -1,6 +1,4 @@
 ---
-- name: Ping Windows Server listed in playbook - multiple playbooks 
----
 - name: Gather credentials - PB1
   hosts: all
   gather_facts: false
