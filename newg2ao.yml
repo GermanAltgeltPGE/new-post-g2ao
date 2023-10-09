@@ -26,7 +26,7 @@
   vars:
     Today: "{{ lookup('pipe', 'date +\"%Y%m%d\"') }}"
     OutFile0: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-step00.txt"
-    OutFile1: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-step01.txt"
+    OutFile1: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-g2ao.txt"
     OutFile2: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}.txt"
 
   tasks:
@@ -85,8 +85,8 @@
     win_shell: | 
       $c0=get-content "{{ OutFile0 }}"
       $c1=get-content "{{ OutFile1 }}"
-      $c2=$c0+$c1 | Where { ($_ -notmatch "^#") }  
-      $c2=$c2 | ? {$_.trim() -ne ""}
+  # $c2=$c0+$c1 | Where { ($_ -notmatch "^#") }  
+      $c2=$c0+$c1 | ? {$_.trim() -ne ""}
       new-item "{{ OutFile2 }}" -type File
       set-content "{{ OutFile2 }}" -value $c2
 
