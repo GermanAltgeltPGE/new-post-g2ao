@@ -21,11 +21,12 @@
 #    
 # Change the following lines with your playbook
 #
-- name: Playbook 2
+- name: Ping Windows Server listed in playbook
   hosts: all
-  gather_facts: True
+  gather_facts: true
+
   tasks:
-  - Debug:
-      msg: "Hello from Playbook 2 DEBUG 1 {{ ansible_hostname }}"
+  - name: Ping an arbitrary Windows server
+    ansible.builtin.win_ping:
 
     
