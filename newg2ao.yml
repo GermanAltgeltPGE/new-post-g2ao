@@ -86,7 +86,7 @@
         ##### Step01 - G2ao
       dest: "{{ OutFile1 }}"
 
-  - name: Combine {{Outfile0}} and {{Outfile1}} in {{OutFile2})
+  - name: Combine {{Outfile0}} and {{Outfile1}} in {{OutFile2}}
     win_shell: | 
       $c0=get-content "{{ OutFile0 }}"
       $c1=get-content "{{ OutFile1 }}"
