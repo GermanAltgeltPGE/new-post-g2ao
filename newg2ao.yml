@@ -33,14 +33,14 @@
   ##### G2ao
   - name: Remove a user from a local group
     ansible.windows.win_group_membership:
-      name: Administrators
+      name: Remote Desktop Users
       members:
         - .\testuser
       state: absent
-      register: ADmininfo
+    register: RDU
   
   - debug:
-      msg: "Administrator Group member info {{ ADmininfo }}"
+      msg: "Remote Desktop users {{ RDU.members }}"
 
   - name: Initiate {{ OutFile0 }}
     ansible.windows.win_file:
