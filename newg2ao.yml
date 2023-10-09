@@ -36,7 +36,6 @@
     ansible.windows.win_group_membership:
       name: Remote Desktop Users
       members:
-        - .\testuser
       state: absent
     register: RDU
 
