@@ -22,7 +22,7 @@
 # Change the following lines with your playbook
 #
 - name:  post=g2ao - PB2 
-- hosts: all
+  hosts: all
   tasks:
   - Name: Winping
     Win_Ping:
