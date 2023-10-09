@@ -1,37 +1,31 @@
 ---
 - name: Ping Windows Server listed in playbook - multiple playbooks 
+---
+- name: Gather credentials - PB1
   hosts: all
   gather_facts: false
+# prerequisites = have a collections folder in your repo
+# with requirements.yml in it with the following:
+#---
+#collections:
+# - pge_util.papm_util
+#
   tasks:
-  - name: Grab credentials from PAPM - playbook 1
-    ansible.builtin.set_fact:
-      ansible_user: "{{ papm_cred.account ~ '@' ~ papm_cred.domain | upper }}"
-      ansible_password: "{{ papm_cred.password }}"
-    run_once: true
-    no_log: true
-    vars:
-      papm_cred: '{{lookup("pge_util.papm_util.papm_lookup",
-                    papm_account="Utility.pge.com\svc-a1315-qa-ansble",
-                    papm_host="SvcAcctMgmtServer",
-                    papm_base_url="https://papm.utility.pge.com/BeyondTrust/api/public/v3/",
-                    papm_runas="ansibleqaapiuser",
-                    papm_groupname="ansibleqaapigroup",
-                    papm_reason="test",
-                    papm_duration=60,
-                    papm_token="daac58f4acc54dfdeeb533c28239a803f73c7fcb4cac868ce27479f9a4235b9b5e058e0aafae645a9d61a2d099e472e074a32a598d91d65737fac5c029e608c3")}}'
-    delegate_to: localhost
-    when: ansible_password is not defined
-
-  - name: win_ping
-    ansible.builtin.win_ping:
-    register: Ping
-  
-  - debug: 
-      msg: "Ping {{ Ping.ping }}"
-    
-
+# 
+# task needed for credentials in playbookone.yml
+#
+  - name: Include task list in play - import - task 1
+    ansible.builtin.import_tasks:
+      # make sure to have playbookeone in your repo 
+      file: playbookone.yml
+#
+# Separate playbook with ansible facts
+#    
+# Change the following lines with your playbook
+#
+- name:  post=g2ao - PB2 
 - hosts: all
   tasks:
-  - debug: 
-      msg: "Hostname {{ ansible_hostname }}"
+  - Name: Winping
+    Win_Ping:
     
