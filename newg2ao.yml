@@ -37,6 +37,10 @@
       members:
         - .\testuser
       state: absent
+      register: BACKUPStat
+  
+  - debug:
+      msg: "Backup member info {{ BACKUPStat }}"
 
   - name: Initiate {{ OutFile0 }}
     ansible.windows.win_file:
