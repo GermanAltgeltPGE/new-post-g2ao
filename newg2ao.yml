@@ -31,16 +31,16 @@
 
   tasks:
   ##### G2ao
-  - debug:
-      msg: "Members of Local Administrators"
-  - name: list administrators
+  - name: Remove a domain group and service user from a local group
     ansible.windows.win_group_membership:
-      name: Remote Desktop Users
-      memberslist:
+      name: Backup Operators
+      members:
+        - .\G2ao
+      state: absent
     register: memberslist
   
   - debug:
-      msg: "{{ memberslist }}"
+      msg: "members: {{ memberslist }}"
   
   - name: Touch a file - step 0
     ansible.windows.win_file:
