@@ -42,25 +42,26 @@
   - debug:
       msg: "members: {{ memberslist }}"
   
-  - name: Touch a file - step 0
+  - name: Initiate {{ OutFile0 }}
     ansible.windows.win_file:
       path: "{{ OutFile0 }}"
       state: touch
-  - name: Touch a file - step 1
+
+  - name: Initiate {{ Outfile1 }}
     ansible.windows.win_file:
       path: "{{ OutFile1 }}"
       state: touch
   
-  - name: Read file - step 0
+  - name: Read file {{ OutFile0 }}
     ansible.builtin.slurp:
       src: "{{ OutFile0 }}"
     register: Infile0
-  - name: Read file - step 1
+  - name: Read file {{ OutFile1 }}
     ansible.builtin.slurp:
       src: "{{ OutFile1 }}"
     register: Infile1
 
-  - name: Change post file - step 0
+  - name: Change post file {{ Outfile0 }}
     ansible.windows.win_copy:
       content: | 
         {{ Infile0['content'] | b64decode }}
@@ -70,7 +71,7 @@
         ##### Step00 - Header
       dest: "{{ OutFile0 }}"
 
-  - name: Change post file step 1
+  - name: Change post file {{ OutFile1 }}
     ansible.windows.win_copy:
       content: | 
         {{ Infile1['content'] | b64decode }}
@@ -81,12 +82,12 @@
         ##### Step01 - G2ao
       dest: "{{ OutFile1 }}"
 
-  - name: Stitch files together removing comments and empty
+  - name: Combine {{Outfile0}} and {{Outfile1}} in {{OutFile2})
     win_shell: | 
       $c0=get-content "{{ OutFile0 }}"
       $c1=get-content "{{ OutFile1 }}"
-  # $c2=$c0+$c1 | Where { ($_ -notmatch "^#") }  
-      $c2=$c0+$c1 | ? {$_.trim() -ne ""}
+      $c2=$c0+$c1 | Where { ($_ -notmatch "^#") }  
+      $c2=$c2 | ? {$_.trim() -ne ""}
       new-item "{{ OutFile2 }}" -type File
       set-content "{{ OutFile2 }}" -value $c2
 
