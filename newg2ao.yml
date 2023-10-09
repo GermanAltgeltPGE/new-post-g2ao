@@ -38,9 +38,6 @@
         - .\testuser
       state: absent
     register: RDU
-  
-  - debug:
-      msg: "Remote Desktop users {{ RDU.members }}"
 
   - name: Initiate {{ OutFile0 }}
     ansible.windows.win_file:
@@ -79,6 +76,10 @@
         OS Name and architecture: {{ ansible_os_name }} {{ ansible_architecture2 }}
         IP Addresses: {{ ansible_ip_addresses }}
         Vendor: {{ ansible_system_vendor }}
+        --------
+        Remote Desktop Users
+        {{RDU.MEMBERS}}
+        ---
         ##### Step01 - G2ao
       dest: "{{ OutFile1 }}"
 
