@@ -25,5 +25,6 @@
   hosts: all
   tasks:
   - Name: Winping
-    Win_Ping:
+    ansible.windows.win_ping:
+
     
