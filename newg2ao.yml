@@ -31,6 +31,7 @@
 
   tasks:
   ##### G2ao
+  # user testuser is a local user that should be absent
   - name: Remove a user from a local group
     ansible.windows.win_group_membership:
       name: Remote Desktop Users
@@ -89,8 +90,9 @@
     win_shell: | 
       $c0=get-content "{{ OutFile0 }}"
       $c1=get-content "{{ OutFile1 }}"
-      $c2=$c0+$c1 | Where { ($_ -notmatch "^#") }  
-      $c2=$c2 | ? {$_.trim() -ne ""}
+      $c2=$c0+$c1
+      #$c2=$c0+$c1 | Where { ($_ -notmatch "^#") }  
+      #$c2=$c2 | ? {$_.trim() -ne ""}
       new-item "{{ OutFile2 }}" -type File
       set-content "{{ OutFile2 }}" -value $c2
 
