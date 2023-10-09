@@ -31,13 +31,19 @@
 
   tasks:
   ##### G2ao
-  # user testuser is a local user that should be absent
-  - name: Remove a user from a local group
+  - name: Remote Desktop Users
     ansible.windows.win_group_membership:
       name: Remote Desktop Users
       members:
       state: absent
     register: RDU
+
+  - name: Admins
+    ansible.windows.win_group_membership:
+      name: Administrators
+      members:
+      state: absent
+    register: Admins
 
   - name: Initiate {{ OutFile0 }}
     ansible.windows.win_file:
@@ -81,6 +87,7 @@
         {{RDU.members}}
         ---
         Administrators
+        {{Admins.members}}
         ---
         ##### Step01 - G2ao
       dest: "{{ OutFile1 }}"
