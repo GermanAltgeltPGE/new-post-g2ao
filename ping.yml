@@ -21,10 +21,10 @@
 #    
 # Change the following lines with your playbook
 #
-- name:  post=g2ao - PB2 
-  hosts: all
-  tasks:
-  - Name: test ping g2ao
-    ansible.windows.win_ping:
+  - name:  post=g2ao - PB2 
+    hosts: all
+    tasks:
+    - Name: test ping g2ao
+      ansible.windows.win_ping:
 
     
