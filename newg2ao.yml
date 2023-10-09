@@ -31,16 +31,16 @@
 
   tasks:
   ##### G2ao
-  - name: Remove a domain group and service user from a local group
+  - name: Remove a user from a local group
     ansible.windows.win_group_membership:
-      name: Backup Operators
+      name: Administrators
       members:
         - .\testuser
       state: absent
-      register: BACKUPStat
+      register: ADmininfo
   
   - debug:
-      msg: "Backup member info {{ BACKUPStat }}"
+      msg: "Administrator Group member info {{ ADmininfo.members }}"
 
   - name: Initiate {{ OutFile0 }}
     ansible.windows.win_file:
