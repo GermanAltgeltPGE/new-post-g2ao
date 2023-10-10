@@ -34,13 +34,13 @@
   tasks:
   ##### G2ao
   - name: Remove a file, if present
-  ansible.windows.win_file:
-    path: |
-      "{{ Outfile0 }}"
-      "{{ Outfile1 }}"
-      "{{ Outfile }}"
-      "{{ Outfilenew }}"
-    state: absent
+    ansible.windows.win_file:
+      path: |
+        {{ Outfile }}
+        {{ Outfile0 }}
+        {{ Outfile1 }}
+        {{ Outfilenew }}
+      state: absent
 
   
   - name: Remote Desktop Users membership
@@ -111,13 +111,13 @@
         {{ Infile1['content'] | b64decode }}
       dest: "{{ OutFilenew }}"
 
-  - name: Combine {{Outfile0}} and {{Outfile1}} in {{OutFile}}
-    win_shell: | 
-      $c0=get-content "{{ OutFile0 }}"
-      $c1=get-content "{{ OutFile1 }}"
-      $c2=$c0+$c1 | Where { ($_ -notmatch "^#") } | ? {$_.trim() -ne ""}
-      #$c2=$c2 | ? {$_.trim() -ne ""}
-      new-item "{{ OutFile }}" -type File
-      set-content "{{ OutFile }}" -value $c2
+#  - name: Combine {{Outfile0}} and {{Outfile1}} in {{OutFile}}
+#    win_shell: | 
+#      $c0=get-content "{{ OutFile0 }}"
+#      $c1=get-content "{{ OutFile1 }}"
+#      $c2=$c0+$c1 | Where { ($_ -notmatch "^#") } | ? {$_.trim() -ne ""}
+#      #$c2=$c2 | ? {$_.trim() -ne ""}
+#      new-item "{{ OutFile }}" -type File
+#      set-content "{{ OutFile }}" -value $c2
 
 ##### G2ao
