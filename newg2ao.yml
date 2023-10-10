@@ -29,17 +29,18 @@
     OutFile0: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-step00.txt"
     OutFile1: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-g2ao.txt"
     OutFile: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}.txt"
+    OutFile-new: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-new.txt"
 
   tasks:
   ##### G2ao
-  - name: Remote Desktop Users
+  - name: Remote Desktop Users membership
     ansible.windows.win_group_membership:
       name: Remote Desktop Users
       members:
       state: absent
     register: RDU
 
-  - name: Admins
+  - name: Administrators Membership
     ansible.windows.win_group_membership:
       name: Administrators
       members:
@@ -92,6 +93,13 @@
         ---
         ##### Step01 - G2ao
       dest: "{{ OutFile1 }}"
+  
+  - name: Combine {{Outfile3}} and {{Outfile1}} in {{OutFile=new}}
+    ansible.windows.win_copy:
+      content: | 
+        {{ Infile0['content'] | b64decode }}
+        {{ Infile1['content'] | b64decode }}
+      dest: "{{ OutFile-new }}"
 
   - name: Combine {{Outfile0}} and {{Outfile1}} in {{OutFile}}
     win_shell: | 
