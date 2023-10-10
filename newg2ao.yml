@@ -124,6 +124,7 @@
       # Line to Replace with
       line: ''
       backrefs: yes
+      state: present
 
 #  - name: Read file {{ OutFilenew }}
 #    ansible.builtin.slurp:
