@@ -116,6 +116,17 @@
         {{ Infile1['content'] | b64decode }}
       dest: "{{ OutFilenew }}"
 
+  - name: Remove blank lines between matches
+    replace:
+      path: "{{ OutFilenew }}"
+      regexp: '(^\s*$)'
+      replace: ''
+
+#  - name: Read file {{ OutFilenew }}
+#    ansible.builtin.slurp:
+#      src: "{{ OutFilenew }}"
+#    register: Infilenew
+
 #  - name: Combine {{Outfile0}} and {{Outfile1}} in {{OutFile}}
 #    win_shell: | 
 #      $c0=get-content "{{ OutFile0 }}"
