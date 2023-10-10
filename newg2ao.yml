@@ -33,13 +33,9 @@
 
   tasks:
   ##### G2ao
-  - name: Remove a file, if present
+  - name: Remove {{ Outfilenew }} if present
     ansible.windows.win_file:
-      path: |
-        {{ Outfile }}
-        {{ Outfile0 }}
-        {{ Outfile1 }}
-        {{ Outfilenew }}
+      path: {{ Outfilenew }}
       state: absent
 
   
