@@ -100,7 +100,16 @@
         ##### Step01 - G2ao
       dest: "{{ OutFile1 }}"
   
-  - name: Combine {{Outfile3}} and {{Outfile1}} in {{ OutFilenew }}
+  - name: Read file {{ OutFile0 }}
+    ansible.builtin.slurp:
+      src: "{{ OutFile0 }}"
+    register: Infile0
+  - name: Read file {{ OutFile1 }}
+    ansible.builtin.slurp:
+      src: "{{ OutFile1 }}"
+    register: Infile1
+
+  - name: Combine {{OutFile0}} and {{OutFile1}} in {{ OutFilenew }}
     ansible.windows.win_copy:
       content: | 
         {{ Infile0['content'] | b64decode }}
