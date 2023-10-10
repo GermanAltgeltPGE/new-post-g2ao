@@ -1,4 +1,4 @@
 ---
 # this is required for new PAPM variable
 collections:
- - pge_util.papm_util
+- pge_util.papm_util
