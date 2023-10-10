@@ -94,7 +94,7 @@
         ##### Step01 - G2ao
       dest: "{{ OutFile1 }}"
   
-  - name: Combine {{Outfile3}} and {{Outfile1}} in {{OutFile=new}}
+  - name: Combine {{Outfile3}} and {{Outfile1}} in {{ OutFilenew }}
     ansible.windows.win_copy:
       content: | 
         {{ Infile0['content'] | b64decode }}
