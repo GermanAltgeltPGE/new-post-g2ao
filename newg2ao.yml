@@ -116,11 +116,14 @@
         {{ Infile1['content'] | b64decode }}
       dest: "{{ OutFilenew }}"
 
-  - name: Remove blank lines between matches
-    replace:
+  - name: remove blank lines
+    win_lineinfile:
       path: "{{ OutFilenew }}"
+      # Line to Search/Match against
       regexp: '(^\s*$)'
-      replace: ''
+      # Line to Replace with
+      line: ''
+      backrefs: yes
 
 #  - name: Read file {{ OutFilenew }}
 #    ansible.builtin.slurp:
