@@ -127,12 +127,9 @@
 
   - name: remove blank lines - 02
     win_lineinfile:
-      path: "{{ OutFilenew }}"
-      # Line to Search/Match against
-      regexp: '^\s*$'
-      # Line to Replace with
-      line: ''
-      state: present
+      dest: "{{ OutFilenew}}" 
+      state: absent 
+      regexp: "^#"
 
 
 #  - name: Read file {{ OutFilenew }}
