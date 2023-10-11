@@ -121,21 +121,19 @@
       src: "{{ OutFilenew }}"
     register: Infilenew
 
-  - name: Print file content
-    ansible.builtin.debug:
-      msg: "{{ Infilenew['content'] | b64decode }}"
-
-  - name: remove pounds
+  - name: remove pounds and empty lines
     win_lineinfile:
       dest: "{{ OutFilenew }}" 
       state: absent 
-      regexp: "^#"
+      regexp: | 
+        "^#"
+        "^\\s*$"
 
-  - name: remove blank lines
-    win_lineinfile:
-      dest: "{{ OutFilenew }}" 
-      state: absent 
-      regexp: "^\\s*$"
+#  - name: remove blank lines
+#    win_lineinfile:
+#      dest: "{{ OutFilenew }}" 
+#      state: absent 
+#      regexp: "^\\s*$"
 
 #  - name: Read file {{ OutFilenew }}
 #    ansible.builtin.slurp:
