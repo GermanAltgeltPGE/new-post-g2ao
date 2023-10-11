@@ -129,7 +129,7 @@
     win_lineinfile:
       path: "{{ OutFilenew }}"
       # Line to Search/Match against
-      regexp: '(^\s*$)'
+      regexp: '^\s*$'
       # Line to Replace with
       line: ''
       state: present
