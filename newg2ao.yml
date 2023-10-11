@@ -118,16 +118,16 @@
       content: | 
         {{ Infile0['content'] | b64decode }}
         {{ Infile1['content'] | b64decode }}
-      dest: "{{ OutFilenew }}"
+      dest: "{{ OutFile }}"
 
   - name: cleanup final file = remove pounds 
     win_lineinfile:
-      dest: "{{ OutFilenew }}" 
+      dest: "{{ OutFile }}" 
       state: absent 
       regexp: "^#"
   - name: cleanup final file = remove blank lines
     win_lineinfile:
-      dest: "{{ OutFilenew }}" 
+      dest: "{{ OutFile }}" 
       state: absent 
       regexp: "^\\s*$"
 
