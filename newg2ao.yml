@@ -125,6 +125,7 @@
       line: ''
       state: present
 
+
 #  - name: Read file {{ OutFilenew }}
 #    ansible.builtin.slurp:
 #      src: "{{ OutFilenew }}"
