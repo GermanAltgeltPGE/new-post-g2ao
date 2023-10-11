@@ -35,11 +35,7 @@
   ##### G2ao
   - name: Remove {{ OutFilenew }} if present
     ansible.windows.win_file:
-      path: | 
-        "{{ OutFilenew }}"
-        "{{ OutFile }}"
-        "{{ OutFile0 }}"
-        "{{ OutFile1 }}"
+      path: "{{ OutFilenew }}"
       state: absent
 
   
