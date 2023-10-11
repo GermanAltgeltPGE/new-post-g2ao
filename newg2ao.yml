@@ -105,6 +105,7 @@
     ansible.builtin.slurp:
       src: "{{ OutFile0 }}"
     register: Infile0
+    
   - name: Read file {{ OutFile1 }}
     ansible.builtin.slurp:
       src: "{{ OutFile1 }}"
@@ -117,34 +118,15 @@
         {{ Infile1['content'] | b64decode }}
       dest: "{{ OutFilenew }}"
 
-  - name: Read file
-    ansible.builtin.slurp:
-      src: "{{ OutFilenew }}"
-    register: Infilenew
-
-  - name: remove pounds and empty lines
+  - name: remove pounds 
     win_lineinfile:
       dest: "{{ OutFilenew }}" 
       state: absent 
-      regexp: "^#^\\s*$"
+      regexp: "^#"
 
-#  - name: remove blank lines
-#    win_lineinfile:
-#      dest: "{{ OutFilenew }}" 
-#      state: absent 
-#      regexp: "^\\s*$"
-
-#  - name: Read file {{ OutFilenew }}
-#    ansible.builtin.slurp:
-#      src: "{{ OutFilenew }}"
-#    register: Infilenew
-
-#  - name: Combine {{Outfile0}} and {{Outfile1}} in {{OutFile}}
-#    win_shell: | 
-#      $c0=get-content "{{ OutFile0 }}"
-#      $c1=get-content "{{ OutFile1 }}"
-#      $c2=$c0+$c1 | Where { ($_ -notmatch "^#") } | ? {$_.trim() -ne ""}
-#      #$c2=$c2 | ? {$_.trim() -ne ""}
-#      new-item "{{ OutFile }}" -type File
-#      set-content "{{ OutFile }}" -value $c2
+  - name: remove blank lines
+    win_lineinfile:
+      dest: "{{ OutFilenew }}" 
+      state: absent 
+      regexp: "^\\s*$"
 
