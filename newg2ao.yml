@@ -35,7 +35,11 @@
   ##### G2ao
   - name: Remove {{ OutFilenew }} if present
     ansible.windows.win_file:
-      path: "{{ OutFilenew }}"
+      path: | 
+        "{{ OutFilenew }}"
+        "{{ OutFile }}"
+        "{{ OutFile0 }}"
+        "{{ OutFile2 }}"
       state: absent
 
   
@@ -115,6 +119,15 @@
         {{ Infile0['content'] | b64decode }}
         {{ Infile1['content'] | b64decode }}
       dest: "{{ OutFilenew }}"
+
+  - name: Read file
+    ansible.builtin.slurp:
+      src: "{{ OutFilenew }}"
+    register: Infilenew
+
+  - name: Print file content
+    ansible.builtin.debug:
+      msg: "{{ Infilenew['content'] | b64decode }}"
 
   - name: remove blank lines - 02
     win_lineinfile:
