@@ -125,12 +125,17 @@
     ansible.builtin.debug:
       msg: "{{ Infilenew['content'] | b64decode }}"
 
-  - name: remove blank lines - 02
+  - name: remove pounds
     win_lineinfile:
-      dest: "{{ OutFilenew}}" 
+      dest: "{{ OutFilenew }}" 
       state: absent 
       regexp: "^#"
 
+  - name: remove blank lines
+    win_lineinfile:
+      dest: "{{ OutFilenew }}" 
+      state: absent 
+      regexp: "^\\s*$"
 
 #  - name: Read file {{ OutFilenew }}
 #    ansible.builtin.slurp:
