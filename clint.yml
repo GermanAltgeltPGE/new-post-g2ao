@@ -6,3 +6,5 @@
   tasks:
   - name: Ping an arbitrary Windows server
     ansible.builtin.win_ping:
+
+    ###
