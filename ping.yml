@@ -21,7 +21,7 @@
 #    
 # Change the following lines with your playbook
 #
-- name: Ping Windows Server listed in playbook
+- name: Ping Windows Server listed in playbook - PB2
   hosts: all
   gather_facts: true
 
