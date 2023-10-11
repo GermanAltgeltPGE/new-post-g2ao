@@ -29,7 +29,6 @@
     OutFile0: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-step00.txt"
     OutFile1: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-g2ao.txt"
     OutFile: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}.txt"
-    OutFilenew: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}_new.txt"
 
   tasks:
   ##### G2ao
