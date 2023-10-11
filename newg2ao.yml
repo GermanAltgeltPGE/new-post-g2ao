@@ -62,6 +62,7 @@
     ansible.windows.win_file:
       path: "{{ OutFile1 }}"
       state: touch
+##### G2ao
   
   - name: Read file {{ OutFile0 }}
     ansible.builtin.slurp:
@@ -125,9 +126,7 @@
     win_lineinfile:
       dest: "{{ OutFilenew }}" 
       state: absent 
-      regexp: | 
-        "^#"
-        "^\\s*$"
+      regexp: "^#^\\s*$"
 
 #  - name: remove blank lines
 #    win_lineinfile:
@@ -149,4 +148,3 @@
 #      new-item "{{ OutFile }}" -type File
 #      set-content "{{ OutFile }}" -value $c2
 
-##### G2ao
