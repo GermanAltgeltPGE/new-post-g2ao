@@ -33,12 +33,20 @@
 
   tasks:
   ##### G2ao
-  - name: Remove {{ OutFilenew }} if present
-    ansible.windows.win_file:
-      path: "{{ OutFilenew }}"
-      state: absent
+  #- name: Remove {{ OutFilenew }} if present
+  #  ansible.windows.win_file:
+  #    path: "{{ OutFilenew }}"
+  #    state: absent
 
-  
+  - name: Remove files if present
+    ansible.windows.win_file:
+      # path: "{{ OutFilenew }}"
+      state: absent
+      with_items:
+        - "{{ OutFile }}"
+        - "{{ OutFile0 }}"
+        - "{{ OutFile1 }}"
+
   - name: Remote Desktop Users membership
     ansible.windows.win_group_membership:
       name: Remote Desktop Users
@@ -105,7 +113,7 @@
     ansible.builtin.slurp:
       src: "{{ OutFile0 }}"
     register: Infile0
-    
+
   - name: Read file {{ OutFile1 }}
     ansible.builtin.slurp:
       src: "{{ OutFile1 }}"
@@ -118,13 +126,12 @@
         {{ Infile1['content'] | b64decode }}
       dest: "{{ OutFilenew }}"
 
-  - name: remove pounds 
+  - name: cleanup final file = remove pounds 
     win_lineinfile:
       dest: "{{ OutFilenew }}" 
       state: absent 
       regexp: "^#"
-
-  - name: remove blank lines
+  - name: cleanup final file = remove blank lines
     win_lineinfile:
       dest: "{{ OutFilenew }}" 
       state: absent 
