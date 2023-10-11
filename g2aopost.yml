@@ -37,7 +37,6 @@
       path: '{{ item }}'
       state: absent
     with_items:
-      - "{{ OutFile }}"
       - "{{ OutFile0 }}"
       - "{{ OutFile1 }}"
 
@@ -54,15 +53,12 @@
       members:
       state: absent
     register: Admins
-
-##### G2ao
   
   - name: Initiate files
     ansible.windows.win_file:
       path: "{{ item }}"
       state: touch
     with_items:
-      - "{{ OutFile }}"
       - "{{ OutFile0 }}"
       - "{{ OutFile1 }}"
 
@@ -92,31 +88,5 @@
         ##### Step01 - G2ao
       dest: "{{ OutFile1 }}"
   
-  - name: Read file {{ OutFile0 }}
-    ansible.builtin.slurp:
-      src: "{{ OutFile0 }}"
-    register: Infile0
 
-  - name: Read file {{ OutFile1 }}
-    ansible.builtin.slurp:
-      src: "{{ OutFile1 }}"
-    register: Infile1
-
-  - name: Combine {{OutFile0}} and {{OutFile1}} in {{ OutFilenew }}
-    ansible.windows.win_copy:
-      content: | 
-        {{ Infile0['content'] | b64decode }}
-        {{ Infile1['content'] | b64decode }}
-      dest: "{{ OutFile }}"
-
-  - name: cleanup final file = remove pounds 
-    win_lineinfile:
-      dest: "{{ OutFile }}" 
-      state: absent 
-      regexp: "^#"
-  - name: cleanup final file = remove blank lines
-    win_lineinfile:
-      dest: "{{ OutFile }}" 
-      state: absent 
-      regexp: "^\\s*$"
 

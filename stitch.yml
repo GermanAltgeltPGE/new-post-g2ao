@@ -1,20 +1,67 @@
---- 
-- name:  post=g2ao - main 
+
+---
+- name: Gather credentials - PB1
+  hosts: all
+  gather_facts: false
+# prerequisites = have a collections folder in your repo
+# with requirements.yml in it with the following:
+#---
+#collections:
+# - pge_util.papm_util
+#
+  tasks:
+# 
+# task needed for credentials in playbookone.yml
+#
+  - name: Include task list in play - import - task 1
+    ansible.builtin.import_tasks:
+      # make sure to have playbookeone in your repo 
+      file: playbookone.yml
+#
+# Separate playbook with ansible facts
+#    
+# Change the following lines with your playbook
+#
+- name:  post install g2ao - PB2 
   hosts: all 
+  no_log: false
   vars:
     Today: "{{ lookup('pipe', 'date +\"%Y%m%d\"') }}"
     OutFile0: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-step00.txt"
-    OutFile1: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-step01.txt"
-    OutFile2: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}.txt"
-
+    OutFile1: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-g2ao.txt"
+    OutFileOut: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}.txt"
   tasks:
-  ##### G2ao
-  - name: "Stitch files together removing # and empty"
-    win_shell: | 
-      $c0=get-content "{{ OutFile0 }}"
-      $c1=get-content "{{ OutFile1 }}"
-      $c2=$c0+$c1 | Where { ($_ -notmatch "^#") }  
-      $c2=$c2 | ? {$_.trim() -ne ""}
-      new-item "{{ OutFile2 }}" -type File
-      set-content "{{ OutFile2 }}" -value $c2
-##### G2ao
+  - name: Initiate files
+    ansible.windows.win_file:
+      path: "{{ item }}"
+      state: touch
+    with_items:
+      - "{{ OutFile }}"
+
+  - name: Read file {{ OutFile0 }}
+    ansible.builtin.slurp:
+      src: "{{ OutFile0 }}"
+    register: Infile0
+
+  - name: Read file {{ OutFile1 }}
+    ansible.builtin.slurp:
+      src: "{{ OutFile1 }}"
+    register: Infile1
+
+  - name: Combine {{OutFile0}} and {{OutFile1}} in {{ OutFilenew }}
+    ansible.windows.win_copy:
+      content: | 
+        {{ Infile0['content'] | b64decode }}
+        {{ Infile1['content'] | b64decode }}
+      dest: "{{ OutFile }}"
+
+  - name: cleanup final file = remove pounds 
+    win_lineinfile:
+      dest: "{{ OutFile }}" 
+      state: absent 
+      regexp: "^#"
+  - name: cleanup final file = remove blank lines
+    win_lineinfile:
+      dest: "{{ OutFile }}" 
+      state: absent 
+      regexp: "^\\s*$"
