@@ -44,7 +44,7 @@
     - name: "Create virtual fact"
       set_fact:
         is_there: yes
-      when: file_exists.win_stat.exists == True
+      when: file_exists.stat.exists == True
 
 
  
