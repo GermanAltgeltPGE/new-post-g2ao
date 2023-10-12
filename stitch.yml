@@ -36,7 +36,7 @@
     
   tasks:
     - name: check if file exists
-      local_action: win_stat path={{ item }}
+      win_stat: path={{ item }}
       with_items: "{{ files }}"
       register: check_file_name
 
