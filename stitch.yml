@@ -27,39 +27,39 @@
   no_log: false
   vars:
     Today: "{{ lookup('pipe', 'date +\"%Y%m%d\"') }}"
-    InFilepath0: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-step00.txt"
-    InFilepath1: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-g2ao.txt"
-    OutFilepath: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}.txt"
+    Path0: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-step00.txt"
+    Path1: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-g2ao.txt"
+    Path2: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}.txt"
   tasks:
-  - name: Initiate file "{{ OutFilepath }}"
+  - name: Initiate file {{ Path2 }}
     ansible.windows.win_file:
-      path: "{{ OutFilepath }}"
+      path: "{{ Path2 }}"
       state: touch
     
-  - name: Read file {{ InFilepath0 }}
+  - name: Read file {{ Path0 }}
     ansible.builtin.slurp:
-      src: "{{ InFilepath0 }}"
-    register: InFile0contents
+      src: "{{ Path0 }}"
+    register: contents0
 
-  - name: Read file {{ InFilepath1 }}
+  - name: Read file {{ Path1 }}
     ansible.builtin.slurp:
-      src: "{{ InFilepath1 }}"
-    register: InFile1Contents
+      src: "{{ Path1 }}"
+    register: contents1
 
-  - name: Combine {{InFile0contents}} and {{InFile1contents}} in {{ OutFilepath }}
+  - name: Combine 
     ansible.windows.win_copy:
       content: | 
-        {{ InFile0contents['content'] | b64decode }}
-        {{ InFile1contents['content'] | b64decode }}
-      dest: "{{ OutFilepath }}"
+        {{ contents0['content'] | b64decode }}
+        {{ contents1['content'] | b64decode }}
+      dest: "{{ path2 }}"
 
   - name: cleanup final file = remove pounds 
     win_lineinfile:
-      dest: "{{ OutFilepath }}" 
+      dest: "{{ path2 }}" 
       state: absent 
       regexp: "^#"
   - name: cleanup final file = remove blank lines
     win_lineinfile:
-      dest: "{{ OutFilepath }}" 
+      dest: "{{ path2 }}" 
       state: absent 
       regexp: "^\\s*$"
