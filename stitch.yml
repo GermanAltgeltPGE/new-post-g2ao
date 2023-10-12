@@ -1,6 +1,6 @@
 
 ---
-- name: Gather credentials - PB1
+- name: Gather creds- PB1
   hosts: all
   gather_facts: false
 # prerequisites = have a collections folder in your repo
@@ -13,7 +13,7 @@
 # 
 # task needed for credentials in playbookone.yml
 #
-  - name: Include task list in play - import - task 1
+  - name: Creds - task1 - PB1 
     ansible.builtin.import_tasks:
       # make sure to have playbookeone in your repo 
       file: playbookone.yml
@@ -22,7 +22,7 @@
 #    
 # Change the following lines with your playbook
 #
-- name:  post install g2ao - PB2 
+- name:  stitch - task1 - PB2 
   hosts: all 
   no_log: false
   vars:
@@ -39,6 +39,16 @@
       ansible.windows.win_stat: 
         path: "{{ item }}"
       with_items: "{{ files }}"
+      register: file_exists
+    
+    - name: "Create virtual fact"
+      set_fact:
+        is_there: yes
+      when: file_exists.stat.exists == True
 
+    - name: "Do something if virtual = yes"
+      Debug:
+        msg "is there"
+      when: is_there == "yes"
 
  
