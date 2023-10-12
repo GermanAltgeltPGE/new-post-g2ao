@@ -27,39 +27,23 @@
   no_log: false
   vars:
     Today: "{{ lookup('pipe', 'date +\"%Y%m%d\"') }}"
-    Path0: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-step00.txt"
-    Path1: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-g2ao.txt"
-    Path2: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}.txt"
-  tasks:
-  - name: Initiate file {{ Path2 }}
-    ansible.windows.win_file:
-      path: "{{ Path2 }}"
-      state: touch
+    OutPath: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}.txt"
+    files:
+      - "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-step00.txt"
+      - "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-g2ao.txt"
+      - "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-cxya.txt"
+      - "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-oxtg.txt"
     
-  - name: Read file {{ Path0 }}
-    ansible.builtin.slurp:
-      src: "{{ Path0 }}"
-    register: Contents0
+  tasks:
+    - name: check if file exists
+      local_action: win_stat path={{ item }}
+      with_items: "{{ files }}"
+      register: check_file_name
 
-  - name: Read file {{ Path1 }}
-    ansible.builtin.slurp:
-      src: "{{ Path1 }}"
-    register: Contents1
+    - name: Verifying if file exists
+      debug: msg="File {{ item.item }} exist"
+      with_items: "{{ check_file_name.results }}"
+      when: item.stat.exists
 
-  - name: Combine 
-    ansible.windows.win_copy:
-      content: | 
-        {{ Contents0['content'] | b64decode }}
-        {{ Contents1['content'] | b64decode }}
-      dest: "{{ Path2 }}"
 
-  - name: cleanup final file = remove pounds 
-    win_lineinfile:
-      dest: "{{ Path2 }}" 
-      state: absent 
-      regexp: "^#"
-  - name: cleanup final file = remove blank lines
-    win_lineinfile:
-      dest: "{{ Path2 }}" 
-      state: absent 
-      regexp: "^\\s*$"
+ 
