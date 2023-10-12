@@ -12,7 +12,7 @@
 # 
 # task needed for credentials in playbookone.yml
 #
-  - name: Imported task 1
+  - name: Gather Creds
     ansible.builtin.set_fact:
       ansible_user: "{{ papm_cred.account ~ '@' ~ papm_cred.domain | upper }}"
       ansible_password: "{{ papm_cred.password }}"
