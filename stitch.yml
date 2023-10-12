@@ -31,13 +31,11 @@
     InFilepath1: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-g2ao.txt"
     OutFilepath: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}.txt"
   tasks:
-  - name: Initiate files
+  - name: Initiate file "{{ OutFilepath }}"
     ansible.windows.win_file:
-      path: "{{ item }}"
+      path: "{{ OutFilepath }}"
       state: touch
-    with_items:
-      - "{{ OutFilepath }}"
-
+    
   - name: Read file {{ InFilepath0 }}
     ansible.builtin.slurp:
       src: "{{ InFilepath0 }}"
@@ -48,7 +46,7 @@
       src: "{{ InFilepath1 }}"
     register: InFile1Contents
 
-  - name: Combine {{inFile0contents}} and {{inFile1contents}} in {{ OutFilepath }}
+  - name: Combine {{InFile0contents}} and {{InFile1contents}} in {{ OutFilepath }}
     ansible.windows.win_copy:
       content: | 
         {{ InFile0contents['content'] | b64decode }}
