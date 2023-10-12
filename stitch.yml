@@ -37,7 +37,7 @@
   tasks:
     - name: check if file exists
       ansible-windows.win_stat: 
-      path: "{{ item }}""
+      path: "{{ item }}"
       with_items: "{{ files }}"
       register: check_file_name
 
