@@ -47,7 +47,7 @@
       when: file_exists.stat.exists == True
 
     - Debug:
-        msg "is there"
+        msg: "is there"
       when: is_there == "yes"
 
  
