@@ -51,15 +51,15 @@
       content: | 
         {{ contents0['content'] | b64decode }}
         {{ contents1['content'] | b64decode }}
-      dest: "{{ path2 }}"
+      dest: "{{ Path2 }}"
 
   - name: cleanup final file = remove pounds 
     win_lineinfile:
-      dest: "{{ path2 }}" 
+      dest: "{{ Path2 }}" 
       state: absent 
       regexp: "^#"
   - name: cleanup final file = remove blank lines
     win_lineinfile:
-      dest: "{{ path2 }}" 
+      dest: "{{ Path2 }}" 
       state: absent 
       regexp: "^\\s*$"
