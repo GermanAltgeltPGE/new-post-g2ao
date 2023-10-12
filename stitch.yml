@@ -39,18 +39,18 @@
   - name: Read file {{ Path0 }}
     ansible.builtin.slurp:
       src: "{{ Path0 }}"
-    register: contents0
+    register: Contents0
 
   - name: Read file {{ Path1 }}
     ansible.builtin.slurp:
       src: "{{ Path1 }}"
-    register: contents1
+    register: Contents1
 
   - name: Combine 
     ansible.windows.win_copy:
       content: | 
-        {{ contents0['content'] | b64decode }}
-        {{ contents1['content'] | b64decode }}
+        {{ Contents0['content'] | b64decode }}
+        {{ Contents1['content'] | b64decode }}
       dest: "{{ Path2 }}"
 
   - name: cleanup final file = remove pounds 
