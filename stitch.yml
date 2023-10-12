@@ -40,7 +40,7 @@
 
   - name: Read file {{ InFilepath0 }}
     ansible.builtin.slurp:
-      src: "{{ InfilePath0 }}"
+      src: "{{ Infilepath0 }}"
     register: Infile0contents
 
   - name: Read file {{ InFilepath1 }}
