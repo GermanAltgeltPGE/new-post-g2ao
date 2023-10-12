@@ -41,18 +41,18 @@
   - name: Read file {{ InFilepath0 }}
     ansible.builtin.slurp:
       src: "{{ InFilepath0 }}"
-    register: Infile0contents
+    register: InFile0contents
 
   - name: Read file {{ InFilepath1 }}
     ansible.builtin.slurp:
-      src: "{{ InFilePath1 }}"
-    register: Infile1Contents
+      src: "{{ InFilepath1 }}"
+    register: InFile1Contents
 
-  - name: Combine {{inFile0contents}} and {{intFile1contents}} in {{ OutFilepath }}
+  - name: Combine {{inFile0contents}} and {{inFile1contents}} in {{ OutFilepath }}
     ansible.windows.win_copy:
       content: | 
-        {{ Infile0contents['content'] | b64decode }}
-        {{ Infile1contents['content'] | b64decode }}
+        {{ InFile0contents['content'] | b64decode }}
+        {{ InFile1contents['content'] | b64decode }}
       dest: "{{ OutFilepath }}"
 
   - name: cleanup final file = remove pounds 
