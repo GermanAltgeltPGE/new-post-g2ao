@@ -46,8 +46,7 @@
         is_there: yes
       when: file_exists.stat.exists == True
 
-    - name: "Do something if virtual = yes"
-      Debug:
+    - Debug:
         msg "is there"
       when: is_there == "yes"
 
