@@ -39,12 +39,12 @@
       ansible.windows.win_stat: 
         path: "{{ item }}"
       with_items: "{{ files }}"
-      register: file_exists
+      register: check_file_exists
     
-    - name: "Create virtual fact"
-      set_fact:
-        is_there: yes
-      when: files.stat.exists == True
+    - name: Verifying if file exists
+      debug: msg="File {{ item.item }} exist"
+      with_items: "{{ check_file_name.results }}"
+      when: item.stat.exists
 
 
  
