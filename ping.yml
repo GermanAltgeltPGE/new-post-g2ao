@@ -6,7 +6,7 @@
 # with requirements.yml in it with the following:
 #---
 #collections:
-# - pge_util.papm_util
+#- pge_util.papm_util
 ##
   tasks:
 # 
