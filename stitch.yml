@@ -28,22 +28,44 @@
   vars:
     Today: "{{ lookup('pipe', 'date +\"%Y%m%d\"') }}"
     OutPath: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}.txt"
-    files:
-      - "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-step00.txt"
-      - "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-g2ao.txt"
-      - "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-cxya.txt"
-      - "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-oxtg.txt"
+    Path0:  "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-step00.txt"
+    Path1: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-g2ao.txt"
+    Path2: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-cxya.txt"
+    Path3: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-oxtg.txt"
     
   tasks:
-    - name: check if file exists
-      local_action: stat path={{ item }}
-      with_items: "{{ files }}"
-      register: check_file_name
-    
-    - name: Verifying if file exists
-      debug: msg="File {{ item.item }} exist"
-      with_items: "{{ check_file_name.results }}"
-      when: item.stat.exists
+  - name: Read file
+    ansible.builtin.slurp:
+      src: "{{ Path0 }}"
+    register: File0
 
+  - name: Read file
+    ansible.builtin.slurp:
+      src: "{{ Path1 }}"
+    register: File1
+
+  - name: Read file
+    ansible.builtin.slurp:
+      src: "{{ Path2 }}"
+    register: File2
+
+  - name: Read file
+    ansible.builtin.slurp:
+      src: "{{ Path3 }}"
+    register: File3
+
+  - name: stitch files together
+    ansible.builtin.win_copy:
+    contents: |
+      ---0---
+      {{ File0 }}
+      ---1---
+      {{ File1 }}
+      ---2---
+      {{ File2 }}
+      ---3---
+      {{ File3 }}
+      --- end ---
+    dest: "{{ OutPath }}"
 
  
