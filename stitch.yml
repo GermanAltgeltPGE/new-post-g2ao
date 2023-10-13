@@ -25,6 +25,7 @@
 - name:  stitch - task1 - PB2 
   hosts: all 
   no_log: false
+  ignore_errors: true
   vars:
     Today: "{{ lookup('pipe', 'date +\"%Y%m%d\"') }}"
     OutPath: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}.txt"
