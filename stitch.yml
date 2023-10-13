@@ -25,6 +25,8 @@
 - name:  stitch - task1 - PB2 
   hosts: all 
   no_log: false
+  ignore_errors: true
+
   vars:
     Today: "{{ lookup('pipe', 'date +\"%Y%m%d\"') }}"
     OutPath: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}.txt"
@@ -32,7 +34,11 @@
     Path1: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-g2ao.txt"
     Path2: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-cxya.txt"
     Path3: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-oxtg.txt"
-    
+    File0: 'placeholder File0 - header'
+    File1: 'placeholder File1 - g2ao '
+    File2: 'placeholder File2 - cxya '
+    File3: 'placeholder File3 - oxtg '
+
   tasks:
   - name: Read file
     ansible.builtin.slurp:
@@ -44,6 +50,16 @@
       src: "{{ Path1 }}"
     register: File1
 
+  - name: Read file
+    ansible.builtin.slurp:
+      src: "{{ Path2 }}"
+    register: File2
+
+      - name: Read file
+    ansible.builtin.slurp:
+      src: "{{ Path3 }}"
+    register: File3
+
   - name: stitch files together
     ansible.builtin.win_copy:
       content: |
@@ -51,6 +67,10 @@
         {{ File0['content'] | b64decode  }}
         ---1---
         {{ File1['content'] | b64decode  }}
+        ---2---
+        {{ File2['content'] | b64decode  }}
+        ---3---
+        {{ File3['content'] | b64decode  }}
         --- end ---
       dest: "{{ OutPath }}"
  
