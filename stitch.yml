@@ -53,6 +53,13 @@
         {{ File1['content'] | b64decode  }}
         --- end ---
       dest: "{{ OutPath }}"
-      
+ 
+  - name: cleanup final file = remove blank lines
+    win_lineinfile:
+      dest: "{{ OutPath }}" 
+      state: absent 
+      regexp: "^\\s*$"
+    # for pounds add regexp     regexp: "^#"
+    
 
  
