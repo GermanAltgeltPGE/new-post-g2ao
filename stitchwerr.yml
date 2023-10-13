@@ -42,18 +42,18 @@
 
 
   tasks:
-- name: Check if file exists
-  win_stat:
-    path: "{{ item.name }}"
-  register: files
-  loop: "{{ check_files }}"
+  - name: Check if file exists
+    win_stat:
+      path: "{{ item.name }}"
+    register: files
+    loop: "{{ check_files }}"
 
-- name: Status 
-  assert:
-    that: item.stat.exists
-    fail_msg: "Check failed"
-    success_msg: "Check PASSED"
-  loop: "{{ files.results }}"
+  - name: Status 
+    assert:
+      that: item.stat.exists
+      fail_msg: "Check failed"
+      success_msg: "Check PASSED"
+    loop: "{{ files.results }}"
 
 
  
