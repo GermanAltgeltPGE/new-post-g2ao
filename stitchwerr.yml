@@ -29,7 +29,7 @@
 
   vars:
     Today: "{{ lookup('pipe', 'date +\"%Y%m%d\"') }}"
-    OutPath: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}.txt"
+    OutPath2: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-new.txt"
     Path0:  "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-step00.txt"
     Path1: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-g2ao.txt"
     Path2: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-cxya.txt"
@@ -38,30 +38,24 @@
   tasks:
   - name: Read file
     ansible.builtin.slurp:
-      src: "{{ Path0 }}"
-    register: File0
+      src: "{{ Path2 }}"
+    register: File2
 
   - name: Read file
     ansible.builtin.slurp:
-      src: "{{ Path1 }}"
-    register: File1
+      src: "{{ Path3 }}"
+    register: File3
 
   - name: stitch files together
     ansible.builtin.win_copy:
       content: |
-        ---0---
-        {{ File0['content'] | b64decode  }}
-        ---1---
-        {{ File1['content'] | b64decode  }}
+        ---2---
+        {{ File2['content'] | b64decode  }}
+        ---3---
+        {{ File3['content'] | b64decode  }}
         --- end ---
-      dest: "{{ OutPath }}"
+      dest: "{{ OutPath2 }}"
  
-  - name: cleanup final file = remove blank lines
-    win_lineinfile:
-      dest: "{{ OutPath }}" 
-      state: absent 
-      regexp: "^\\s*$"
-    # for pounds add regexp     regexp: "^#"
     
 
  
