@@ -55,7 +55,7 @@
       src: "{{ Path2 }}"
     register: File2
 
-      - name: Read file
+  - name: Read file
     ansible.builtin.slurp:
       src: "{{ Path3 }}"
     register: File3
