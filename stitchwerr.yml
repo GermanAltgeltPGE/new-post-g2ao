@@ -34,27 +34,29 @@
     Path1: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-g2ao.txt"
     Path2: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-cxya.txt"
     Path3: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-oxtg.txt"
+  
+  files:
+    - "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-step00.txt"
+    - "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-g2ao.txt"
+    - "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-cxya.txt"
+    - "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-oxtg.txt"
+
 
   tasks:
-  - name: Read file
-    ansible.builtin.slurp:
-      src: "{{ Path2 }}"
-    register: File2
+- name: Check if file exists
+  win_stat:
+    path: "{{ item.name }}"
+  register: files
+  loop: "{{ check_files }}"
 
-  - name: Read file
-    ansible.builtin.slurp:
-      src: "{{ Path3 }}"
-    register: File3
+- name: Status 
+  assert:
+    that: item.stat.exists
+    fail_msg: "Check failed"
+    success_msg: "Check PASSED"
+  loop: "{{ files.results }}"
 
-  - name: stitch files together
-    ansible.builtin.win_copy:
-      content: |
-        ---2---
-        {{ File2['content'] | b64decode  }}
-        ---3---
-        {{ File3['content'] | b64decode  }}
-        --- end ---
-      dest: "{{ OutPath2 }}"
+
  
     
 
