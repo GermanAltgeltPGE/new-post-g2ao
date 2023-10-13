@@ -34,12 +34,11 @@
     Path1: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-g2ao.txt"
     Path2: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-cxya.txt"
     Path3: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-oxtg.txt"
-  
-  files:
-    - "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-step00.txt"
-    - "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-g2ao.txt"
-    - "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-cxya.txt"
-    - "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-oxtg.txt"
+    files:
+      - "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-step00.txt"
+      - "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-g2ao.txt"
+      - "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-cxya.txt"
+      - "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-oxtg.txt"
 
 
   tasks:
