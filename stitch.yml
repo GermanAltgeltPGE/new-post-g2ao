@@ -56,16 +56,16 @@
 
   - name: stitch files together
     ansible.builtin.win_copy:
-    contents: |
-      ---0---
-      {{ File0['content'] | b64decode  }}
-      ---1---
-      {{ File1['content'] | b64decode  }}
-      ---2---
-      {{ File2['content'] | b64decode  }}
-      ---3---
-      {{ File3['content'] | b64decode  }}
-      --- end ---
-    dest: "{{ OutPath }}"
+      contents: |
+        ---0---
+        {{ File0['content'] | b64decode  }}
+        ---1---
+        {{ File1['content'] | b64decode  }}
+        ---2---
+        {{ File2['content'] | b64decode  }}
+        ---3---
+        {{ File3['content'] | b64decode  }}
+        --- end ---
+      dest: "{{ OutPath }}"
 
  
