@@ -45,16 +45,6 @@
       src: "{{ Path1 }}"
     register: File1
 
-  - name: Read file
-    ansible.builtin.slurp:
-      src: "{{ Path2 }}"
-    register: File2
-
-  - name: Read file
-    ansible.builtin.slurp:
-      src: "{{ Path3 }}"
-    register: File3
-
   - name: stitch files together
     ansible.builtin.win_copy:
       contents: |
@@ -62,11 +52,8 @@
         {{ File0['content'] | b64decode  }}
         ---1---
         {{ File1['content'] | b64decode  }}
-        ---2---
-        {{ File2['content'] | b64decode  }}
-        ---3---
-        {{ File3['content'] | b64decode  }}
         --- end ---
       dest: "{{ OutPath }}"
+      
 
  
