@@ -46,7 +46,7 @@
 
   - name: stitch files together
     ansible.builtin.win_copy:
-      contents: |
+      content: |
         ---0---
         {{ File0['content'] | b64decode  }}
         ---1---
