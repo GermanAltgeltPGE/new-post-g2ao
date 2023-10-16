@@ -44,11 +44,6 @@
 
 
   tasks:
-  - name: Remove files if exists
-    ansible.builtin.win_file:
-      path: '{{ Path0 }}'
-      state: absent
-
   - name: Create output file
     ansible.windows.win_copy:
       contents: |
