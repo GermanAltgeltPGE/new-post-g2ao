@@ -44,15 +44,18 @@
   tasks:
   - name: Check if file exists
     win_stat:
-      path: "{{ Path0 }}"  
-    register: file_data
+      path: "{{ item }}"
+    with_items: "{{ files }}"  
+    register: check_file_name
 
-  - name: Report if a file exists
+  - name: Verifying if file exists
     debug:
-      msg: "The file {{ Path0 }} exists"
-    when: file_data.stat.exists 
+      msg: "The file {{ item.item }} exists"
+    with_items: "{{ check_file_name.results }}"
+    when: item.stat.exists
 
-  - name: Report if a missing file 
+  - name: Verifying if file missing
     debug:
-      msg: "The file {{ Path0 }} is missing"
-    when: not file_data.stat.exists 
+      msg: "The file {{ item.item }} missing"
+    with_items: "{{ check_file_name.results }}"
+    when: not item.stat.exists
