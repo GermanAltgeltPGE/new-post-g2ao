@@ -72,25 +72,13 @@
     with_items: "{{ check_file_name.results }}"
     when: item.stat.exists
 
-    block:
-    - name: Read file - step 0
-      ansible.builtin.slurp:
-        src: "{{ Outfile }}"
-      register: Contents0
-    
-    - name: Read file - step 1
-      ansible.builtin.slurp:
-        src: "{{ item.item }}"
-      register: Contents1
+  block:
+    - name: append if file exists
+      debug: 
+        msg: "File1 {{ item.item }} exists"
 
-    - name: Change post file - step 0
-      ansible.windows.win_copy:
-        content: | 
-          {{ Contents0['content'] | b64decode }}
-          ++++
-          {{ Contents1['content'] | b64decode }}
-
-        dest: "{{ OutFile }}"
-  with_items: "{{ check_file_name.results }}"
+    - name: append if file exists
+      debug: 
+        msg: "File2 {{ item.item }} exists"
+        
   when: item.stat.exists
-
