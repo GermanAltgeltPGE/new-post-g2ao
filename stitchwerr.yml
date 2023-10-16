@@ -49,10 +49,10 @@
 
   - name: Report if a file exists
     debug:
-      msg: " The file {{ Path0 }} exists"
+      msg: "The file {{ Path0 }} exists"
     when: file_data.stat.exists 
 
   - name: Report if a missing file 
     debug:
-      msg: " The file {{ Path0 }} is missibg"
+      msg: "The file {{ Path0 }} is missing"
     when: not file_data.stat.exists 
