@@ -72,7 +72,7 @@
     with_items: "{{ check_file_name.results }}"
     when: item.stat.exists
 
-  - block:
+    block:
     - name: Read file - step 0
       ansible.builtin.slurp:
         src: "{{ Outfile }}"
