@@ -24,7 +24,7 @@
 - name:  post install g2ao - PB2 
   hosts: all 
   no_log: false
-  var:
+  vars:
     Today: "{{ lookup('pipe', 'date +\"%Y%m%d\"') }}"
     Outfile: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-new.txt"
     Path1: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-g2ao.txt"
