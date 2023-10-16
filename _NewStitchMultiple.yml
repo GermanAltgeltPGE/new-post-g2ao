@@ -80,5 +80,4 @@
       - name: append if file exists2
         debug: 
           msg: "File2 {{ item.item }} exists"
-    
-  when: item.stat.exists
+   
