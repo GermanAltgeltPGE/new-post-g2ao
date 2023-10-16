@@ -59,7 +59,6 @@
       path: "{{ item }}"
       state: touch
     with_items:
-      - "{{ OutFile0 }}"
       - "{{ OutFile1 }}"
 
   - name: Change post file {{ OutFile1 }}
