@@ -43,7 +43,7 @@
       
   tasks:
     - name: Create output file
-      ansible.windows.win_copy:
+      ansible.builtin.win_copy:
         content: |
           #### Header ####
           hostname = {{ ansible_hostname | upper}}
