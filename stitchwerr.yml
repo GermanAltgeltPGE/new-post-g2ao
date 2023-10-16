@@ -44,6 +44,11 @@
 
 
   tasks:
+  - name: Remove files if exists
+    ansible.builtin.win_file:
+      path: "{{ Path0 }}"
+      state: absent
+      
   - name: Create output file
     ansible.windows.win_copy:
       contents: |
@@ -63,6 +68,13 @@
       msg: "The file {{ item.item }} exists"
     with_items: "{{ check_file_name.results }}"
     when: item.stat.exists
+  
+  - name: Verifying if file exists
+    debug:
+        msg: "The file {{ item.item }} exists"
+    with_items: "{{ check_file_name.results }}"
+    when: item.stat.exists
+
 
   - name: Verifying if file missing
     debug:
