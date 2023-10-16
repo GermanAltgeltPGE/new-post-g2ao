@@ -48,14 +48,14 @@
     ansible.builtin.win_file:
       path: "{{ Path0 }}"
       state: absent
-      
+
   - name: Create output file
     ansible.windows.win_copy:
       contents: |
         #### Header ####
         hostname = {{ ansible_hostname | upper}}
         #### header ####
-    dest: Path0
+    dest: "{{ Path0 }}" 
 
   - name: Check if file exists
     win_stat:
