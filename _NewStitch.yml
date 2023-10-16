@@ -26,19 +26,31 @@
   no_log: false
   vars:
     Today: "{{ lookup('pipe', 'date +\"%Y%m%d\"') }}"
-    Path0: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-step00.txt"
+    Path0: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-test.txt"
     Path1: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-g2ao.txt"
     Outfile: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}.txt"
   tasks:
   ##### Stitch ####
-  ### create Header
+  ### REMOVE {{Outfile}} IF EXISTS
+  - name: check that {{Outfile}} EXISTS
+    win_stat:
+      path: "{{ Outfile }}"
+    register: win_stat_result
+  
+  - name: Delete file if EXISTS
+    win_file:
+      path: "{{ Outfile }}"
+      state: absent
+    when: stat_result.stat.exists
+    
+  ### create {{Outfile}}
   - name: Create header
     ansible.windows.win_copy:
       content: | 
         ##### Header
         Hostname: {{ ansible_hostname | upper }}
         ##### Header
-      dest: "{{ Path0 }}"
+      dest: "{{ Outfile }}"
 
 
 
