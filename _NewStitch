@@ -1,5 +1,5 @@
 ---
-- name: Gather creds- PB1
+- name: Gather credentials - PB1
   hosts: all
   gather_facts: false
 # prerequisites = have a collections folder in your repo
@@ -12,7 +12,7 @@
 # 
 # task needed for credentials in playbookone.yml
 #
-  - name: Creds - task1 - PB1 
+  - name: Include task list in play - import - task 1
     ansible.builtin.import_tasks:
       # make sure to have playbookeone in your repo 
       file: playbookone.yml
@@ -21,20 +21,62 @@
 #    
 # Change the following lines with your playbook
 #
-- name:  stitch - task1 - PB2 
+- name:  post install g2ao - PB2 
   hosts: all 
   no_log: false
-  ignore_errors: true
   vars:
     Today: "{{ lookup('pipe', 'date +\"%Y%m%d\"') }}"
-    OutPath: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}.txt"
-    Path0:  "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-step00.txt"
-    Path1: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-g2ao.txt"
-    Path2: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-cxya.txt"
-    Path3: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-oxtg.txt"
-    
+    OutFile0: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-step00.txt"
+    OutFile1: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-g2ao.txt"
+    OutFile: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}.txt"
+
   tasks:
-  - name: Read file
-    ansible.builtin.slurp:
-      src: "{{ Path0 }}"
-    register: File0
+  ##### G2ao
+  - name: Remove files if present
+    ansible.windows.win_file:
+      path: '{{ item }}'
+      state: absent
+    with_items:
+      - "{{ OutFile0 }}"
+      - "{{ OutFile1 }}"
+
+  - name: Remote Desktop Users membership
+    ansible.windows.win_group_membership:
+      name: Remote Desktop Users
+      members:
+      state: absent
+    register: RDU
+
+  - name: Administrators Membership
+    ansible.windows.win_group_membership:
+      name: Administrators
+      members:
+      state: absent
+    register: Admins
+  
+  - name: Initiate files
+    ansible.windows.win_file:
+      path: "{{ item }}"
+      state: touch
+    with_items:
+      - "{{ OutFile1 }}"
+
+  - name: Change post file {{ OutFile1 }}
+    ansible.windows.win_copy:
+      content: | 
+        ##### Step01 - G2ao
+        OS Name and architecture: {{ ansible_os_name }} {{ ansible_architecture2 }}
+        IP Addresses: {{ ansible_ip_addresses }}
+        Vendor: {{ ansible_system_vendor }}
+        --------
+        Remote Desktop Users
+        {{RDU.members}}
+        ---
+        Administrators
+        {{Admins.members}}
+        ---
+        ##### Step01 - G2ao
+      dest: "{{ OutFile1 }}"
+  
+
+
