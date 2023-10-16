@@ -42,33 +42,28 @@
       - "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-notexists.txt"
       
   tasks:
-    - name: Create output file
+  - name: Create output file
       win_copy:
-        content: |
-          #### Header ####
-          hostname = {{ ansible_hostname | upper}}
-          #### header ####
-      dest: "{{ Path0 }}" 
+      content: |
+        #### Header ####
+        hostname = {{ ansible_hostname | upper}}
+        #### header ####
+    dest: "{{ Path0 }}" 
 
-    - name: Check if file exists
-      win_stat:
-        path: "{{ item }}"
-      with_items: "{{ files }}"  
-      register: check_file_name
+  - name: Check if file exists
+    win_stat:
+      path: "{{ item }}"
+    with_items: "{{ files }}"  
+    register: check_file_name
 
-    - name: Verifying if file exists
-      debug:
-        msg: "The file {{ item.item }} exists"
-      with_items: "{{ check_file_name.results }}"
-      when: item.stat.exists
-    - name: Verifying if file exists
-      debug:
-        msg: "The file {{ item.item }} exists"
-      with_items: "{{ check_file_name.results }}"
-      when: item.stat.exists
+  - name: Verifying if file exists
+    debug:
+      msg: "The file {{ item.item }} exists"
+    with_items: "{{ check_file_name.results }}"
+    when: item.stat.exists
 
-    - name: Verifying if file missing
-      debug:
-        msg: "The file {{ item.item }} missing"
-      with_items: "{{ check_file_name.results }}"
-      when: not item.stat.exists
+  - name: Verifying if file missing
+    debug:
+      msg: "The file {{ item.item }} missing"
+    with_items: "{{ check_file_name.results }}"
+    when: not item.stat.exists
