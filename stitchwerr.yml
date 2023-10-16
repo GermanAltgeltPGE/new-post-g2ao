@@ -44,19 +44,15 @@
   tasks:
   - name: Check if file exists
     win_stat:
-      path: "{{ item.name }}"
-    register: files
-    loop: "{{ check_files }}"
+      path: "{{ Path0 }}"  
+    register: file_data
 
-  - name: Status 
-    assert:
-      that: item.stat.exists
-      fail_msg: "Check failed"
-      success_msg: "Check PASSED"
-    loop: "{{ files.results }}"
+  - name: Report if a file exists
+    debug:
+      msg: " The file {{ Path0 }} exists"
+    when: file_data.stat.exists 
 
-
- 
-    
-
- 
+  - name: Report if a missing file 
+    debug:
+      msg: " The file {{ Path0 }} is missibg"
+    when: not file_data.stat.exists 
