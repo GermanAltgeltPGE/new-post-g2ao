@@ -62,7 +62,7 @@
 
   - name: Verifying if file exists
     debug: 
-      msgL "File {{ item.item }} exists"
+      msg: "File {{ item.item }} exists"
     with_items: "{{ check_file_name.results }}"
     when: item.stat.exists
 
