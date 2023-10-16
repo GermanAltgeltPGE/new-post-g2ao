@@ -73,11 +73,11 @@
     when: item.stat.exists
 
   block:
-    - name: append if file exists
+    - name: append if file exists1
       debug: 
         msg: "File1 {{ item.item }} exists"
 
-    - name: append if file exists
+    - name: append if file exists2
       debug: 
         msg: "File2 {{ item.item }} exists"
         
