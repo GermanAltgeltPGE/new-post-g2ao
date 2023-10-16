@@ -1,0 +1,18 @@
+---
+- name: output append.yml
+  debug: 
+    msgitem {{ item.item }}"
+- name: output append.yml
+  debug: 
+    msg: "output file {{ Output }}"
+- name: Outfile
+  ansible.builtin.slurp:
+    src: "{{ Outfile }}"
+  register: content0
+
+- name: item.item
+  ansible.builtin.slurp:
+    src: "{{ item.item }}"
+  register: content1
+
+

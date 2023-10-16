@@ -72,22 +72,7 @@
     with_items: "{{ check_file_name.results }}"
     when: item.stat.exists
 
-    block:
-      - name: read file 
-        ansible.builtin.slurp:
-          src: "{{ OutFile }}"
-        register: Infile
-      
-      - name: read file 
-        ansible.builtin.slurp:
-          src: "{{ item.item }}"
-        register: Append
-
-      - name: append
-        ansible.windows.win_copy:
-          content: |       
-           {{ Infile['content'] | b64decode }}
-            ##### -- append
-           {{ Append['content'] | b64decode }}
-        dest: "{{ Outfile }}"           
+  - name: files
+    include: append.yml
+    loop: "{{ files }}"          
    
