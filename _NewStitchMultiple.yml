@@ -73,11 +73,21 @@
     when: item.stat.exists
 
     block:
-      - name: append if file exists1
-        debug: 
-          msg: "File1 {{ item.item }} exists"
+      - name: read file 
+        ansible.builtin.slurp:
+          src: "{{ OutFile }}"
+        register: Infile
+      
+      - name: read file 
+        ansible.builtin.slurp:
+          src: "{{ item.item }}"
+        register: Append
 
-      - name: append if file exists2
-        debug: 
-          msg: "File2 {{ item.item }} exists"
+      - name: append
+        ansible.windows.win_copy:
+          content: |       
+           {{ Infile['content'] | b64decode }}
+            ##### -- append
+           {{ Append['content'] | b64decode }}
+        dest: "{{ Outfile }}"           
    
