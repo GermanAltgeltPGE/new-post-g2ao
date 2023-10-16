@@ -39,9 +39,19 @@
       - "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-g2ao.txt"
       - "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-cxya.txt"
       - "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-oxtg.txt"
+      - "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-notexists.txt"
+      
 
 
   tasks:
+  - name: Create output file
+    ansible.windows.win_copy:
+      contents: |
+        #### Header ####
+        hostname = {{ ansible_hostname | upper}}
+        #### header ####
+    dest: Path0
+
   - name: Check if file exists
     win_stat:
       path: "{{ item }}"

@@ -62,15 +62,6 @@
       - "{{ OutFile0 }}"
       - "{{ OutFile1 }}"
 
-  - name: Change post file {{ Outfile0 }}
-    ansible.windows.win_copy:
-      content: | 
-        ##### Step00 - Header
-        HostName: {{ ansible_hostname | upper }}
-        Time: {{ ansible_date_time.date}} {{ ansible_date_time.time}}
-        ##### Step00 - Header
-      dest: "{{ OutFile0 }}"
-
   - name: Change post file {{ OutFile1 }}
     ansible.windows.win_copy:
       content: | 
