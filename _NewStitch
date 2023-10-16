@@ -1,0 +1,36 @@
+---
+- name: Gather creds- PB1
+  hosts: all
+  gather_facts: false
+# prerequisites = have a collections folder in your repo
+# with requirements.yml in it with the following:
+#---
+#collections:
+# - pge_util.papm_util
+#
+  tasks:
+# 
+# task needed for credentials in playbookone.yml
+#
+  - name: Creds - task1 - PB1 
+    ansible.builtin.import_tasks:
+      # make sure to have playbookeone in your repo 
+      file: playbookone.yml
+#
+# Separate playbook with ansible facts
+#    
+# Change the following lines with your playbook
+#
+- name:  stitch - task1 - PB2 
+  hosts: all 
+  no_log: false
+  ignore_errors: true
+    
+  tasks:
+  - name: Create output file
+    win_copy:
+    content: |
+      #### Header ####
+      hostname = {{ ansible_hostname | upper}}
+      #### header ####
+    dest: "{{ Path0 }}" 
