@@ -46,7 +46,7 @@
   tasks:
   - name: Remove files if exists
     ansible.builtin.win_file:
-      path: {{ Path0 }}
+      path: "{{ Path0 }}"
       state: absent
 
   - name: Create output file
