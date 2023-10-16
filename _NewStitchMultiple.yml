@@ -60,15 +60,37 @@
     with_items: "{{ files }}"
     register: check_file_name
 
+  - name: Verifying if file missing
+    debug: 
+      msg: "File {{ item.item }} missing"
+    with_items: "{{ check_file_name.results }}"
+    when: not item.stat.exists
+
   - name: Verifying if file exists
     debug: 
       msg: "File {{ item.item }} exists"
     with_items: "{{ check_file_name.results }}"
     when: item.stat.exists
 
-  - name: Verifying if file missing
-    debug: 
-      msg: "File {{ item.item }} missing"
-    with_items: "{{ check_file_name.results }}"
-    when: not item.stat.exists
+  - block:
+    - name: Read file - step 0
+      ansible.builtin.slurp:
+        src: "{{ Outfile }}"
+      register: Contents0
+    
+    - name: Read file - step 1
+      ansible.builtin.slurp:
+        src: "{{ item.item }}"
+      register: Contents1
+
+    - name: Change post file - step 0
+      ansible.windows.win_copy:
+        content: | 
+          {{ Contents0['content'] | b64decode }}
+          ++++
+          {{ Contents1['content'] | b64decode }}
+
+        dest: "{{ OutFile }}"
+  with_items: "{{ check_file_name.results }}"
+  when: item.stat.exists
 
