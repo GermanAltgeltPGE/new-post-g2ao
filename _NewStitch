@@ -25,12 +25,16 @@
   hosts: all 
   no_log: false
   ignore_errors: true
+  vars:
+    Today: "{{ lookup('pipe', 'date +\"%Y%m%d\"') }}"
+    OutPath: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}.txt"
+    Path0:  "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-step00.txt"
+    Path1: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-g2ao.txt"
+    Path2: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-cxya.txt"
+    Path3: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-oxtg.txt"
     
   tasks:
-  - name: Create output file
-    win_copy:
-    content: |
-      #### Header ####
-      hostname = {{ ansible_hostname | upper}}
-      #### header ####
-    dest: "{{ Path0 }}" 
+  - name: Read file
+    ansible.builtin.slurp:
+      src: "{{ Path0 }}"
+    register: File0
