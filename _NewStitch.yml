@@ -26,57 +26,19 @@
   no_log: false
   vars:
     Today: "{{ lookup('pipe', 'date +\"%Y%m%d\"') }}"
-    OutFile0: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-step00.txt"
-    OutFile1: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-g2ao.txt"
-    OutFile: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}.txt"
-
+    Path0: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-step00.txt"
+    Path1: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-g2ao.txt"
+    Outfile: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}.txt"
   tasks:
-  ##### G2ao
-  - name: Remove files if present
-    ansible.windows.win_file:
-      path: '{{ item }}'
-      state: absent
-    with_items:
-      - "{{ OutFile0 }}"
-      - "{{ OutFile1 }}"
-
-  - name: Remote Desktop Users membership
-    ansible.windows.win_group_membership:
-      name: Remote Desktop Users
-      members:
-      state: absent
-    register: RDU
-
-  - name: Administrators Membership
-    ansible.windows.win_group_membership:
-      name: Administrators
-      members:
-      state: absent
-    register: Admins
-  
-  - name: Initiate files
-    ansible.windows.win_file:
-      path: "{{ item }}"
-      state: touch
-    with_items:
-      - "{{ OutFile1 }}"
-
-  - name: Change post file {{ OutFile1 }}
+  ##### Stitch ####
+  ### create Header
+  - name: Create header
     ansible.windows.win_copy:
       content: | 
-        ##### Step01 - G2ao
-        OS Name and architecture: {{ ansible_os_name }} {{ ansible_architecture2 }}
-        IP Addresses: {{ ansible_ip_addresses }}
-        Vendor: {{ ansible_system_vendor }}
-        --------
-        Remote Desktop Users
-        {{RDU.members}}
-        ---
-        Administrators
-        {{Admins.members}}
-        ---
-        ##### Step01 - G2ao
-      dest: "{{ OutFile1 }}"
-  
+        ##### Header
+        Hostname: {{ ansible_hostname | upper }}
+        ##### Header
+      dest: "{{ Path0 }}"
+
 
 
