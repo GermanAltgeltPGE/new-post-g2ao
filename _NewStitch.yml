@@ -81,6 +81,6 @@
       content: | 
         {{ content0['content'] | b64decode }}
         {{ content1['content'] | b64decode }}
-        dest: "{{ OutFile0 }}"
+        dest: "{{ OutFile }}"
     when: win_stat_result1.stat.exists
 
