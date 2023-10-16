@@ -24,15 +24,22 @@
 - name:  post install g2ao - PB2 
   hosts: all 
   no_log: false
-  vars:
+  var:
     Today: "{{ lookup('pipe', 'date +\"%Y%m%d\"') }}"
-    Path0: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-test.txt"
+    Outfile: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-new.txt"
     Path1: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-g2ao.txt"
-    Outfile: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}.txt"
+    Path2: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-cxya.txt"
+    Path3: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-oxtg.txt"
+    Path4: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-notexists.txt"
+
+    files:
+      - "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-g2ao.txt"
+#      - "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-cxya.txt"
+#      - "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-oxtg.txt"
+      - "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-notexists.txt"
   tasks:
-  ##### Stitch ####
-  ### REMOVE {{Outfile}} IF EXISTS
-  - name: check that {{Outfile}} EXISTS
+  # Prep - remove file and create 
+  - name: Info on {{ Outfile }} win_stat
     win_stat:
       path: "{{ Outfile }}"
     register: win_stat_result
@@ -43,8 +50,7 @@
       state: absent
     when: win_stat_result.stat.exists
 
-  ### create {{Outfile}}
-  - name: Create header
+  - name: Create header for file with ansible hostname
     ansible.windows.win_copy:
       content: | 
         ##### Header
@@ -52,5 +58,29 @@
         ##### Header
       dest: "{{ Outfile }}"
 
+## Stitch with g2ao file
+  - name: Info on {{ Path1 }} win_stat
+    win_stat:
+      path: "{{ Outfile }}"
+    register: win_stat_result1
 
+  - name: Read Outfile 
+    ansible.builtin.slurp:
+      src: "{{ Outfile }}"
+    register: content0
+    when: win_stat_result1.stat.exists
+
+  - name: Read Path1 
+    ansible.builtin.slurp:
+      src: "{{ Path1 }}"
+    register: content1
+    when: win_stat_result1.stat.exists
+
+  - name: Add file to post
+    ansible.windows.win_copy:
+      content: | 
+        {{ content0['content'] | b64decode }}
+        {{ content1['content'] | b64decode }}
+        dest: "{{ OutFile0 }}"
+    when: win_stat_result1.stat.exists
 
