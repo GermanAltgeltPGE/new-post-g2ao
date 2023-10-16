@@ -27,11 +27,6 @@
   vars:
     Today: "{{ lookup('pipe', 'date +\"%Y%m%d\"') }}"
     Outfile: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-new.txt"
-    Path1: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-g2ao.txt"
-    Path2: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-cxya.txt"
-    Path3: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-oxtg.txt"
-    Path4: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-notexists.txt"
-
     files:
       - "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-g2ao.txt"
 #      - "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-cxya.txt"
@@ -58,29 +53,29 @@
         ##### Header
       dest: "{{ Outfile }}"
 
-## Stitch with g2ao file
-  - name: Info on {{ Path1 }} win_stat
-    win_stat:
-      path: "{{ Outfile }}"
-    register: win_stat_result1
+## Stitch with files if they exist
+  - block: 
+    - name: Read Outfile 
+      ansible.builtin.slurp:
+        src: "{{ Outfile }}"
+      register: content0
 
-  - name: Read Outfile 
-    ansible.builtin.slurp:
-      src: "{{ Outfile }}"
-    register: content0
-    when: win_stat_result1.stat.exists
+    - name: Info on {{ Path1 }} win_stat
+      win_stat:
+        path: "{{ Outfile }}"
+      register: win_stat_result1
 
-  - name: Read Path1 
-    ansible.builtin.slurp:
-      src: "{{ Path1 }}"
-    register: content1
-    when: win_stat_result1.stat.exists
+    - name: Read Path1 
+      ansible.builtin.slurp:
+        src: "{{ Path1 }}"
+      register: content1
+      when: win_stat_result1.stat.exists
 
-  - name: Add file to post
-    ansible.windows.win_copy:
-      content: | 
-        {{ content0['content'] | b64decode }}
-        {{ content1['content'] | b64decode }}
-      dest: "{{ Outfile }}"
-    when: win_stat_result1.stat.exists
-
+    - name: Add file to post
+      ansible.windows.win_copy:
+        content: | 
+          {{ content0['content'] | b64decode }}
+          {{ content1['content'] | b64decode }}
+        dest: "{{ Outfile }}"
+      when: win_stat_result1.stat.exists
+  become: yes
