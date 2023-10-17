@@ -10,5 +10,5 @@
 
   - name: results
     debug:
-      msg: "{{ check_file_name }}"S
+      msg: "{{ check_file_name }}"
   
