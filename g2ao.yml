@@ -28,10 +28,4 @@
   tasks:
     - debug:
         msg: "In main"
-
-    - name : Include task
-      import_task: 
-        file: "_append.yml"
     
-    - debug:
-        msg: "In main"
