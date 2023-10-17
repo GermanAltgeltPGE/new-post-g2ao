@@ -92,5 +92,5 @@
       content: | 
         ##### Step03 - oxtg
         ##### Step03 - oxtg
-      dest: "{{ Path2 }}"
+      dest: "{{ Path3 }}"
 
