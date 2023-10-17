@@ -1,14 +1,14 @@
 ---
   - name: output from include
     debug: 
-      msg: In append.yml item={{item}}
+      msg: "In append.yml item={{item}}"
   
   - name: check if file exists
     win_stat:
       path: "{{ item }}"
     register: check_file_name
 
-  - name: ressults
+  - name: results
     debug:
-      msg: {{ check_file_name }}
+      msg: "{{ check_file_name }}"S
   
