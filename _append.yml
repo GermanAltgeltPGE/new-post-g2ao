@@ -20,14 +20,20 @@
   - name: Print file content
     ansible.builtin.debug:
       msg: "{{ OutfileContents['content'] | b64decode }}"
+  
+  - name: if file exists read file
+    ansible.builtin.slurp:
+      src: '{{ item }}'
+    register: itemContents
+    when: check_file_name.stat.exists
 
   - name: if file exists add content
     ansible.windows.win_copy:
       content: | 
         {{ OutfileContents['content'] | b64decode }}
         ##### File Found
-        {{ item }}
-      dest: "{{ Outfile }}"
+        {{ itemContents['content'] | b64decode }}
+        dest: "{{ Outfile }}"
     when: check_file_name.stat.exists
 
   - name: if file missing add content
