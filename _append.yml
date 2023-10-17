@@ -33,7 +33,7 @@
         {{ OutfileContents['content'] | b64decode }}
         ##### File Found
         {{ itemContents['content'] | b64decode }}
-        dest: "{{ Outfile }}"
+      dest: "{{ Outfile }}"
     when: check_file_name.stat.exists
 
   - name: if file missing add content
