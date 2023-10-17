@@ -24,6 +24,8 @@
 - name:  post install g2ao - PB2 
   hosts: all 
   no_log: false
+  vars:
+    Today: "{{ lookup('pipe', 'date +\"%Y%m%d\"') }}"
     
   tasks:
     - debug:

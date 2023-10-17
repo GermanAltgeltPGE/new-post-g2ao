@@ -73,6 +73,6 @@
     when: item.stat.exists
 
   - name: files
-    include: append.yml
-    loop: "{{ files }}"          
+    include: _append.yml
+    with: "{{ files }}"          
    
