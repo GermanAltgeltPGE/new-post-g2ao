@@ -27,6 +27,8 @@
   vars:
     Today: "{{ lookup('pipe', 'date +\"%Y%m%d\"') }}"
     Path: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-g2ao.txt"
+    Path2: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-CXYA.txt"
+    Path3: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-OXTG.txt"
 
 
   tasks:
@@ -37,6 +39,8 @@
       state: absent
     with_items:
       - "{{ Path }}"
+      - "{{ Path2 }}"
+      - "{{ Path3 }}"
 
   - name: Remote Desktop Users membership
     ansible.windows.win_group_membership:
@@ -75,6 +79,18 @@
         ---
         ##### Step01 - G2ao
       dest: "{{ Path }}"
-  
 
+  - name: Change post file {{ Path2 }}
+    ansible.windows.win_copy:
+      content: | 
+        ##### Step02 - cxya
+        ##### Step02 - cxya
+      dest: "{{ Path2 }}"
+  
+  - name: Change post file {{ Path3 }}
+    ansible.windows.win_copy:
+      content: | 
+        ##### Step03 - oxtg
+        ##### Step03 - oxtg
+      dest: "{{ Path2 }}"
 
