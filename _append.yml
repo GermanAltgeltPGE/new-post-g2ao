@@ -24,13 +24,15 @@
   - name: if file exists add content
     ansible.windows.win_copy:
       content: | 
+        {{ OutfileContents['content'] | b64decode }}
         ##### File Found
         {{ item }}
       dest: "{{ Outfile }}"
-      
+
   - name: if file missing add content
     ansible.windows.win_copy:
       content: | 
+        {{ OutfileContents['content'] | b64decode }}
         ##### File NOT Found
         {{ item }}
       dest: "{{ Outfile }}"
