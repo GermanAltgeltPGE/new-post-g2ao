@@ -29,8 +29,8 @@
     - debug:
         msg: "In main"
 
-    - name : Include file
-      include_task: 
+    - name : Include task
+      import_task: 
         file: "_append.yml"
     
     - debug:
