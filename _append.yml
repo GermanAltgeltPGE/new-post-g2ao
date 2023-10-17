@@ -1,5 +1,5 @@
 ---
   - name: output from include
     debug: 
-      msg: "In append.yml"
+      msg: "In append.yml item={{item}}"
   
