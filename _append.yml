@@ -1,0 +1,5 @@
+---
+  - name: output from include
+    debug: 
+      msg: "In append.yml"
+  
