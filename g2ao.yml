@@ -29,3 +29,9 @@
     - debug:
         msg: In main
     
+    - inclde: "_append.yml" some_var={{item}}
+      with_items:
+      - a
+      - b 
+      - c
+      
