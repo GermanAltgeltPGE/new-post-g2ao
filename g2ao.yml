@@ -24,12 +24,14 @@
 - name:  post install g2ao - PB2 
   hosts: all 
   no_log: false
+    
   tasks:
     - debug:
         msg: "In main"
 
     - name : Include file
-      include_task: "_append.yml"
+      include_task: 
+        file: "_append.yml"
     
     - debug:
         msg: "In main"
