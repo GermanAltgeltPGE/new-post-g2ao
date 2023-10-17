@@ -54,10 +54,7 @@
       dest: "{{ Outfile }}"
 
 ## Stitch with files if they exist
-  - debug:  
-      msg: In main before include
+ 
   - name: files
     include: _append.yml some_var={{item}}
-    with_items: "{{ files }}"          
-  - debug:  
-      msg: In main after include
+    with_items: "{{ files }}"
