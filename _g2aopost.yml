@@ -27,8 +27,8 @@
   vars:
     Today: "{{ lookup('pipe', 'date +\"%Y%m%d\"') }}"
     Path: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-g2ao.txt"
-    Path2: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-CXYA.txt"
-    Path3: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-OXTG.txt"
+    Path2: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-cxya.txt"
+    Path3: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-oxtg.txt"
 
 
   tasks:
