@@ -11,4 +11,14 @@
   - name: results
     debug:
       msg: "{{ check_file_name }}"
+
+  - name: Read file
+    ansible.builtin.slurp:
+      src: '{{ Outfile }}'
+    register: OutfileContents
+
+  - name: Print file content
+    ansible.builtin.debug:
+      msg: "{{ OutfileContents['content'] | b64decode }}"
+    
   
