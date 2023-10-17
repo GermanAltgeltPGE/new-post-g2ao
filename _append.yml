@@ -5,19 +5,10 @@
   
   - name: check if file exists
     win_stat:
-      path: "{{ file_item }}"
-    with_items: "{{ item }}"
+      path: "{{ item }}"
     register: check_file_name
 
-  - name: Verifying if file missing
-    debug: 
-      msg: "File {{ file_item.item }} missing"
-    with_items: "{{ check_file_name.results }}"
-    when: not item.stat.exists
-
-  - name: Verifying if file exists
-    debug: 
-      msg: "File {{ file_item.item }} exists"
-    with_items: "{{ check_file_name.results }}"
-    when: item.stat.exists
+  - name: ressults
+    debug:
+      msg: {{ check_file_name }}
   
