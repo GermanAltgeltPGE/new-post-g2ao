@@ -29,7 +29,7 @@
         msg: "In main"
 
     - name : Include file
-      include: append.yml
+      include_task: "_append.yml"
     
     - debug:
         msg: "In main"
