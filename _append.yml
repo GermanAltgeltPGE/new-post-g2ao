@@ -28,6 +28,7 @@
         ##### File Found
         {{ item }}
       dest: "{{ Outfile }}"
+    when: check_file_name.exists
 
   - name: if file missing add content
     ansible.windows.win_copy:
@@ -36,6 +37,6 @@
         ##### File NOT Found
         {{ item }}
       dest: "{{ Outfile }}"
-  
+    when: not check_file_name.exists    
     
   
