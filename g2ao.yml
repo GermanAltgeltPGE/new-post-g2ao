@@ -27,10 +27,9 @@
   tasks:
     - debug:
         msg: "In main"
-        
-    - name : Import task
-      ansible.builtin.import_tasks:
-      file: append.yml
+
+    - name : Include file
+      include: append.yml
     
     - debug:
         msg: "In main"
