@@ -54,24 +54,6 @@
       dest: "{{ Outfile }}"
 
 ## Stitch with files if they exist
-  - name: check if file exists
-    win_stat:
-      path: "{{ item }}"
-    with_items: "{{ files }}"
-    register: check_file_name
-
-  - name: Verifying if file missing
-    debug: 
-      msg: "File {{ item.item }} missing"
-    with_items: "{{ check_file_name.results }}"
-    when: not item.stat.exists
-
-  - name: Verifying if file exists
-    debug: 
-      msg: "File {{ item.item }} exists"
-    with_items: "{{ check_file_name.results }}"
-    when: item.stat.exists
-
   - name: files
     include: _append.yml some_var={{item}}
     with_items: "{{ files }}"          
