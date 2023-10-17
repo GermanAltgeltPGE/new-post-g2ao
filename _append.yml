@@ -20,5 +20,20 @@
   - name: Print file content
     ansible.builtin.debug:
       msg: "{{ OutfileContents['content'] | b64decode }}"
+
+  - name: if file exists add content
+    ansible.windows.win_copy:
+      content: | 
+        ##### File Found
+        {{ item }}
+      dest: "{{ Outfile }}"
+      
+  - name: if file missing add content
+    ansible.windows.win_copy:
+      content: | 
+        ##### File NOT Found
+        {{ item }}
+      dest: "{{ Outfile }}"
+  
     
   
