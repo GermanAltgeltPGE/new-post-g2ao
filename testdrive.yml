@@ -49,3 +49,17 @@
     - name: ouput {{disthere}}
       debug:
         msg: d is there {{ disthere }}
+    
+    - name: change Drive if D is there is false
+      set-fact:
+        - Drive: "C:\\"
+      when: not disthere
+
+    - name: show Drive
+      debug:
+        msg:"New {{ Drive }}"
+
+    - name: show vars again
+      debug:
+        msg: "{{ item }}"
+      with_items: "{{ files }}"
