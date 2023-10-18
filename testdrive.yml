@@ -41,6 +41,10 @@
         msg: "{{ item }}"
       with_items: "{{ files }}"
 
+    - name: show outfile 
+      debug:
+        msg: "Outfile 0 {{ Outfile }}"
+
     - name: check if dir exists
       win_stat:
         path: "d:\\"
@@ -63,3 +67,7 @@
       debug:
         msg: "{{ item }}"
       with_items: "{{ files }}"
+
+    - name: show outfile again
+      debug:
+        msg: "Outfile 1 {{ Outfile }}"
