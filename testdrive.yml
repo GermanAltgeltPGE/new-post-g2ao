@@ -41,11 +41,11 @@
         msg: "{{ item }}"
       with_items: "{{ files }}"
 
-    - name: Collect only facts about hardware
-      setup:
-        gather_subset:
-        - hardware
+    - name: check if dir exists
+      win_stat:
+        path: "d:\\"
+      register: disthere
 
-    - name: Output disks
+    - name: ouput {{disthere}}
       debug:
-        var: hostvars[inventory_hostname].ansible_devices.keys() | list
+        msg: d is there {{ disthere }}
