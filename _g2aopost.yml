@@ -73,7 +73,7 @@
       with_items:
         - "{{ Path }}"
     
-    - name:
+    - name: path 1
       Debug:
         Msg: " Path1 = {{ Path}}"
 
