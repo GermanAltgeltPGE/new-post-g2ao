@@ -32,7 +32,7 @@
   tasks:
     - name: Path 0
       debug:
-        Msg: " Path0 = {{ Path}}"
+        msg: " Path0 = {{ Path}}"
 
     - name: check if dir exists
       win_stat:
@@ -74,7 +74,7 @@
       
     - name: path 1
       debug:
-        Msg: " Path1 = {{ Path}}"
+        msg: " Path1 = {{ Path}}"
 
     - name: Change post file {{ Path }}
       ansible.windows.win_copy:
