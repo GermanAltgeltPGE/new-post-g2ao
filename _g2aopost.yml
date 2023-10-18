@@ -29,7 +29,7 @@
     Today: "{{ lookup('pipe', 'date +\"%Y%m%d\"') }}"
     Path: "{{Dr}}\\{{ansible_hostname | upper}}_{{ Today }}-new.txt"
     
-    tasks:
+  tasks:
     - name:
       Debug:
         Msg: " Path1 = {{ Path}}"
