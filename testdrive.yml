@@ -57,7 +57,7 @@
 
     - name: show Drive
       debug:
-        msg:"New {{ Drive }}"
+        msg: "New {{ Drive }}"
 
     - name: show vars again
       debug:
