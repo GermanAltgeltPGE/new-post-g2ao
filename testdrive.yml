@@ -53,7 +53,7 @@
     - name: change Drive if D is there is false
       set_fact:
         Drive: "D:\\"
-      when: disthere
+      when: disthere.exists
 
     - name: show Drive
       debug:
