@@ -27,7 +27,6 @@
   vars:
     Drive: "{{ 'c:\\' if my_condition else 'd:\\' }}"
     Today: "{{ lookup('pipe', 'date +\"%Y%m%d\"') }}"
-    #Drive: "d:\\"
     Outfile: "{Drive}installs\\{{ansible_hostname | upper}}_{{ Today }}-new.txt"
     
     files:
@@ -39,4 +38,4 @@
     - name: show vars
       debug:
         msg: "{{ item }}"
-      with: "{{ files }}"
+      with_items: "{{ files }}"
