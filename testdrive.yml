@@ -52,8 +52,8 @@
     
     - name: change Drive if D is there is false
       set_fact:
-        Drive: "C:\\"
-      when: not disthere
+        Drive: "D:\\"
+      when: disthere
 
     - name: show Drive
       debug:
