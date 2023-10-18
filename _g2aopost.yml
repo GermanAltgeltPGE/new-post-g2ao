@@ -25,9 +25,9 @@
   hosts: all 
   no_log: false
   vars:
-    Drive: "c:\\"
+    Drive: "c:\\Temp"
     Today: "{{ lookup('pipe', 'date +\"%Y%m%d\"') }}"
-    Path: "{{Drive}}installs\\{{ansible_hostname | upper}}_{{ Today }}-new.txt"
+    Path: "{{Drive}}\\{{ansible_hostname | upper}}_{{ Today }}-new.txt"
     
     tasks:
     - name: check if dir exists
@@ -37,7 +37,7 @@
     
     - name: change Drive if D is there is false
       set_fact:
-        Drive: "D:\\"
+        Drive: "D:\\installs"
       when: disthere.stat.exists
 
   ##### G2ao
