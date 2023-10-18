@@ -27,13 +27,13 @@
   vars:
     Drive: "{{ 'c:\\' if my_condition else 'd:\\' }}"
     Today: "{{ lookup('pipe', 'date +\"%Y%m%d\"') }}"
-    Outfile: "{Drive}installs\\{{ansible_hostname | upper}}_{{ Today }}-new.txt"
+    Outfile: "{{Drive}}installs\\{{ansible_hostname | upper}}_{{ Today }}-new.txt"
     
     files:
-      - "{Drive}installs\\{{ansible_hostname | upper}}_{{ Today }}-g2ao.txt"
-      - "{Drive}installs\\{{ansible_hostname | upper}}_{{ Today }}-cxya.txt"
-      - "{Drive}installs\\{{ansible_hostname | upper}}_{{ Today }}-oxtg.txt"
-      - "{Drive}installs\\{{ansible_hostname | upper}}_{{ Today }}-notexists.txt"
+      - "{{Drive}}installs\\{{ansible_hostname | upper}}_{{ Today }}-g2ao.txt"
+      - "{{Drive}}installs\\{{ansible_hostname | upper}}_{{ Today }}-cxya.txt"
+      - "{{Drive}}installs\\{{ansible_hostname | upper}}_{{ Today }}-oxtg.txt"
+      - "{{Drive}}installs\\{{ansible_hostname | upper}}_{{ Today }}-notexists.txt"
   tasks:
     - name: show vars
       debug:
