@@ -30,68 +30,67 @@
     Path: "{{Dr}}\\{{ansible_hostname | upper}}_{{ Today }}-new.txt"
     
   tasks:
-  - name:
-    Debug:
-      Msg: " Path1 = {{ Path}}"
+    - name:
+      Debug:
+        Msg: " Path1 = {{ Path}}"
 
-  - name: check if dir exists
-    win_stat:
-      path: "d:\\"
-    register: disthere
+    - name: check if dir exists
+      win_stat:
+        path: "d:\\"
+      register: disthere
     
-  - name: change Drive if D is there is false
-    set_fact:
-      Dr: "D:\\installs"
-    when: disthere.stat.exists
+    - name: change Drive if D is there is false
+      set_fact:
+        Dr: "D:\\installs"
+      when: disthere.stat.exists
 
-  ##### G2ao
-  - name: Remove files if present
-    ansible.windows.win_file:
-      path: '{{ item }}'
-      state: absent
-    with_items:
-      - "{{ Path }}"
+    - name: Remove files if present
+      ansible.windows.win_file:
+        path: '{{ item }}'
+        state: absent
+      with_items:
+        - "{{ Path }}"
 
-  - name: Remote Desktop Users membership
-    ansible.windows.win_group_membership:
-      name: Remote Desktop Users
-      members:
-      state: absent
-    register: RDU
+    - name: Remote Desktop Users membership
+      ansible.windows.win_group_membership:
+        name: Remote Desktop Users
+        members:
+        state: absent
+      register: RDU
 
-  - name: Administrators Membership
-    ansible.windows.win_group_membership:
-      name: Administrators
-      members:
-      state: absent
-    register: Admins
-  
-  - name: Initiate files
-    ansible.windows.win_file:
-      path: "{{ item }}"
-      state: touch
-    with_items:
-      - "{{ Path }}"
+    - name: Administrators Membership
+      ansible.windows.win_group_membership:
+        name: Administrators
+        members:
+        state: absent
+      register: Admins
     
-  - name: path 1
-    Debug:
-      Msg: " Path1 = {{ Path}}"
+    - name: Initiate files
+      ansible.windows.win_file:
+        path: "{{ item }}"
+        state: touch
+      with_items:
+        - "{{ Path }}"
+      
+    - name: path 1
+      Debug:
+        Msg: " Path1 = {{ Path}}"
 
-  - name: Change post file {{ Path }}
-    ansible.windows.win_copy:
-      content: | 
-        ##### Step01 - G2ao
-        OS Name and architecture: {{ ansible_os_name }} {{ ansible_architecture2 }}
-        IP Addresses: {{ ansible_ip_addresses }}
-        Vendor: {{ ansible_system_vendor }}
-        --------
-        Remote Desktop Users
-        {{RDU.members}}
-        ---
-        Administrators
-        {{Admins.members}}
-        ---
-        ##### Step01 - G2ao
-      dest: "{{ Path }}"
+    - name: Change post file {{ Path }}
+      ansible.windows.win_copy:
+        content: | 
+          ##### Step01 - G2ao
+          OS Name and architecture: {{ ansible_os_name }} {{ ansible_architecture2 }}
+          IP Addresses: {{ ansible_ip_addresses }}
+          Vendor: {{ ansible_system_vendor }}
+          --------
+          Remote Desktop Users
+          {{RDU.members}}
+          ---
+          Administrators
+          {{Admins.members}}
+          ---
+          ##### Step01 - G2ao
+        dest: "{{ Path }}"
 
 
