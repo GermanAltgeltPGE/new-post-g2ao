@@ -30,9 +30,9 @@
     Path: "{{Dr}}\\{{ansible_hostname | upper}}_{{ Today }}-new.txt"
     
   tasks:
-    - name:
-      Debug:
-        Msg: " Path1 = {{ Path}}"
+    - name: Path 0
+      debug:
+        Msg: " Path0 = {{ Path}}"
 
     - name: check if dir exists
       win_stat:
@@ -73,7 +73,7 @@
         - "{{ Path }}"
       
     - name: path 1
-      Debug:
+      debug:
         Msg: " Path1 = {{ Path}}"
 
     - name: Change post file {{ Path }}
