@@ -25,7 +25,6 @@
   hosts: all 
   no_log: false
   vars:
-    #Drive: "{{ 'c:\\' if my_condition else 'd:\\' }}"
     Drive: "c:\\"
     Today: "{{ lookup('pipe', 'date +\"%Y%m%d\"') }}"
     Outfile: "{{Drive}}installs\\{{ansible_hostname | upper}}_{{ Today }}-new.txt"
@@ -36,32 +35,15 @@
       - "{{Drive}}installs\\{{ansible_hostname | upper}}_{{ Today }}-oxtg.txt"
       - "{{Drive}}installs\\{{ansible_hostname | upper}}_{{ Today }}-notexists.txt"
   tasks:
-    - name: show vars
-      debug:
-        msg: "{{ item }}"
-      with_items: "{{ files }}"
-
-    - name: show outfile 
-      debug:
-        msg: "Outfile 0 {{ Outfile }}"
-
     - name: check if dir exists
       win_stat:
         path: "d:\\"
       register: disthere
-
-    - name: output {{ disthere }}
-      debug:
-        msg: d is there {{ disthere }}
     
     - name: change Drive if D is there is false
       set_fact:
         Drive: "D:\\"
       when: disthere.stat.exists
-
-    - name: show Drive
-      debug:
-        msg: "New {{ Drive }}"
 
     - name: show vars again
       debug:

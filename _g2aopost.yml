@@ -25,55 +25,65 @@
   hosts: all 
   no_log: false
   vars:
+    Drive: "c:\\"
     Today: "{{ lookup('pipe', 'date +\"%Y%m%d\"') }}"
-    Path: "d:\\installs\\{{ansible_hostname | upper}}_{{ Today }}-g2ao.txt"
+    Path: "{{Drive}}installs\\{{ansible_hostname | upper}}_{{ Today }}-new.txt"
+    
+    tasks:
+    - name: check if dir exists
+      win_stat:
+        path: "d:\\"
+      register: disthere
+    
+    - name: change Drive if D is there is false
+      set_fact:
+        Drive: "D:\\"
+      when: disthere.stat.exists
 
-
-  tasks:
   ##### G2ao
-  - name: Remove files if present
-    ansible.windows.win_file:
-      path: '{{ item }}'
-      state: absent
-    with_items:
-      - "{{ Path }}"
+    - name: Remove files if present
+      ansible.windows.win_file:
+        path: '{{ item }}'
+        state: absent
+      with_items:
+        - "{{ Path }}"
 
-  - name: Remote Desktop Users membership
-    ansible.windows.win_group_membership:
-      name: Remote Desktop Users
-      members:
-      state: absent
-    register: RDU
+    - name: Remote Desktop Users membership
+      ansible.windows.win_group_membership:
+        name: Remote Desktop Users
+        members:
+        state: absent
+      register: RDU
 
-  - name: Administrators Membership
-    ansible.windows.win_group_membership:
-      name: Administrators
-      members:
-      state: absent
-    register: Admins
+    - name: Administrators Membership
+      ansible.windows.win_group_membership:
+        name: Administrators
+        members:
+        state: absent
+      register: Admins
   
-  - name: Initiate files
-    ansible.windows.win_file:
-      path: "{{ item }}"
-      state: touch
-    with_items:
-      - "{{ Path }}"
+    - name: Initiate files
+      ansible.windows.win_file:
+        path: "{{ item }}"
+        state: touch
+      with_items:
+        - "{{ Path }}"
 
-  - name: Change post file {{ Path }}
-    ansible.windows.win_copy:
-      content: | 
-        ##### Step01 - G2ao
-        OS Name and architecture: {{ ansible_os_name }} {{ ansible_architecture2 }}
-        IP Addresses: {{ ansible_ip_addresses }}
-        Vendor: {{ ansible_system_vendor }}
-        --------
-        Remote Desktop Users
-        {{RDU.members}}
-        ---
-        Administrators
-        {{Admins.members}}
-        ---
-        ##### Step01 - G2ao
-      dest: "{{ Path }}"
+    - name: Change post file {{ Path }}
+      ansible.windows.win_copy:
+        content: | 
+          ##### Step01 - G2ao
+          OS Name and architecture: {{ ansible_os_name }} {{ ansible_architecture2 }}
+          IP Addresses: {{ ansible_ip_addresses }}
+          Vendor: {{ ansible_system_vendor }}
+          --------
+          Remote Desktop Users
+          {{RDU.members}}
+          ---
+          Administrators
+          {{Admins.members}}
+          ---
+          ##### Step01 - G2ao
+        dest: "{{ Path }}"
 
 

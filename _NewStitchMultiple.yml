@@ -25,44 +25,50 @@
   hosts: all 
   no_log: false
   vars:
-    Drive: "{{ 'c:\\' if my_condition else 'd:\\' }}"
+    Drive: "c:\\"
     Today: "{{ lookup('pipe', 'date +\"%Y%m%d\"') }}"
-    #Drive: "d:\\"
-    Outfile: "{Drive}installs\\{{ansible_hostname | upper}}_{{ Today }}-new.txt"
+    Outfile: "{{Drive}}installs\\{{ansible_hostname | upper}}_{{ Today }}-new.txt"
     
     files:
-      - "{Drive}installs\\{{ansible_hostname | upper}}_{{ Today }}-g2ao.txt"
-      - "{Drive}installs\\{{ansible_hostname | upper}}_{{ Today }}-cxya.txt"
-      - "{Drive}installs\\{{ansible_hostname | upper}}_{{ Today }}-oxtg.txt"
-      - "{Drive}installs\\{{ansible_hostname | upper}}_{{ Today }}-notexists.txt"
+      - "{{Drive}}installs\\{{ansible_hostname | upper}}_{{ Today }}-g2ao.txt"
+      - "{{Drive}}installs\\{{ansible_hostname | upper}}_{{ Today }}-cxya.txt"
+      - "{{Drive}}installs\\{{ansible_hostname | upper}}_{{ Today }}-oxtg.txt"
+      - "{{Drive}}installs\\{{ansible_hostname | upper}}_{{ Today }}-notexists.txt"
   tasks:
-  
-
+    - name: check if dir exists
+      win_stat:
+        path: "d:\\"
+      register: disthere
+    
+    - name: change Drive if D is there is false
+      set_fact:
+        Drive: "D:\\"
+      when: disthere.stat.exists
   # Prep - remove file and create 
-  - name: Info on {{ Outfile }} win_stat
-    win_stat:
-      path: "{{ Outfile }}"
-    register: win_stat_result
+    - name: Info on {{ Outfile }} win_stat
+      win_stat:
+        path: "{{ Outfile }}"
+      register: win_stat_result
   
-  - name: Delete file if EXISTS
-    win_file:
-      path: "{{ Outfile }}"
-      state: absent
-    when: win_stat_result.stat.exists
+    - name: Delete file if EXISTS
+      win_file:
+        path: "{{ Outfile }}"
+        state: absent
+      when: win_stat_result.stat.exists
 
-  - name: Create header for file with ansible hostname
-    ansible.windows.win_copy:
-      content: | 
-        ##### Header
-        Hostname: {{ ansible_hostname | upper }}
-        ##### Header
-      dest: "{{ Outfile }}"
+    - name: Create header for file with ansible hostname
+      ansible.windows.win_copy:
+        content: | 
+          ##### Header
+          Hostname: {{ ansible_hostname | upper }}
+          ##### Header
+        dest: "{{ Outfile }}"
 
 ## Stitch with files if they exist
  
-  - name: files
-    include: _append.yml some_var={{item}}
-    with_items: "{{ files }}"
+    - name: files
+      include: _append.yml some_var={{item}}
+      with_items: "{{ files }}"
 
 
 ### remove # and empty lines on output file
