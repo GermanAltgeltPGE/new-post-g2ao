@@ -46,7 +46,7 @@
         path: "d:\\"
       register: disthere
 
-    - name: ouput {{disthere}}
+    - name: output {{ disthere }}
       debug:
         msg: d is there {{ disthere }}
     
