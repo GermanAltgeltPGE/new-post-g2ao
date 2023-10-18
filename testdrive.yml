@@ -25,7 +25,8 @@
   hosts: all 
   no_log: false
   vars:
-    Drive: "{{ 'c:\\' if my_condition else 'd:\\' }}"
+    #Drive: "{{ 'c:\\' if my_condition else 'd:\\' }}"
+    Drive: "c:\\"
     Today: "{{ lookup('pipe', 'date +\"%Y%m%d\"') }}"
     Outfile: "{{Drive}}installs\\{{ansible_hostname | upper}}_{{ Today }}-new.txt"
     
