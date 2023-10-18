@@ -41,6 +41,11 @@
         msg: "{{ item }}"
       with_items: "{{ files }}"
 
-    - name: Output disk information
+    - name: Collect only facts about hardware
+      setup:
+        gather_subset:
+        - hardware
+
+    - name: Output disks
       debug:
-        var: hostvars[inventory_hostname].ansible_devices
+        var: hostvars[inventory_hostname].ansible_devices.keys() | list
