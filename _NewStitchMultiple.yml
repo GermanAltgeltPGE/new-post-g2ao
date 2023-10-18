@@ -27,7 +27,7 @@
   vars:
     Drive: "c:\\temp"
     Today: "{{ lookup('pipe', 'date +\"%Y%m%d\"') }}"
-    Outfile: "{{Drive}}\\{{ansible_hostname | upper}}_{{ Today }}-new.txt"
+    Outfile: "{{Drive}}\\{{ansible_hostname | upper}}_{{ Today }}.txt"
     
     files:
       - "{{Drive}}\\{{ansible_hostname | upper}}_{{ Today }}-g2ao.txt"

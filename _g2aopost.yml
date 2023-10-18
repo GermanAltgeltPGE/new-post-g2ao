@@ -27,7 +27,7 @@
   vars:
     Dr: "c:\\Temp"
     Today: "{{ lookup('pipe', 'date +\"%Y%m%d\"') }}"
-    Path: "{{Dr}}\\{{ansible_hostname | upper}}_{{ Today }}-new.txt"
+    Path: "{{Dr}}\\{{ansible_hostname | upper}}_{{ Today }}-g2ao.txt"
     
   tasks:
     - name: Path 0
