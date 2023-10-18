@@ -30,6 +30,10 @@
     Path: "{{Dr}}\\{{ansible_hostname | upper}}_{{ Today }}-new.txt"
     
     tasks:
+    - name:
+      Debug:
+        Msg: " Path1 = {{ Path}}"
+
     - name: check if dir exists
       win_stat:
         path: "d:\\"
@@ -68,6 +72,10 @@
         state: touch
       with_items:
         - "{{ Path }}"
+    
+    - name:
+      Debug:
+        Msg: " Path1 = {{ Path}}"
 
     - name: Change post file {{ Path }}
       ansible.windows.win_copy:
