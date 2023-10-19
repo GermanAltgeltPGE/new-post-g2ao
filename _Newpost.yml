@@ -66,7 +66,7 @@
     # sample
     - name: set a variable to hostname
       set_fact:
-        Servername: ansible_hastname
+        Servername: ansible_hostname
 
     # sample    
     # change xxxx to your 4 digit in the contents, further explanation 
@@ -77,7 +77,7 @@
         content: | 
           ##### Step01 - xxxx
             Servername = {{ Servername }}
-            Ansible fact hostname = {{ ansible_hastname }}
+            Ansible fact hostname = {{ ansible_hostname }}
           ##### Step01 - xxxx
         dest: "{{ Path }}"
       # in the line above dest to
