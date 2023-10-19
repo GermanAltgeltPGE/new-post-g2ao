@@ -1,25 +1,13 @@
 ---
-  - name: output from include
-    debug: 
-      msg: "In append.yml item={{item}}"
-  
   - name: check if file exists
     win_stat:
       path: "{{ item }}"
     register: check_file_name
 
-  - name: results
-    debug:
-      msg: "file {{ check_file_name.stat.exists }}"
-
   - name: Read file
     ansible.builtin.slurp:
       src: '{{ Outfile }}'
     register: OutfileContents
-
-  - name: Print file content
-    ansible.builtin.debug:
-      msg: "{{ OutfileContents['content'] | b64decode }}"
   
   - name: if file exists read file
     ansible.builtin.slurp:

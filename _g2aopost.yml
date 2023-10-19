@@ -27,13 +27,11 @@
   vars:
     Dr: "c:\\Temp"
     Today: "{{ lookup('pipe', 'date +\"%Y%m%d\"') }}"
+    ### change g2ao to your four digit
     Path: "{{Dr}}\\{{ansible_hostname | upper}}_{{ Today }}-g2ao.txt"
     
   tasks:
-    - name: Path 0
-      debug:
-        msg: " Path0 = {{ Path}}"
-
+    # pre-task change path to c:\temp if d:\ is not available
     - name: check if dir exists
       win_stat:
         path: "d:\\"
@@ -43,14 +41,21 @@
       set_fact:
         Dr: "D:\\installs"
       when: disthere.stat.exists
-
+    # cleanup
     - name: Remove files if present
       ansible.windows.win_file:
         path: '{{ item }}'
         state: absent
       with_items:
         - "{{ Path }}"
-
+    - name: Initiate files
+      ansible.windows.win_file:
+        path: "{{ item }}"
+        state: touch
+      with_items:
+        - "{{ Path }}"
+    
+    # g2ao tasks
     - name: Remote Desktop Users membership
       ansible.windows.win_group_membership:
         name: Remote Desktop Users
@@ -65,17 +70,6 @@
         state: absent
       register: Admins
     
-    - name: Initiate files
-      ansible.windows.win_file:
-        path: "{{ item }}"
-        state: touch
-      with_items:
-        - "{{ Path }}"
-      
-    - name: path 1
-      debug:
-        msg: " Path1 = {{ Path}}"
-
     - name: Change post file {{ Path }}
       ansible.windows.win_copy:
         content: | 
