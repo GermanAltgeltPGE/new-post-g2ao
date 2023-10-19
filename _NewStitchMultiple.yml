@@ -30,6 +30,7 @@
     Outfile: "{{Drive}}\\{{ansible_hostname | upper}}_{{ Today }}.txt"
     
     files:
+      - "{{Drive}}\\{{ansible_hostname | upper}}_{{ Today }}-xxxx.txt"
       - "{{Drive}}\\{{ansible_hostname | upper}}_{{ Today }}-g2ao.txt"
       - "{{Drive}}\\{{ansible_hostname | upper}}_{{ Today }}-cxya.txt"
       - "{{Drive}}\\{{ansible_hostname | upper}}_{{ Today }}-oxtg.txt"
