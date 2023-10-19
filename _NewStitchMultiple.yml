@@ -74,3 +74,8 @@
 
 ### remove # and empty lines on output file
 
+    - name: cleanup final file = remove blank lines
+      win_lineinfile:
+        dest: "{{ Outfile }}" 
+        state: absent 
+        regexp: "^\\s*$"
