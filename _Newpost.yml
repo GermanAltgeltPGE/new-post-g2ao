@@ -46,7 +46,7 @@
         Dr: "D:\\installs"
       when: disthere.stat.exists
 
-    # cleanup - removves and initiates files (create empty files)
+    # cleanup - removes and initiates files (create empty files)
     - name: Remove files if present
       ansible.windows.win_file:
         path: '{{ item }}'
