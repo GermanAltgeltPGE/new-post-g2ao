@@ -69,7 +69,7 @@
       set_fact:
         Sname: "{{ ansible_hostname }}"
     # sample    
-    \
+    
     # change xxxx to your 4 digit in the contents, 
     # below has further explanation 
     - name: Change post file {{ Path }}
