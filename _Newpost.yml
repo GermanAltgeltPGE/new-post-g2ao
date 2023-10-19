@@ -1,0 +1,86 @@
+---
+- name: Gather credentials - PB1
+  hosts: all
+  gather_facts: false
+# prerequisites = have a collections folder in your repo
+# with requirements.yml in it with the following:
+#---
+#collections:
+# - pge_util.papm_util
+#
+  tasks:
+# 
+# task needed for credentials in playbookone.yml
+#
+  - name: Include task list in play - import - task 1
+    ansible.builtin.import_tasks:
+      # make sure to have playbookeone in your repo 
+      file: playbookone.yml
+#
+# Separate playbook with ansible facts
+# (needs some error handling still)   
+# will change file location from c:\\temp to D:\\installs if it exists
+# Change the following lines with your playbook tasks
+#
+- name:  post install - PlayBook 2
+  hosts: all 
+  no_log: false
+  vars:
+    Dr: "c:\\Temp"
+    Today: "{{ lookup('pipe', 'date +\"%Y%m%d\"') }}"
+    ### change xxxx to your four digit before the period 
+    Path: "{{Dr}}\\{{ansible_hostname | upper}}_{{ Today }}-xxxx.txt"
+   
+  tasks:
+    # as above stated DR starts at c:\\temp
+    # the double \ is used as an escape to do a single \
+
+    # the following tasks changes c:\\temp to d:\\installs if D :\ exists
+    - name: check if dir exists
+      win_stat:
+        path: "d:\\"
+      register: disthere
+    
+    - name: change Drive if disthere.stat.exists is false
+      set_fact:
+        Dr: "D:\\installs"
+      when: disthere.stat.exists
+
+    # cleanup - removves and initiates files (create empty files)
+    - name: Remove files if present
+      ansible.windows.win_file:
+        path: '{{ item }}'
+        state: absent
+      with_items:
+        - "{{ Path }}"
+
+    - name: Initiate files
+      ansible.windows.win_file:
+        path: "{{ item }}"
+        state: touch
+      with_items:
+        - "{{ Path }}"
+
+    # past this point you will need to collect your data for post
+    # past this point you will need to output data to a file
+    # sample
+    - name: set a variable to hostname
+      set_fact:
+        - Servername: ansible_hastname
+    # sample    
+    # change xxxx to your 4 digit in the contents, further explanation 
+    - name: Change post file {{ Path }}
+      ansible.windows.win_copy:
+      # in the first line after content change the followint
+      # Step01-xxxx to Step02-oxtg or step03-cxga 
+        content: | 
+          ##### Step01 - xxxx
+            Servername = {{ Servername }}
+            Ansible fact hostname = {{ ansible_hastname }}
+          ##### Step01 - xxxx
+        dest: "{{ Path }}"
+      # in the line above dest to
+      # change Step01-xxxx to Step02-oxtg or step03-cxga 
+      # in between must have the output of your findings
+      # for the post
+
