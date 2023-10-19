@@ -62,12 +62,14 @@
         - "{{ Path }}"
 
     # past this point you will need to collect your data for post
-    # past this point you will need to output data to a file
+    # and output data to a file
+    
     # sample
     - name: set a variable to hostname
       set_fact:
-        Servername: {{ ansible_hostname }}
+        Sname: "{{ ansible_hostname }}"
     # sample    
+    \
     # change xxxx to your 4 digit in the contents, 
     # below has further explanation 
     - name: Change post file {{ Path }}
@@ -76,7 +78,7 @@
       # Step01-xxxx to Step02-oxtg or step03-cxga 
         content: | 
           ##### Step01 - xxxx
-            Servername = {{ Servername }}
+            Sname = {{ Sname }}
             Ansible fact hostname = {{ ansible_hostname }}
           ##### Step01 - xxxx
         dest: "{{ Path }}"
