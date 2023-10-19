@@ -78,7 +78,7 @@
       win_lineinfile:
         dest: "{{ Outfile }}" 
         state: absent 
-        regexp: {{ item }}
-        with_items:
-          - "^\\s*$"
-          - "^#"
+        regexp: "{{ item }}"
+      with_items:
+        - "^\\s*$"
+        - "^#"
