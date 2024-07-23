@@ -31,7 +31,5 @@
 
   - debug:
       msg: "GA Ansible hostname is {{ ansible_hostname }}"
-
-  - debug:
       msg: "GA Operating System: {{ ansible_distribution }} {{ ansible_distribution_version }}"
     
