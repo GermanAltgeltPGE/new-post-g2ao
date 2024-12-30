@@ -1,6 +1,6 @@
 ---
 - name: Gather credentials - PB1
-  hosts: winteldev17
+  hosts: all
   gather_facts: false
 # prerequisites = have a collections folder in your repo
 # with requirements.yml in it with the following:
@@ -19,7 +19,7 @@
 #
 # Playbook
 #    
-  - name: PowerShell screipt v1
+  - name: PowerShell screipt v1 ALL hosts
     script: scriptspwsh/test.ps1
     register: out
   - debug: var=out
