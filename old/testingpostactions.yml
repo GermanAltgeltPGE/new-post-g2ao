@@ -19,8 +19,7 @@
 #
 # Playbook
 #    
-- task: PowerShell hostname
-    - Name: task 1 PowerShell hostname
-      Script: scriptspwsh\test.ps1
-      register: out
-    - Debug: var=out
+  - Name: PowerShell hostname
+    Script: scriptspwsh/test.ps1
+    register: out
+  - Debug: var=out
