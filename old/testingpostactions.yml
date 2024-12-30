@@ -20,7 +20,7 @@
 # Playbook
 #    
 - task: PowerShell hostname
-    displayName: task 1 PowerShell hostname
-    inputs:
-      targetType: 'filePath'
-      filePath: scriptspwsh\test.ps1
+    - Name: task 1 PowerShell hostname
+      Script: scriptspwsh\test.ps1
+      register: out
+    - Debug: var=out
