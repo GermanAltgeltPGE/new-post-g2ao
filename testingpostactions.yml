@@ -12,14 +12,14 @@
 # 
 # task needed for credentials in playbookone.yml
 #
-  - name: Include task list in play - import - task 1
+  - name: playbookone.yml
     ansible.builtin.import_tasks:
       # make sure to have playbookeone in your repo 
       file: playbookone.yml
 #
 # Playbook
 #    
-  - name: PowerShell hostname 2.1
+  - name: PowerShell screipt v1
     script: scriptspwsh/test.ps1
     register: out
-  - Debug: var=out
+  - debug: var=out
