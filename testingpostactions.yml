@@ -22,5 +22,5 @@
   - name: PowerShell screipt v1 ALL hosts
     script: scriptspwsh/test.ps1
     register: out
-    nolog: false
+    no log: false
   - debug: var=out
