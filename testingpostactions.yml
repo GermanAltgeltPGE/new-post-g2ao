@@ -19,15 +19,12 @@
 #
 # Playbook
 #    
-#  - name: PowerShell screipt v1 ALL hosts
-#    win_shell: 
-#      $env:computername
-#    register: hostnm2
-#
-# Check Registry
-#
-  - name: Obtain the registry key's (Default) property
-    win_reg_stat:
-      path: HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion
-      name: ''
-    register: current_version_default
+  - name: PowerShell screipt v1 ALL hosts
+    win_shell: 
+      $env:computername
+    register: hostnm2
+  - name: Copy File
+    win_copy:
+      src: C:\users\g2aoadmin\documents\output.txt
+      dest: C:\users\g2aoadmin\documents\output2.txt
+       remote_src: yes
