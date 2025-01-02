@@ -31,4 +31,4 @@
   - name: Obtain information about a registry key using short form
     win_reg_stat:
       path: HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion
-    register: current_version
+    register: current_version2
