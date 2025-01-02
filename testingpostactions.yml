@@ -20,7 +20,6 @@
 # Playbook
 #    
   - name: PowerShell screipt v1 ALL hosts
-    hosts : winteldev17
     win_shell: 
       $env:computername
     register: hostnm2
