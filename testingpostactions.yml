@@ -20,6 +20,15 @@
 # Playbook
 #    
   - name: PowerShell screipt v1 ALL hosts
+    hosts : winteldev17
     win_shell: 
       $env:computername
     register: hostnm2
+#
+# Check Registry
+#
+
+  - name: Obtain information about a registry key using short form
+    win_reg_stat:
+      path: HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion
+    register: current_version
