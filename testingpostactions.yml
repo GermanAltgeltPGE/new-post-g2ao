@@ -20,5 +20,6 @@
 # Playbook
 #    
   - name: PowerShell screipt v1 ALL hosts
-    script: test.ps1
+    win_shell: 
+      $env:computername
     register: hostnm2
