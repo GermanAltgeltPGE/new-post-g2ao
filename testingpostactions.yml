@@ -26,3 +26,8 @@
 #
 # Check Registry
 #
+- name: Obtain the registry key's (Default) property
+  win_reg_stat:
+    path: HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion
+    name: ''
+  register: current_version_default
