@@ -24,6 +24,7 @@
       $env:computername
     register: hostnm2
   - name: Copy File
+    hosts: winteldev17
     win_copy:
       src: C:\users\g2aoadmin\documents\output.txt
       dest: C:\users\g2aoadmin\documents\output2.txt
