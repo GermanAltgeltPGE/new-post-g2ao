@@ -26,6 +26,6 @@
 
   - name: Copy File win_copy g2ao
     win_copy:
-      src: C:\users\g2aoadmin\documents\output.txt
-      dest: C:\users\g2aoadmin\documents\output2.txt
+      src: C:\temp\output.txt
+      dest: C:\temp\output2.txt
       remote_src: true
