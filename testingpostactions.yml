@@ -1,6 +1,6 @@
 ---
 - name: Gather credentials - PB1
-  hosts: all
+  hosts: winteldev17
   gather_facts: false
 # prerequisites = have a collections folder in your repo
 # with requirements.yml in it with the following:
@@ -23,9 +23,9 @@
     win_shell: 
       $env:computername
     register: hostnm2
+    
   - name: Copy File
-    hosts: winteldev17
     win_copy:
       src: C:\users\g2aoadmin\documents\output.txt
       dest: C:\users\g2aoadmin\documents\output2.txt
-       remote_src: yes
+      remote_src: yes
