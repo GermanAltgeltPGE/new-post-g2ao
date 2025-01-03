@@ -1,7 +1,7 @@
 ---
 - name: Gather credentials - PB1
   hosts: all
-  gather_facts: true
+  gather_facts: fakse
 # prerequisites = have a collections folder in your repo
 # with requirements.yml in it with the following:
 #---
