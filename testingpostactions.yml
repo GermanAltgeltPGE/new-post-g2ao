@@ -1,6 +1,6 @@
 ---
 - name: Gather credentials - PB1
-  hosts: ALl
+  hosts: all
   gather_facts: false
 # prerequisites = have a collections folder in your repo
 # with requirements.yml in it with the following:
@@ -24,7 +24,7 @@
       $env:computername
     register: hostnm2
 
-  - name: Copy File win_copy
+  - name: Copy File win_copy g2ao
     win_copy:
       src: C:\users\g2aoadmin\documents\output.txt
       dest: C:\users\g2aoadmin\documents\output2.txt
