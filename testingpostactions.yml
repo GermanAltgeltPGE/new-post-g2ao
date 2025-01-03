@@ -1,6 +1,6 @@
 ---
 - name: Gather credentials - PB1
-  hosts: winteldev17
+  hosts: ALl
   gather_facts: false
 # prerequisites = have a collections folder in your repo
 # with requirements.yml in it with the following:
