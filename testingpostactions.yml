@@ -24,8 +24,15 @@
       $env:computername
     register: hostnm2
 
-  - name: Copy File win_copy g2ao
-    win_copy:
-      src: C:\temp\output.txt
-      dest: C:\temp\output2.txt
-      remote_src: true
+- name: Copy a single file where the source is on the remote host
+  ansible.windows.win_copy:
+    src: C:\Temp\output.txt
+    dest: C:\ansible\output2.txt
+
+    remote_src: true
+
+  #- name: Copy File win_copy g2ao
+  #  win_copy:
+  #    src: C:\temp\output.txt
+  #    dest: C:\temp\output2.txt
+  #    remote_src: true
