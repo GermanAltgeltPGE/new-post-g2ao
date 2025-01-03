@@ -23,9 +23,9 @@
     win_shell: 
       $env:computername
     register: hostnm2
-    
-  - name: Copy File
+
+  - name: Copy File win_copy
     win_copy:
       src: C:\users\g2aoadmin\documents\output.txt
       dest: C:\users\g2aoadmin\documents\output2.txt
-      remote_src: yes
+   
