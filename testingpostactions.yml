@@ -28,4 +28,4 @@
     win_copy:
       src: C:\users\g2aoadmin\documents\output.txt
       dest: C:\users\g2aoadmin\documents\output2.txt
-   
+      remote_src: true
