@@ -20,6 +20,7 @@
 - name: PB2
   hosts: all
   gather_facts: true
+  become_method: runas
 
   tasks:
   - name: Ping an arbitrary Windows server
@@ -32,6 +33,13 @@
       src: C:\Temp
       dest: C:\ansible
       remote_src: true
+
+  - name: Execute a powershell script on a windows host
+    ansible.windows.win_shell: 'c:\temp\helloworld.ps1'
+    become: yes
+    become_user: Administrator
+
+
 
   - name: Obtain information about a registry key property
     ansible.windows.win_reg_stat:
