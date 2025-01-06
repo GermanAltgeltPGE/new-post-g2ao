@@ -28,8 +28,8 @@
       msg: "GA Ansible hostname is {{ ansible_hostname }}"
   
   - name: copy a file
-    ansible.windows.win_copy:
+    win_copy:
       src: C:\temp\output.txt
-      dest: C:\temp\output2.txt
+      dest: C:\ansible\output2.txt
       remote_src: true
 
