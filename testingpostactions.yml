@@ -6,27 +6,27 @@
 # with requirements.yml in it with the following:
 #---
 #collections:
-# - pge_util.papm_util
-#
+#- pge_util.papm_util
+##
   tasks:
 # 
 # task needed for credentials in playbookone.yml
 #
-  - name: playbookone.yml
+  - name: Include task list in play - import - task 1
     ansible.builtin.import_tasks:
       # make sure to have playbookeone in your repo 
       file: playbookone.yml
-#
-# Playbook
-#    
+
+- name: Ping Windows Server listed in playbook - PB2
+  hosts: all
+  gather_facts: true
+
+  tasks:
   - name: Ping an arbitrary Windows server
     ansible.builtin.win_ping:
   - debug:
       msg: "GA Ansible hostname is {{ ansible_hostname }}"
-
-
-  #- name: Copy File win_copy g2ao
-  #  win_copy:
-  #    src: C:\temp\output.txt
-  #    dest: C:\temp\output2.txt
-  #    remote_src: true
+  
+  -name: run a windows win_shell
+    ansible.builtin.win_shell:
+      write-host "from yml file"
