@@ -27,11 +27,11 @@
   - debug:
       msg: "GA Ansible hostname is {{ ansible_hostname }}"
   
-#  - name: copy a file
-#    ansible.windows.win_copy:
-#      src: c:\temp
-#      dest: C:\ansible
-#      remote_src: true
+  - name: Copy a folder recursively where the source is on the remote host
+    ansible.windows.win_copy:
+      src: C:\Temp
+      dest: C:\ansible
+      remote_src: true
 
   - name: Obtain information about a registry key property
     ansible.windows.win_reg_stat:
