@@ -19,10 +19,10 @@
 #
 # Playbook
 #    
-  - name: PowerShell screipt v1 ALL hosts
-    win_shell: 
+- name: PowerShell screipt v1 ALL hosts
+  win_shell: 
       $env:computername
-    register: hostnm2
+  register: hostnm2
 
 - name: Copy a single file where the source is on the remote host
   ansible.windows.win_copy:
