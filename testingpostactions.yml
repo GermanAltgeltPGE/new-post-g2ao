@@ -29,7 +29,7 @@
   
   - name: copy a file
     ansible.windows.win_copy:
-      src: C:\\temp\\output.txt
-      dest: C:\\ansible\\output.txt
+      src: C:\temp\
+      dest: C:\ansible\
       remote_src: true
 
