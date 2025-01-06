@@ -30,3 +30,18 @@
   - name: run a windows win_shell
     ansible.builtin.win_shell:
       write-host "from yml file"
+
+  - name: run a windows file
+    ansible.builtin.win_shell:
+      write-host "from yml file"
+
+  - name: run a powershell file
+    ansible.builtin.win_shell:
+      win_shell: C:\temp\HelloWorld.ps1
+
+  - name: copy a file
+    ansible.builtin.win_shell:
+      win_shell: 
+      src: C:\temp\output.txt
+      dest: C:\temp\output2.txt
+
