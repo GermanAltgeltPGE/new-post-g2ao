@@ -19,12 +19,11 @@
 #
 # Playbook
 #    
-  tasks:
   - name: Ping an arbitrary Windows server
     ansible.builtin.win_ping:
   - debug:
       msg: "GA Ansible hostname is {{ ansible_hostname }}"
-      
+
 
   #- name: Copy File win_copy g2ao
   #  win_copy:
