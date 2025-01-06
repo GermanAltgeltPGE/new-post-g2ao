@@ -17,7 +17,7 @@
       # make sure to have playbookeone in your repo 
       file: playbookone.yml
 
-- name: Ping Windows Server listed in playbook - PB2
+- name: PB2
   hosts: all
   gather_facts: true
 
@@ -27,12 +27,8 @@
   - debug:
       msg: "GA Ansible hostname is {{ ansible_hostname }}"
   
-  - name: run a windows win_shell
-    ansible.builtin.win_shell:
-      write-host ("Command line from yml file {0}" -f ($env.computername))
-
   - name: copy a file
-    ansible.builtin.win_copy:
+    win_copy:
       src: C:\temp\output.txt
       dest: C:\temp\output2.txt
 
