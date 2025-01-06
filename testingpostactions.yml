@@ -27,6 +27,6 @@
   - debug:
       msg: "GA Ansible hostname is {{ ansible_hostname }}"
   
-  -name: run a windows win_shell
+  - name: run a windows win_shell
     ansible.builtin.win_shell:
       write-host "from yml file"
