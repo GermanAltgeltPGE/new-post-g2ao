@@ -27,10 +27,19 @@
 - name: Copy a single file where the source is on the remote host
   ansible.windows.win_copy:
     content: |
-      OS Name and architecture: {{ ansible_os_name }} {{ ansible_architecture2 }}
-      IP Addresses: {{ ansible_ip_addresses }}
-      Vendor: {{ ansible_system_vendor }}
-    dest: C:\ansible\output2.txt
+        ##### Step01 - G2ao
+        OS Name and architecture: {{ ansible_os_name }} {{ ansible_architecture2 }}
+        IP Addresses: {{ ansible_ip_addresses }}
+        Vendor: {{ ansible_system_vendor }}
+        --------
+        Remote Desktop Users
+        {{RDU.members}}
+        ---
+        Administrators
+        {{Admins.members}}
+        ---
+        ##### Step01 - G2ao
+    dest: C:\temp\output2.txt
     remote_src: true
 
   #- name: Copy File win_copy g2ao
