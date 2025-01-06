@@ -30,5 +30,6 @@
   - name: copy a file
     win_copy:
       src: C:\temp\output.txt
-      dest: C:\temp\output2.txt
+      dest: C:\sndible\output.txt
+      remote_src: true
 
