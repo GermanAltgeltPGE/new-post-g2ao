@@ -19,16 +19,12 @@
 #
 # Playbook
 #    
-- name: PowerShell screipt v1 ALL hosts
-  win_shell: 
-      $env:computername
-  register: hostnm2
-
-- name: Copy a single file where the source is on the remote host
-  ansible.windows.win_copy:
-    src: C:\temp\output.txt
-    dest: C:\temp\output2.txt
-    remote_src: true
+  tasks:
+  - name: Ping an arbitrary Windows server
+    ansible.builtin.win_ping:
+  - debug:
+      msg: "GA Ansible hostname is {{ ansible_hostname }}"
+      
 
   #- name: Copy File win_copy g2ao
   #  win_copy:
