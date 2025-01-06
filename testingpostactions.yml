@@ -32,8 +32,7 @@
       write-host "from yml file"
 
   - name: copy a file
-    ansible.builtin.win_shell:
-      win_shell: 
+    ansible.builtin.win_copy:
       src: C:\temp\output.txt
       dest: C:\temp\output2.txt
 
