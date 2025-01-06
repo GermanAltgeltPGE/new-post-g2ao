@@ -30,6 +30,6 @@
   - name: copy a file
     win_copy:
       src: C:\temp\output.txt
-      dest: C:\sndible\output.txt
+      dest: C:\ansible\output.txt
       remote_src: true
 
