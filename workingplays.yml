@@ -52,7 +52,7 @@
       data: 100
       state: present
 
-    - name: Create a registry key
+  - name: Create a registry key
     win_regedit:
       path: HKEY_LOCAL_MACHINE\SOFTWARE\G2aoapp1
       name: MyValue
