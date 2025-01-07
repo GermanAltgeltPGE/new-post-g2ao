@@ -43,11 +43,6 @@
       path: HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion
       name: CommonFilesDir
     register: common_files_dir
-  
-  - name: Delete a registry key
-    win_regedit:
-      path: HKEY_LOCAL_MACHINE\SOFTWARE\g2aoapp2
-      state: absent
 
   - name: Create a registry key
     win_regedit:
