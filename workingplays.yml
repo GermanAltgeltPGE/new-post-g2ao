@@ -48,7 +48,13 @@
     ansible.windows.win_regedit:
       path: HKLM:\SOFTWARE\g2aoapp5
       state: present
+
   - name: delete a registry key HKLM:\SOFTWARE\g2aoapp5
     ansible.windows.win_regedit:
       path: HKLM:\SOFTWARE\g2aoapp2
       state: absent
+
+  - name: delete a registry key HKLM:\SOFTWARE\g2aoapp0\g2aoapp
+    ansible.windows.win_regedit:
+      path: HKLM:\SOFTWARE\g2aoapp2
+      state: present
