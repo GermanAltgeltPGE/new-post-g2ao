@@ -36,6 +36,7 @@
   - name: run a powershell script
     script: c:\temp\helloworld.ps1
     register: out
+    remote_src: true
   - debug: var=out
 #
 
