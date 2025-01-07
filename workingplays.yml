@@ -44,7 +44,7 @@
       name: CommonFilesDir
     register: common_files_dir
 
-  - name: Create a registry key
+  - name: Create a registry key HKLM:\SOFTWARE\g2aoapp5
     ansible.windows.win_regedit:
       path: HKLM:\SOFTWARE\g2aoapp5
       state: present
