@@ -44,7 +44,7 @@
       name: CommonFilesDir
     register: common_files_dir
 
-  - name: Create a registry key
+  - name: Create a registry key and value
     win_regedit:
       path: HKEY_LOCAL_MACHINE\SOFTWARE\G2aoapp0
       name: MyValue
