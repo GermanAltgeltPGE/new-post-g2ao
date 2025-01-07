@@ -34,10 +34,7 @@
       remote_src: true
 
   - name: run a powershell script on windows server
-    become_method: runas
     win_shell: 'c:\temp\helloworld.ps1'
-    become: yes
-    become_user: administrator
     register: out
   - debug: var=out
 #
