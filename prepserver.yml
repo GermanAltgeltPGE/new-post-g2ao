@@ -47,9 +47,12 @@
   - name: remove a registry key g2aoapp0
     ansible.windows.win_regedit:
       path: HKLM:\SOFTWARE\g2aoapp0
-      state: absent
+      state: absent``
   - name: remove a registry key g2aoapp6
     ansible.windows.win_regedit:
       path: HKLM:\SOFTWARE\g2aoapp6
       state: absent
-
+  - name: remove a registry key g2aoapp5
+    ansible.windows.win_regedit:
+      path: HKLM:\SOFTWARE\g2aoapp5
+      state: absent
