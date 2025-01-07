@@ -45,6 +45,6 @@
     register: common_files_dir
 
   - name: Create a registry key
-    win_regedit:
+    ansible.windows.win_regedit:
       path: HKEY_LOCAL_MACHINE\SOFTWARE\g2aoapp5
       state: present
