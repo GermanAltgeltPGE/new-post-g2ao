@@ -54,5 +54,5 @@
   
   - name: Delete a registry key
     win_regedit:
-      path: HKEY_LOCAL_MACHINE\SOFTWARE\MyApplication\g2aoapp2
+      path: HKEY_LOCAL_MACHINE\SOFTWARE\g2aoapp2
       state: absent
