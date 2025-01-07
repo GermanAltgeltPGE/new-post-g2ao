@@ -46,5 +46,5 @@
 
   - name: Create a registry key
     ansible.windows.win_regedit:
-      path: HKEY_LOCAL_MACHINE\SOFTWARE\g2aoapp5
+      path: HKLM:\SOFTWARE\g2aoapp5
       state: present
