@@ -48,7 +48,7 @@
     win_regedit:
       path: HKEY_LOCAL_MACHINE\SOFTWARE\G2aoapp1
       name: MyValue
-      vtype: REG_DWORD
+      type: REG_DWORD
       data: 100
       state: present
   
