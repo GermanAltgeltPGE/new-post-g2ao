@@ -1,0 +1,58 @@
+---
+- name: Gather credentials - PB1
+  hosts: all
+  gather_facts: false
+# prerequisites = have a collections folder in your repo
+# with requirements.yml in it with the following:
+#---
+#collections:
+#- pge_util.papm_util
+##
+  tasks:
+# 
+# task needed for credentials in playbookone.yml
+#
+  - name: Include task list in play - import - task 1
+    ansible.builtin.import_tasks:
+      # make sure to have playbookeone in your repo 
+      file: playbookone.yml
+
+- name: PB2
+  hosts: all
+  gather_facts: true
+
+  tasks:
+  - name: Ping an arbitrary Windows server
+    ansible.builtin.win_ping:
+  - debug:
+      msg: "GA Ansible hostname is {{ ansible_hostname }}"
+  
+  - name: Copy a folder recursively where the source is on the remote host
+    ansible.windows.win_copy:
+      src: C:\Temp
+      dest: C:\ansible
+      remote_src: true
+
+  - name: run a powershell script on windows server
+    win_shell: 'c:\temp\helloworld.ps1'
+    register: out
+  - debug: var=out
+
+  - name: Obtain information about a registry key property
+    ansible.windows.win_reg_stat:
+      path: HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion
+      name: CommonFilesDir
+    register: common_files_dir
+
+  - name: Create a registry key
+    win_regedit:
+      path: HKEY_LOCAL_MACHINE\SOFTWARE\G2aoapp1
+      name: MyValue
+      vtype: REG_DWORD
+      data: 100
+      state: present
+  
+  - name: Delete a registry key
+    win_regedit:
+      path: HKEY_LOCAL_MACHINE\SOFTWARE\MyApplication\g2aoapp2
+      state: absent
