@@ -37,6 +37,7 @@
     script: c:\temp\helloworld.ps1
     register: out
   - debug: var=out
+#
 
   - name: Obtain information about a registry key property
     ansible.windows.win_reg_stat:
