@@ -51,5 +51,5 @@
 
   - name: Create a registry key
     win_regedit:
-      path: HKEY_LOCAL_MACHINE\SOFTWARE\g2aoapp2
+      path: HKEY_LOCAL_MACHINE\SOFTWARE\g2aoapp5
       state: present
