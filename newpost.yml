@@ -24,6 +24,6 @@
  #     remote_src: true
 
   - name: run a powershell script on windows server
-    win_shell:  $env:username
+    win_shell:  'c:\temp\copypost.ps1'
     register: out
   - debug: var=out
