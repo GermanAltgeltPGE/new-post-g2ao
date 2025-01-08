@@ -25,12 +25,12 @@
   - name: Copy a folder recursively where the source is on the remote host
     ansible.windows.win_copy:
       src: payload/
-      dest: C:\ansible
+      dest: C:\ansible\
 
 
   - name: Copy a folder recursively where the source is on the remote host
     ansible.windows.win_copy:
       src: payload/
-      dest: C:\ansible2
+      dest: C:\ansible2\
 
 
