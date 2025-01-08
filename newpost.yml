@@ -23,7 +23,13 @@
  #     dest: C:\ansible
  #     remote_src: true
 
-  - name: run a powershell script on windows server
-    win_shell:  'c:\temp\copypost.ps1'
-    register: out
-  - debug: var=out
+# - name: Copy a folder recursively where the source is on the remote host
+    ansible.windows.win_copy:
+      src: payload\testga.ps1
+      dest: C:\ansible
+ 
+
+#  - name: run a powershell script on windows server
+  #  win_shell:  'c:\temp\copypost.ps1'
+#    #register: out
+#  - debug: var=out
