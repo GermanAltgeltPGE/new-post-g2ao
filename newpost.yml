@@ -23,7 +23,7 @@
  #     dest: C:\ansible
  #     remote_src: true
 
-  - name: Copy a folder recursively where the source is on the remote host
+  - name: Copy a payload
     ansible.windows.win_copy:
       src: payload/testga.ps1
       dest: C:\ansible
