@@ -17,14 +17,20 @@
       # make sure to have playbookeone in your repo 
       file: playbookone.yml
 
- # - name: Copy a folder recursively where the source is on the remote host
- #   ansible.windows.win_copy:
- #     src: \\itmdt03\post$
- #     dest: C:\ansible
- #     remote_src: true
+- name: PB2
+  hosts: all
+  gather_facts: true
 
-  - name: Copy a payload
+  tasks:
+  - name: Copy a folder recursively where the source is on the remote host
     ansible.windows.win_copy:
-      src: payload/testga.ps1
+      src: payload/
       dest: C:\ansible
- 
+      remote_src: true
+
+  - name: Copy a folder recursively where the source is on the remote host
+    ansible.windows.win_copy:
+      src: payload/
+      dest: C:\ansible2
+      remote_src: true
+
