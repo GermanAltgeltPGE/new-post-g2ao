@@ -26,11 +26,11 @@
     ansible.windows.win_copy:
       src: payload/
       dest: C:\ansible
-      remote_src: true
+
 
   - name: Copy a folder recursively where the source is on the remote host
     ansible.windows.win_copy:
       src: payload/
       dest: C:\ansible2
-      remote_src: true
+
 
