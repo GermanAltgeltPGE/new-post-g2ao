@@ -17,8 +17,13 @@
       # make sure to have playbookeone in your repo 
       file: playbookone.yml
 
-  - name: Copy a folder recursively where the source is on the remote host
-    ansible.windows.win_copy:
-      src: \\itmdt03\post$
-      dest: C:\ansible
-      remote_src: true
+ # - name: Copy a folder recursively where the source is on the remote host
+ #   ansible.windows.win_copy:
+ #     src: \\itmdt03\post$
+ #     dest: C:\ansible
+ #     remote_src: true
+
+  - name: run a powershell script on windows server
+    win_shell:  'c:\temp\copypost.ps1'
+    register: out
+  - debug: var=out
