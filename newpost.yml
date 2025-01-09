@@ -22,15 +22,12 @@
   gather_facts: true
 
   tasks:
-  - name: Copy a folder recursively where the source is on the remote host
+  - name: Copy a folder from GIT
     ansible.windows.win_copy:
       src: payload/
-      dest: C:\ansible\
+      dest: C:\ansibl0e\
 
-
-  - name: Copy a folder recursively where the source is on the remote host
+  - name: Copy a folder from remote host
     ansible.windows.win_copy:
-      src: payload/
-      dest: C:\ansible2\
-
-
+      src: \\itmdt03\post$
+      dest: C:\ansible3\
