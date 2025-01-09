@@ -31,4 +31,3 @@
     ansible.windows.win_copy:
       src: \\itmdt03\post$
       dest: C:\ansible3\
-      remote_src: true
