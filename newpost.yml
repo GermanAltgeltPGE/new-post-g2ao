@@ -31,3 +31,4 @@
     ansible.windows.win_copy:
       src: \\winteldev18.utility.pge.com\post$
       dest: C:\ansible3\
+      remote_src: yes
