@@ -29,5 +29,5 @@
 
   - name: Copy a folder from remote host
     ansible.windows.win_copy:
-      src: \\itmdt03.utility.pge.com\post$
+      src: \\winteldev18.utility.pge.com\post$
       dest: C:\ansible3\
