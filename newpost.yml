@@ -25,7 +25,7 @@
   - name: Copy a folder from GIT
     ansible.windows.win_copy:
       src: payload/
-      dest: C:\ansibl0e\
+      dest: C:\ansible0\
 
   - name: Copy a folder from remote host
     ansible.windows.win_copy:
