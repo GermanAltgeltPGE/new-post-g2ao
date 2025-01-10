@@ -64,4 +64,4 @@
   
   - name: Print var
     debug:
-      msg: TLSServer {{TLSServer_value}}
+      msg: TLSServer {{TLSServer}}
