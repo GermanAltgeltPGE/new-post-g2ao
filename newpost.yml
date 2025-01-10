@@ -62,6 +62,3 @@
       name: DisabledByDefault
     register: TLSClient
   
-  - name: Print vars
-    ansible.builtin.debug:
-      msg= TLSClient {{ TLSClient.data }}
