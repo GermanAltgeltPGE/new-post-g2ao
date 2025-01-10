@@ -64,7 +64,8 @@
   
   - name: Print var
     debug:
-    
+      msg: TLSServer {{TLSServer}}
+
   - name: Obtain information about a registry key using short form
     ansible.windows.win_reg_stat:
       path: HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion
