@@ -27,8 +27,21 @@
       src: payload/
       dest: C:\ansible0\
 
-  - name: Copy a folder from remote host
-    ansible.windows.win_copy:
-      src: \\winteldev18.utility.pge.com\post
-      dest: C:\ansible3\
-      remote_src: yes
+#Disabling TLS1.0 reg
+#[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\Server]
+#"DisabledByDefault"=dword:00000000
+#"Enabled"=dword:00000000
+#[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\Client]
+#"Enabled"=dword:00000000
+#"DisabledByDefault"=dword:00000001
+  - name: Obtain information about a registry key property Disabling TLS1.0 reg 1
+    ansible.windows.win_reg_stat:
+      path: HKLM:\\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\Server
+      name: DisabledByDefault
+      register: TLSServer
+
+  - name: Obtain information about a registry key property Disabling TLS1.0 reg 2
+    ansible.windows.win_reg_stat:
+      path: HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\Client
+      name: DisabledByDefault
+      register: TLSClient
