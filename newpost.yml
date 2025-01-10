@@ -64,6 +64,4 @@
   
   - name: Print vars
     ansible.builtin.debug:
-      msg: | 
-       TLSServer {{ TLSServer.data }}
-       TLSClient {{ TLSClient.data }}
+      msg= TLSClient {{ TLSClient.data }}
