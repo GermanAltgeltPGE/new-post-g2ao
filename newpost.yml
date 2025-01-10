@@ -55,13 +55,11 @@
       path: HKLM:\\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\Server
       name: DisabledByDefault
       register: TLSServer
-  - debug: 
-    msg: "TLSServer is {{ TLSServer }}"
+  - debug: msg= "TLSServer is {{ TLSServer }}"
 
   - name: Obtain information about a registry key property Disabling TLS1.0 reg 2
     ansible.windows.win_reg_stat:
       path: HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\Client
       name: DisabledByDefault
       register: TLSClient
-  - debug:
-    msg: "TLSClient is {{ TLSClient }}"
+  - debug: msg= "TLSClient is {{ TLSClient }}"
