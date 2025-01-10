@@ -62,3 +62,6 @@
       name: DisabledByDefault
     register: TLSClient
   
+  - name: Print var
+    debug:
+      msg: "TLSServer {{TLSServer}}"
