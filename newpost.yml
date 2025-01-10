@@ -52,7 +52,7 @@
       
   - name: Obtain information about a registry key property Disabling TLS1.0 reg 1
     ansible.windows.win_reg_stat:
-      path: HKLM:\\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\Server
+      path: HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\Server
       name: DisabledByDefault
     register: TLSServer
 
