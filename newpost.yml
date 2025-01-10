@@ -55,7 +55,7 @@
       path: HKLM:\\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\Server
       name: DisabledByDefault
     register: TLSServer
-    debug: 
+  - debug: 
       msg: "TLSSERVER {{ TLSSERVER }}"
 
   - name: Obtain information about a registry key property Disabling TLS1.0 reg 2
@@ -63,5 +63,5 @@
       path: HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\Client
       name: DisabledByDefault
     register: TLSClient
-    debug: 
+  - debug: 
       msg: "TLSClient {{ TLSCLIent }}"
