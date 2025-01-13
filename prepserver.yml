@@ -19,44 +19,9 @@
 
 - name: 
   hosts: all
-  gather_facts: true
 
   tasks:
-  - name: Ping an arbitrary Windows server
-    ansible.builtin.win_ping:
-  - debug:
-      msg: "GA Ansible hostname is {{ ansible_hostname }}"
-  
-  - name: Delete a folder c:\ansible
-    ansible.windows.win_file:
-      path: C:\ansible
-      state: absent
-  
-  - name: add a registry key g2aoapp1
-    ansible.windows.win_regedit:
-      path: HKLM:\SOFTWARE\g2aoapp1
-      state: present
-      
-  - name: add a registry key g2aoapp2
-    ansible.windows.win_regedit:
-      path: HKLM:\SOFTWARE\g2aoapp2
-      state: present
-  - name: add a registry key g2aoapp3
-    ansible.windows.win_regedit:
-      path: HKLM:\SOFTWARE\g2aoapp3
-      state: present
-
-  - name: remove a registry key g2aoapp0
-    ansible.windows.win_regedit:
-      path: HKLM:\SOFTWARE\g2aoapp0
-      state: absent
-
-  - name: remove a registry key g2aoapp6
-    ansible.windows.win_regedit:
-      path: HKLM:\SOFTWARE\g2aoapp6
-      state: absent
-
-  - name: remove a registry key g2aoapp5
-    ansible.windows.win_regedit:
-      path: HKLM:\SOFTWARE\g2aoapp5
-      state: absent
+- name: Remove directory structure
+  ansible.windows.win_file:
+    path: C:\installs
+    state: absent
