@@ -17,11 +17,7 @@
       # make sure to have playbookeone in your repo 
       file: playbookone.yml
 
-- name: 
-  hosts: all
-
-  tasks:
-- name: Remove directory structure
-  ansible.windows.win_file:
-    path: C:\installs
-    state: absent
+  - name: Remove directory structure
+    ansible.windows.win_file:
+      path: C:\installs
+      state: absent
