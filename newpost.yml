@@ -25,7 +25,7 @@
 
   - name: Create a directory
     ansible.windows.win_file:
-        path: "C:\installs\post":
+        path: C:\installs\post
         state: directory
 
   - name: starting postdeployment verification  - Copy a folder from GIT
