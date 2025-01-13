@@ -22,10 +22,11 @@
   gather_facts: true
 
   tasks:
-  - name: Copy a folder from GIT
+  - name: starting postdeployment verification  - Copy a folder from GIT
     ansible.windows.win_copy:
       src: payload/
       dest: C:\installs\posttools
+
 
 # Sweent 32 registry fix
 # reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Ciphers\Triple DES 168" /v Enabled /d 0 /t REG_DWORD /f
