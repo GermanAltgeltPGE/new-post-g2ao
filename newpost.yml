@@ -25,7 +25,7 @@
   - name: starting postdeployment verification  - Copy a folder from GIT
     ansible.windows.win_copy:
       src: payload/
-      dest: C:\installs\posttools
+      dest: C:\installs\
 
 
 # Sweent 32 registry fix
