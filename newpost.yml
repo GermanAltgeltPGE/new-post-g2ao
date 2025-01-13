@@ -23,10 +23,10 @@
 
   tasks:
 
-  - name: Create directory structure
+  - name: Create a directory
     ansible.windows.win_file:
-      path: C:\installs\postinstalls
-      state: directory
+        path: "C:\installs\post":
+        state: directory
 
   - name: starting postdeployment verification  - Copy a folder from GIT
     ansible.windows.win_copy:
