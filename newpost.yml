@@ -14,7 +14,7 @@
 #
   - name: Include task list in play - import - task 1
     ansible.builtin.import_tasks:
-      # make sure to have playbookeone in your repo 
+      # make sure to have playbookone in your repo 
       file: playbookone.yml
 
 - name: PB2
@@ -23,14 +23,24 @@
 
   tasks:
 
-  - name: Create a directory
+  - name: Create a directory 1
     ansible.windows.win_file:
         path: C:\installs\post
         state: directory
-
+  
   - name: starting postdeployment verification  - Copy a folder from GIT
     ansible.windows.win_copy:
       src: payload/
+      dest: C:\installs\post
+
+  - name: Create a directory 2
+    ansible.windows.win_file:
+        path: C:\installs\fromserver
+        state: directory
+
+  - name: starting postdeployment verification  - Copy a folder from network
+    ansible.windows.win_copy:
+      src: \\itmdt03\post
       dest: C:\installs\post
 
 
