@@ -25,12 +25,12 @@
 
   - name: Create a directory 1
     ansible.windows.win_file:
-        path: C:\installs\post2
+        path: C:\installs\output
         state: directory
   
   - name: "Ansible | Creating a file with content"
     win_copy:
-     dest: C:\installs\post2\outfile
+     dest: C:\installs\\output\log.txt
      content: |
        line1
        {{ ansible_hostname }}
