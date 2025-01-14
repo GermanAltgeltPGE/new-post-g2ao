@@ -1,7 +1,7 @@
 ---
 - name: Gather credentials - PB1
   hosts: all
-  gather_facts: yes
+  gather_facts: false
 # prerequisites = have a collections folder in your repo
 # with requirements.yml in it with the following:
 #---
@@ -17,12 +17,14 @@
       # make sure to have playbookone in your repo 
       file: playbookone.yml
 
-  - name: What is my ansible_hostname
-    debug: computername={{ansible_hostname}}
+- name: PB2
+  hosts: all
+  gather_facts: true
 
-  #- name: create outputfile 
-  #  ansible.windows.win_file:
-  #    content: | 
-  #      {{ ansible_hostname }}
-  #      -----------------------
-  #    dest: c:\installs\out2.txt
+  tasks:
+
+  - name: Create a directory 1
+    ansible.windows.win_file:
+        path: C:\installs\post2
+        state: directory
+  
