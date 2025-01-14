@@ -40,11 +40,22 @@
       name: DisabledByDefault
     register: TLSClient
 
+  - set_fact:
+    TLS:  "FALSE"
+
+  - set_fact:
+    TLS: "TRUE"
+    when: |
+      TLSServer = 0
+      TLScLIENT = 1
+
   - name: "Ansible | Creating a file with content 2"
     win_copy:
      dest: C:\installs\output\log.txt
      content: |
        {{ ansible_hostname }} POST VALIDATION REPORT
-       4.A Sweet 32
-       HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\Server=0 {{ TLSServer.value }}
-       HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\S\Client=1 {{ TLSClient.value }}
+       4.a - Sweet32
+       4.B - Disabling TLS 1.0 (B.0) = {{ TLS }}
+       HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\Server = 0 {{ TLSServer.value }}
+       HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\S\Client = 1 {{ TLSClient.value }}
+       
