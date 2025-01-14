@@ -20,7 +20,8 @@
 - name: PB2
   hosts: all
   gather_facts: true
-
+  vars:
+    tls: FALSE
   tasks:
 
   - name: Create a directory 1
@@ -41,10 +42,7 @@
     register: TLSClient
 
   - set_fact:
-    TLS:  "FALSE"
-
-  - set_fact:
-    TLS: "TRUE"
+    TLS: TRUE
     when: |
       TLSServer = 0
       TLScLIENT = 1
