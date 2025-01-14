@@ -9,13 +9,10 @@
 #- pge_util.papm_util
 ##
   tasks:
-  - name: set a variable to hostname
-    set_fact:
-      computername: "{{ ansible_hostname }}"
 
-  - name: create outputfile if file missing add content
+  - name: create outputfile 
     ansible.windows.win_file:
       content: | 
-        {{ computername }}
-       #########################
+        {{ ansible_hostname }}
+        -----------------------
       dest: c:\installs\out2.txt
