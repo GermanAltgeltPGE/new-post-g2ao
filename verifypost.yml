@@ -1,0 +1,22 @@
+---
+- name: Gather credentials - PB1
+  hosts: all
+  gather_facts: true
+# prerequisites = have a collections folder in your repo
+# with requirements.yml in it with the following:
+#---
+#collections:
+#- pge_util.papm_util
+##
+  tasks:
+  - name: set a variable to hostname
+    set_fact:
+      computername: "{{ ansible_hostname }}"
+
+  - name: create outputfile if file missing add content
+    ansible.windows.win_copy:
+      content: | 
+        {{ computername }}
+        ##### File NOT Found
+        ##### {{ item }}
+      dest: "c:\\installs\out2.txt"
