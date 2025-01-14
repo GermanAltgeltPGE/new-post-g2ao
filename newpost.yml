@@ -40,7 +40,7 @@
 
   - name: starting postdeployment verification  - Copy a folder from network
     ansible.windows.win_copy:
-      src: \\winteldev18\post\
+      src: \\winteldev18\post\  
       dest: C:\installs\fromserver
       remote_src: true
 
