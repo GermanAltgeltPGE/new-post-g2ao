@@ -21,7 +21,7 @@
   hosts: all
   gather_facts: true
   vars:
-    tls: FALSE
+    tls: "FALSE"
   tasks:
 
   - name: Create a directory 1
@@ -41,8 +41,13 @@
       name: DisabledByDefault
     register: TLSClient
 
+  - name:  TLS check  
   - set_fact:
-      tls: "{{ 'TRUE' if (TLSServer = 0) else 'FALSE'}}"
+      tls: "TRUE"
+      when: TLSServer.value == 0
+  - set_fact:
+      tls: "TRUE"
+      when: TLSClient.value == 1
 
   - name: "Ansible | Creating a file with content 2"
     win_copy:
