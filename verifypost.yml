@@ -40,11 +40,11 @@
       name: DisabledByDefault
     register: TLSClient
 
-  - name: "Ansible | Creating a file with content"
+  - name: "Ansible | Creating a file with content 2"
     win_copy:
      dest: C:\installs\\output\log.txt
      content: |
        {{ ansible_hostname }} POST VALIDATION REPORT
        4.A Sweet 32
-       {{ TLSServer.value }}
-       {{ TLSClient.value }}
+       {{ TLSServer }}
+       {{ TLSClient }}
