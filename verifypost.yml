@@ -28,3 +28,9 @@
         path: C:\installs\post2
         state: directory
   
+  - name: "Ansible | Creating a file with content"
+    win_copy:
+     dest: C:\installs\post2\outfile
+     content: |
+       line1
+       {{ ansible_hostname }}
