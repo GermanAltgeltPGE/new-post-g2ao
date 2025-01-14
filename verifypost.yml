@@ -1,7 +1,7 @@
 ---
 - name: Gather credentials - PB1
   hosts: all
-  gather_facts: true
+  gather_facts: false
 # prerequisites = have a collections folder in your repo
 # with requirements.yml in it with the following:
 #---
@@ -9,6 +9,13 @@
 #- pge_util.papm_util
 ##
   tasks:
+# 
+# task needed for credentials in playbookone.yml
+#
+  - name: Include task list in play - import - task 1
+    ansible.builtin.import_tasks:
+      # make sure to have playbookone in your repo 
+      file: playbookone.yml
 
   - name: create outputfile 
     ansible.windows.win_file:
