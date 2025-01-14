@@ -40,9 +40,10 @@
 
   - name: starting postdeployment verification  - Copy a folder from network
     ansible.windows.win_copy:
-      src: \\itmdt03\post
+      src: \\itmdt03\post\
       dest: C:\installs\fromserver
       remote_src: true
+
 
 
 # Sweent 32 registry fix
