@@ -17,6 +17,5 @@
     ansible.windows.win_copy:
       content: | 
         {{ computername }}
-        ##### File NOT Found
-        ##### {{ item }}
-      dest: "c:\\installs\out2.txt"
+       #########################
+      dest: c:\installs\out2.txt
