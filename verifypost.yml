@@ -44,10 +44,10 @@
   - name:  TLS check  
   - set_fact:
       tls: "TRUE"
-      when: TLSServer.value == 0
+    when: TLSServer.value == 0
   - set_fact:
       tls: "TRUE"
-      when: TLSClient.value == 1
+    when: TLSClient.value == 1
 
   - name: "Ansible | Creating a file with content 2"
     win_copy:
