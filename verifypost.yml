@@ -42,10 +42,7 @@
     register: TLSClient
 
   - set_fact:
-    TLS: TRUE
-    when: |
-      TLSServer = 0
-      TLScLIENT = 1
+      tls: "{{ 'TRUE' if (TLSServer = 0) else 'FALSE'}}""
 
   - name: "Ansible | Creating a file with content 2"
     win_copy:
