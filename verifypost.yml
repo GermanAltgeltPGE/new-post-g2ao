@@ -46,5 +46,5 @@
      content: |
        {{ ansible_hostname }} POST VALIDATION REPORT
        4.A Sweet 32
-       {{ TLSServer.value }}
-       {{ TLSClient.value }}
+       {{ TLSServer }}
+       {{ TLSClient }}
