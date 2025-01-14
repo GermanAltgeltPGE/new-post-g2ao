@@ -42,7 +42,7 @@
 
   - name: "Ansible | Creating a file with content 2"
     win_copy:
-     dest: C:\installs\\output\log.txt
+     dest: C:\installs\output\log.txt
      content: |
        {{ ansible_hostname }} POST VALIDATION REPORT
        4.A Sweet 32
