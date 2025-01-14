@@ -14,7 +14,7 @@
       computername: "{{ ansible_hostname }}"
 
   - name: create outputfile if file missing add content
-    ansible.windows.win_copy:
+    ansible.windows.win_file:
       content: | 
         {{ computername }}
        #########################
