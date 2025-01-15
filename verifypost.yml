@@ -21,8 +21,7 @@
   hosts: all
   gather_facts: true
   tasks:
-  vars:
-    TLS:'False'
+ 
 
   - name: Create a directory 1
     ansible.windows.win_file:
@@ -40,6 +39,10 @@
       path: HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\S\Client
       name: DisabledByDefault
     register: TLSClient
+
+  - name: Define Initial Variable
+    set_fact:
+       TLS: "False"
 
   - name: Define Variable
     set_fact:
