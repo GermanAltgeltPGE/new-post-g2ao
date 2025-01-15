@@ -42,7 +42,7 @@
   - name: Define Variable
     set_fact:
        TLS: "true"
-  #  when: TLSSERVER.VALUE 
+    when:  TLSServer.value == 0
 
   - name: "Ansible | Creating a file with content 1"
     win_copy:
