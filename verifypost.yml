@@ -44,6 +44,7 @@
   - name:  TLS check  1
     set_fact:
       tls: "TRUE"
+
     when: TLSServer.value == 0
   - name:  TLS check  2
     set_fact:
