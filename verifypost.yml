@@ -21,6 +21,8 @@
   hosts: all
   gather_facts: true
   tasks:
+  vars:
+    TLS:'False'
 
   - name: Create a directory 1
     ansible.windows.win_file:
