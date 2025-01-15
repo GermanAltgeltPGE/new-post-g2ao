@@ -20,8 +20,6 @@
 - name: PB2
   hosts: all
   gather_facts: true
-  vars:
-    tls: "FALSE"
   tasks:
 
   - name: Create a directory 1
@@ -41,17 +39,12 @@
       name: DisabledByDefault
     register: TLSClient
 
-  - name:  TLS check  1
-    set_var:
-      tls: "TRUE"
-    when: TLSServer.value == 0
-    
-  - name:  TLS check  2
-    set_var:
-      tls: "TRUE"
-    when: TLSClient.value == 1
+  - name: Define Variable
+    set_fact:
+       TLS: "true"
+    when: TLSSERVER.VALUE=0
 
-  - name: "Ansible | Creating a file with content 2"
+  - name: "Ansible | Creating a file with content 1"
     win_copy:
      dest: C:\installs\output\log.txt
      content: |
