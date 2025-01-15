@@ -61,3 +61,10 @@
        HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\Server = 0 {{ TLSServer.value }}
        HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\S\Client = 1 {{ TLSClient.value }}
        
+  - name: "Ansible | Creating a file with content 2"
+    win_copy:
+     dest: C:\installs\output\log2.txt
+     content: |
+       {{ ansible_hostname }} POST VALIDATION REPORT
+       4.A - Sweet32
+       4.B - Disabling TLS 1.0 (B.0) 
