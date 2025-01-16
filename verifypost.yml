@@ -38,25 +38,25 @@
     ansible.windows.win_reg_stat:
       path: HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Ciphers\Triple DES 168
       name: Enabled
-    register: SW321
+    register: SW1
 
   - name: Obtain information about a registry key property Sweet32 reg 2
     ansible.windows.win_reg_stat:
       path: HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Ciphers\Triple DES 168
       name: DisabledByDefault
-    register: SW322
+    register: SW2
 
   - name: Obtain information about a registry key property Sweet32 reg 3
     ansible.windows.win_reg_stat:
       path: HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Ciphers\Triple DES 168/168
       name: Enabled
-    register: SW323
+    register: SW3
 
   - name: Obtain information about a registry key property Sweet32 reg 4
     ansible.windows.win_reg_stat:
       path: HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Ciphers\Triple DES 168/168
       name: DisabledByDefault
-    register: SW324
+    register: SW4
 
   - name: Define SW32 Conditional Variable
     set_fact:
@@ -65,7 +65,7 @@
   - name: Define SW32 Conditional Variable
     set_fact:
        SW32: "true"
-    when: sw321.value==0
+    when: sw1.value == 0
 
   #### tls 
   - name: Obtain information about a registry key property Disabling TLS1.0 reg 1
