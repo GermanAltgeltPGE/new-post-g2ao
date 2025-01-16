@@ -35,25 +35,25 @@
 # "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Ciphers\Triple DES 168/168" /v DisabledByDefault /d 1 /t REG_DWORD /f
 ####  
 
-  - name: Obtain information about a registry key property Sweet32 reg 1
+  - name: Sweet32 reg 1
     ansible.windows.win_reg_stat:
       path: HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Ciphers\Triple DES 168
       name: Enabled
     register: SW1
 
-  - name: Obtain information about a registry key property Sweet32 reg 2
+  - name: Sweet32 reg 2
     ansible.windows.win_reg_stat:
       path: HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Ciphers\Triple DES 168
       name: DisabledByDefault
     register: SW2
 
-  - name: Obtain information about a registry key property Sweet32 reg 3
+  - name: Sweet32 reg 3
     ansible.windows.win_reg_stat:
       path: HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Ciphers\Triple DES 168/168
       name: Enabled
     register: SW3
 
-  - name: Obtain information about a registry key property Sweet32 reg 4
+  - name: Sweet32 reg 4
     ansible.windows.win_reg_stat:
       path: HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Ciphers\Triple DES 168/168
       name: DisabledByDefault
@@ -69,13 +69,13 @@
    # when:  SW1.VALUE == 0
 
   #### tls 
-  - name: Obtain information about a registry key property Disabling TLS1.0 reg 1
+  - name: Disabling TLS1.0 reg 1
     ansible.windows.win_reg_stat:
       path: HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\Server
       name: DisabledByDefault
     register: TLSServer
 
-  - name: Obtain information about a registry key property Disabling TLS1.0 reg 2
+  - name: Disabling TLS1.0 reg 2
     ansible.windows.win_reg_stat:
       path: HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\S\Client
       name: DisabledByDefault
