@@ -57,10 +57,14 @@
       name: DisabledByDefault
     register: SW32_4
 
+   - name: Define SW32 Conditional Variable
+    set_fact:
+       SW32: "false"
+
   - name: Define SW32 Conditional Variable
     set_fact:
-       SW32: "False"
-    when: sw321.value==1
+       SW32: "true"
+    when: sw32_1.value==1
   #### tls 
   - name: Obtain information about a registry key property Disabling TLS1.0 reg 1
     ansible.windows.win_reg_stat:
