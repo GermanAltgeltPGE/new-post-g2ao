@@ -101,7 +101,7 @@
      content: |
        {{ ansible_hostname }} POST VALIDATION REPORT
        4.a - Sweet32 ...................... {{ SW32 }}
-       HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Ciphers\Triple DES 168" /v Enabled = 0 /t {{ sw321.value}}
+       Registry 1 {{ sw321.value}}
        4.B - Disabling TLS 1.0 (B.0) ...... {{ TLS }}
        HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\Server = 0 {{ TLSServer.value }}
        HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\S\Client = 1 {{ TLSClient.value }}
