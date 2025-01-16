@@ -38,11 +38,11 @@
         path: C:\installs\fromserver
         state: directory
 
-  - name: starting postdeployment verification  - Copy a folder from network
-    ansible.windows.win_copy:
-      src: \\winteldev18\post\  
-      dest: C:\installs\fromserver
-      remote_src: true
+  #- name: starting postdeployment verification  - Copy a folder from network
+  #  ansible.windows.win_copy:
+  #    src: \\winteldev18\post\  
+  #    dest: C:\installs\fromserver
+  #    remote_src: true
 
 # Sweent 32 registry fix
 # reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Ciphers\Triple DES 168" /v Enabled /d 0 /t REG_DWORD /f
