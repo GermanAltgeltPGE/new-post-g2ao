@@ -27,7 +27,23 @@
     ansible.windows.win_file:
         path: C:\installs\output
         state: directory
+ # Sweent 32 registry fix
+# reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Ciphers\Triple DES 168" /v Enabled /d 0 /t REG_DWORD /f
+# reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Ciphers\Triple DES 168" /v DisabledByDefault /d 1 /t REG_DWORD /f
+# reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Ciphers\Triple DES 168/168" /v Enabled /d 0 /t REG_DWORD /f
+# reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Ciphers\Triple DES 168/168" /v DisabledByDefault /d 1 /t REG_DWORD /f
+  
+  - name: Obtain information about a registry key property Disabling TLS1.0 reg 1
+    ansible.windows.win_reg_stat:
+      path: HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Ciphers\Triple DES 168
+      name: Enabled
+    register: SW32_1
 
+  - name: Define SW32 Conditional Variable
+    set_fact:
+       SW32: "False"
+
+  #### tls 
   - name: Obtain information about a registry key property Disabling TLS1.0 reg 1
     ansible.windows.win_reg_stat:
       path: HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\Server
@@ -40,7 +56,7 @@
       name: DisabledByDefault
     register: TLSClient
 
-  - name: Define Initial Variable
+  - name: Define TLS Conditional Variable
     set_fact:
        TLS: "False"
 
@@ -49,13 +65,20 @@
        TLS: "true"
     when:  TLSServer.value == 0 and TLSClient.value == 1
 
+
+  
+
+########################
+#     Output file
+########################
+
   - name: "Ansible | Creating a file with content 1"
     win_copy:
      dest: C:\installs\output\log.txt
      content: |
        {{ ansible_hostname }} POST VALIDATION REPORT
-       4.a - Sweet32
-       4.B - Disabling TLS 1.0 (B.0) TLS={{ TLS }}
+       4.a - Sweet32 ...................... {{ SW32 }}
+       4.B - Disabling TLS 1.0 (B.0) ...... {{ TLS }}
        HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\Server = 0 {{ TLSServer.value }}
        HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\S\Client = 1 {{ TLSClient.value }}
        
