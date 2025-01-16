@@ -27,13 +27,14 @@
     ansible.windows.win_file:
         path: C:\installs\output
         state: directory
-
-# Sweent 32 registry fix
+####
+# Sweet 32 registry fix
 # "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Ciphers\Triple DES 168" /v Enabled /d 0 /t REG_DWORD /f
 # "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Ciphers\Triple DES 168" /v DisabledByDefault /d 1 /t REG_DWORD /f
 # "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Ciphers\Triple DES 168/168" /v Enabled /d 0 /t REG_DWORD /f
 # "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Ciphers\Triple DES 168/168" /v DisabledByDefault /d 1 /t REG_DWORD /f
-  
+####  
+
   - name: Obtain information about a registry key property Sweet32 reg 1
     ansible.windows.win_reg_stat:
       path: HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Ciphers\Triple DES 168
@@ -80,11 +81,11 @@
       name: DisabledByDefault
     register: TLSClient
 
-  - name: Define TLS Conditional Variable
+  - name: Define TLS Variable
     set_fact:
        TLS: "False"
 
-  - name: Define Variable
+  - name: Define TLS Conditional Variable
     set_fact:
        TLS: "true"
     when:  TLSServer.value == 0 and TLSClient.value == 1
@@ -102,6 +103,11 @@
      content: |
        {{ ansible_hostname }} POST VALIDATION REPORT
        4.a - Sweet32 ...................... {{ SW32 }}
+       sw1  {{ SW1 }}
+       sw2  {{ SW2 }}
+       sw3  {{ SW3 }}
+       sw4  {{ SW4 }}
+       
        4.B - Disabling TLS 1.0 (B.0) ...... {{ TLS }}
        HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\Server = 0 {{ TLSServer.value }}
        HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\S\Client = 1 {{ TLSClient.value }}
