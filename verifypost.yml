@@ -65,7 +65,7 @@
   - name: Define SW32 Conditional Variable
     set_fact:
        SW32: "true"
-    when: sw321.value==1
+    when: sw321.value==0
 
   #### tls 
   - name: Obtain information about a registry key property Disabling TLS1.0 reg 1
