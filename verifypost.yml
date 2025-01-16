@@ -107,7 +107,7 @@
        sw2  {{ SW2 }}
        sw3  {{ SW3 }}
        sw4  {{ SW4 }}
-       
+       {{ Sw1.value }}
        4.B - Disabling TLS 1.0 (B.0) ...... {{ TLS }}
        TLSServer {{ TLSServer }}
        TLSClient {{ TLSClient }}
