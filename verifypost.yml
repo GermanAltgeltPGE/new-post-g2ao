@@ -57,7 +57,7 @@
       name: DisabledByDefault
     register: SW32_4
 
-   - name: Define SW32 Conditional Variable
+  - name: Define SW32 Conditional Variable
     set_fact:
        SW32: "false"
 
