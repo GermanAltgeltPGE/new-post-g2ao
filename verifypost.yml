@@ -27,6 +27,7 @@
     ansible.windows.win_file:
         path: C:\installs\output
         state: directory
+
 # Sweent 32 registry fix
 # "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Ciphers\Triple DES 168" /v Enabled /d 0 /t REG_DWORD /f
 # "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Ciphers\Triple DES 168" /v DisabledByDefault /d 1 /t REG_DWORD /f
@@ -64,7 +65,7 @@
   - name: Define SW32 Conditional Variable
     set_fact:
        SW32: "true"
-    #when: sw321.value==1
+    when: sw321.value==1
 
   #### tls 
   - name: Obtain information about a registry key property Disabling TLS1.0 reg 1
