@@ -109,6 +109,8 @@
        sw4  {{ SW4 }}
        
        4.B - Disabling TLS 1.0 (B.0) ...... {{ TLS }}
+       TLSServer {{ TLSServer }}
+       TLSClient {{ TLSClient }}
        HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\Server = 0 {{ TLSServer.value }}
        HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\S\Client = 1 {{ TLSClient.value }}
        
