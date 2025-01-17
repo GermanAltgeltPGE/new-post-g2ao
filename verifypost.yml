@@ -62,7 +62,7 @@
   - name: Define SW32 Conditional Variable
     set_fact:
        SW32: "Fail"
-
+#
   - name: Define SW32 Conditional Variable
     set_fact:
        SW32: "pass"
