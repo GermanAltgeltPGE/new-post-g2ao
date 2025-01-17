@@ -68,7 +68,9 @@
        SW32: "true"
     #when:  SW1.VALUE == 0
 
-  #### tls 
+  #### tls
+  #Disabling TLS1.0 reg
+
   - name: Disabling TLS1.0 reg 1
     ansible.windows.win_reg_stat:
       path: HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\Server
@@ -178,8 +180,8 @@
        sw3  {{ SW3 }}
        sw4  {{ SW4 }}
        4.B - Disabling TLS 1.0 (B.0) ...... {{ TLS }}
-       TLSServer {{ TLSServer.value }}
-       TLSClient {{ TLSClient.value }}
+       HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\Server DisabledByDefault=0 |  {{ TLSServer.value }}
+       HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\S\Client DisabledByDefault=1 |  {{ TLSClient.value }}
        4.C InsecureWindowsService ............ run script located in installs\post
        4.D MSDT ...........................{{ MSDTKEY }}
        {{ MSDT }}
