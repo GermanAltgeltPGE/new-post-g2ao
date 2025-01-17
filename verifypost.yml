@@ -107,7 +107,7 @@
   - name: Define MSDT_Vulnerability Variable
     set_fact:
        MSDT: "Pass"
-    #when: MSDTkey.EXIST == false
+    when: MSDTkey.EXIST == false
 
 # E - Speculative Execution
 # reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management" /v FeatureSettingsOverride /t REG_DWORD /d 72 /f
@@ -183,8 +183,8 @@
        HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\Server DisabledByDefault=0 |  {{ TLSServer.value }}
        HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\S\Client DisabledByDefault=1 |  {{ TLSClient.value }}
        4.C InsecureWindowsService ............ run script located in installs\post
-       4.D MSDT ...........................{{ MSDTKEY }}
-       {{ MSDT }}
+       4.D MSDT ...........................{{ MSDT }}
+       {{ MSDTKEY }}
        4.E Speculative Execution...........{{ SPEX }}
        HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management   FeatureSettingsOverride=72 | {{ SPEX1.value }}
        HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management   FeatureSettingsOverrideMask=3  | {{ SPEX2.value }}
