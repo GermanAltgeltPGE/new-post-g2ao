@@ -83,11 +83,11 @@
 
   - name: Define TLS Variable
     set_fact:
-       TLS: "FAIL"
+       TLS: "Fail"
 
   - name: Define TLS Conditional Variable
     set_fact:
-       TLS: "PASS"
+       TLS: "Pass"
     when:  TLSServer.value == 0 and TLSClient.value == 1
 
 # D - MSDT_Vulnerability
@@ -95,7 +95,7 @@
   
   - name: Define MSDT_Vulnerability Variable
     set_fact:
-       MSDT: "False"
+       MSDT: "Fail"
   
   - name: Obtain information about a registry key using short form
     ansible.windows.win_reg_stat:
@@ -104,7 +104,7 @@
 
   - name: Define MSDT_Vulnerability Variable
     set_fact:
-       MSDT: "True"
+       MSDT: "Pass"
     #when: MSDTkey.EXIST == false
 
 # E - Speculative Execution
@@ -131,7 +131,37 @@
     set_fact:
        SPEX: "Pass"
     when: SPEX1.value == 72 and SPEX2.value == 3
+#    
+# F - Unquoted - run script
+#
+  - name: Unquoted
+    set_fact:
+      UNQ: "Unknown"
+#
+# G - winrmpost - https enable winrm
+#
+  - name: Winrm
+    set_fact:
+      WRM: "Unknown"
 
+#
+# H - winverifytrust
+# reg add "HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Cryptography\Wintrust\Config" /v EnableCertPaddingCheck /t REG_DWORD /d 1 /f
+#
+  - name: WVT
+    set_fact:
+      WVT: "Fail"
+
+  - name: winverifytrust reg 
+    ansible.windows.win_reg_stat:
+      path: HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management
+      name: EnableCertPaddingCheck
+    register: WVFT
+
+  - name: WVT
+    set_fact:
+      WVT: "Pass"
+    when: WVFT.value == 1
 
 ########################
 #     Output file
@@ -157,3 +187,7 @@
        4.E Speculative Execution...........{{ SPEX }}
        {{ SPEX1.value }}
        {{ SPEX2.value }}
+       4.F Unquoted .... run script located in install\post
+       4.G winRM
+       4.H WinVerify trust ................{{ WVFT }}
+       {{ WVFT.value }}
