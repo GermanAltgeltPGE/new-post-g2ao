@@ -125,12 +125,12 @@
     ansible.windows.win_reg_stat:
       path: HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management
       name: FeatureSettingsOverrideMask 
-    register: FeatureSettingsOverrideMask2
+    register: SPEX2
 
   - name: Define MSDT_Vulnerability Variable
     set_fact:
        SPEX "True"
-    #when: SPEX1.value == 72 and SPEX2.value == 3
+
 
 ########################
 #     Output file
