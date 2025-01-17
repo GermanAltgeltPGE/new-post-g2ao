@@ -156,6 +156,4 @@
        {{ MSDT }}
        4.E Speculative Execution...........{{ SPEX }}
        {{ SPEX1.value }}
-       {{ SPEX1 }}
        {{ SPEX2.value }}
-       {{ SPEX2 }}
