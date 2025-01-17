@@ -105,8 +105,32 @@
   - name: Define MSDT_Vulnerability Variable
     set_fact:
        MSDT: "True"
-    when: MSDTkey.EXIST == false
+    #when: MSDTkey.EXIST == false
+
+# E - Speculative Execution
+# reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management" /v FeatureSettingsOverride /t REG_DWORD /d 72 /f
+# reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management" /v FeatureSettingsOverrideMask /t REG_DWORD /d 3 /f
+ 
+  - name: Define Speculative execution variable
+    set_fact:
+       SPEX: "False"
   
+  - name: Speculative execution reg 1
+    ansible.windows.win_reg_stat:
+      path: HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management
+      name: FeatureSettingsOverride
+    register: SPEX1
+
+  - name: Speculative execution reg 2
+    ansible.windows.win_reg_stat:
+      path: HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management
+      name: FeatureSettingsOverrideMask 
+    register: FeatureSettingsOverrideMask2
+
+  - name: Define MSDT_Vulnerability Variable
+    set_fact:
+       SPEX "True"
+    when: SPEX1.value == 72 and SPEX2.value == 3
 
 ########################
 #     Output file
@@ -128,4 +152,4 @@
        {{ TLSServer.value }}
        {{ TLSClient.value }}
        4.D MSDTKEY {{ MSDTKEY }}
-       
+       4.E Speculative Execution  {{ SPEX }}
