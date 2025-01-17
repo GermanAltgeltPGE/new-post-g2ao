@@ -130,7 +130,7 @@
   - name: Define MSDT_Vulnerability Variable
     set_fact:
        SPEX: "True"
-       when: SPEX1.value==333
+    when: SPEX1.value == 333
 
 
 ########################
