@@ -189,5 +189,5 @@
        {{ SPEX2.value }}
        4.F Unquoted .... run script located in install\post
        4.G winRM
-       4.H WinVerify trust ................{{ WVFT }}
+       4.H WinVerify trust ................{{ WVT }}
        {{ WVFT.value }}
