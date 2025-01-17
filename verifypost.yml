@@ -117,13 +117,13 @@
   
   - name: Speculative execution reg 1
     ansible.windows.win_reg_stat:
-      path: HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management
+      path: HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management
       name: FeatureSettingsOverride
     register: SPEX1
 
   - name: Speculative execution reg 2
     ansible.windows.win_reg_stat:
-      path: HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management
+      path: HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management
       name: FeatureSettingsOverrideMask 
     register: SPEX2
 
