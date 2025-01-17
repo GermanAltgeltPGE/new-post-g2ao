@@ -154,7 +154,7 @@
 
   - name: winverifytrust reg 
     ansible.windows.win_reg_stat:
-      path: HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management
+      path: HKLM:\Software\Wow6432Node\Microsoft\Cryptography\Wintrust\Config
       name: EnableCertPaddingCheck
     register: WVFT
 
