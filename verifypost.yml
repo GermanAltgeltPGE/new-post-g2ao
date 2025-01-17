@@ -191,7 +191,6 @@
        4.G winRM
        4.H WinVerify trust ................{{ WVT }}
        HKLM:\Software\Wow6432Node\Microsoft\Cryptography\Wintrust\Config  EnableCertPaddingCheck=1{{ WVFT.value }}
-
        5. Validate Processor and RAM against SDP Spreadsheet 
        Processor {{ ansible_processnsible_processor_count }}
        RAM {{ansible_memtotal_mb }}
