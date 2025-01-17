@@ -37,7 +37,7 @@
 
   - name: Sweet32 reg 1
     ansible.windows.win_reg_stat:
-      path: {HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Ciphers\Triple DES 168}
+      path: HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Ciphers\Triple DES 168
       name: Enabled
     register: SW1
 
