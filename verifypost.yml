@@ -178,17 +178,16 @@
        sw3  {{ SW3 }}
        sw4  {{ SW4 }}
        4.B - Disabling TLS 1.0 (B.0) ...... {{ TLS }}
-       TLSServer {{ TLSServer }}
-       TLSClient {{ TLSClient }}
-       {{ TLSServer.value }}
-       4.C InsecureWindowsService ..... run script 
+       TLSServer {{ TLSServer.value }}
+       TLSClient {{ TLSClient.value }}
+       4.C InsecureWindowsService ............ run script located in installs\post
        4.D MSDT ...........................{{ MSDTKEY }}
        {{ MSDT }}
        4.E Speculative Execution...........{{ SPEX }}
-       {{ SPEX1.value }}
-       {{ SPEX2.value }}
-       4.F Unquoted .... run script located in install\post
-       4.G winRM
+       HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management   FeatureSettingsOverride=72 | {{ SPEX1.value }}
+       HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management   FeatureSettingsOverrideMask=3  | {{ SPEX2.value }}
+       4.F Unquoted .......................... run script located in installs\post
+       4.G winRM ............................. run script located in installs\post
        4.H WinVerify trust ................{{ WVT }}
-       HKLM:\Software\Wow6432Node\Microsoft\Cryptography\Wintrust\Config  EnableCertPaddingCheck=1{{ WVFT.value }}
+       HKLM:\Software\Wow6432Node\Microsoft\Cryptography\Wintrust\Config  EnableCertPaddingCheck=1 | {{ WVFT.value }}
        5. Validate Processor and RAM against SDP Spreadsheet 
