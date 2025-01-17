@@ -127,7 +127,7 @@
       name: FeatureSettingsOverrideMask 
     register: SPEX2
 
-  - name: Define MSDT_Vulnerability Variable
+  - name: Speculative execution variable conditional
     set_fact:
        SPEX: "True"
     when: SPEX1.value == 333
