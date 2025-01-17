@@ -157,6 +157,5 @@
        4.E Speculative Execution  {{ SPEX }}
        {{ SPEX1.value }}
        {{ SPEX1 }}
-       
-       {{ SPEX2value }}
+       {{ SPEX2.value }}
        {{ SPEX2 }}
