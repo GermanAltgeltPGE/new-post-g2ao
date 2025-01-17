@@ -129,7 +129,7 @@
 
   - name: Define MSDT_Vulnerability Variable
     set_fact:
-       SPEX "True"
+       SPEX: "True"
 
 
 ########################
@@ -152,4 +152,7 @@
        {{ TLSServer.value }}
        {{ TLSClient.value }}
        4.D MSDTKEY {{ MSDTKEY }}
+       {{ MSDT }}
        4.E Speculative Execution  {{ SPEX }}
+       {{ SPEX1 }}
+       {{ SPEX2 }}
