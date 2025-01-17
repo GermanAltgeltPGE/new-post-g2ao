@@ -90,7 +90,22 @@
        TLS: "true"
     when:  TLSServer.value == 0 and TLSClient.value == 1
 
+# D - MSDT_Vulnerability
+# reg delete HKEY_CLASSES_ROOT\ms-msdt /f
+  
+  - name: Define MSDT_Vulnerability Variable
+    set_fact:
+       MSDT: "False"
+  
+  - name: Obtain information about a registry key using short form
+    ansible.windows.win_reg_stat:
+      path: HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion
+    register: MSDTKEY
 
+  - name: Define MSDT_Vulnerability Variable
+    set_fact:
+       MSDT: "True"
+    when: MSDTkey.EXIST == false
   
 
 ########################
@@ -112,4 +127,5 @@
        TLSClient {{ TLSClient }}
        {{ TLSServer.value }}
        {{ TLSClient.value }}
+       4.D MSDTKEY {{ MSDTKEY }}
        
