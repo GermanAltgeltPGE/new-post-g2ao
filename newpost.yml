@@ -164,26 +164,3 @@
       type: dword
       state: present
 
-### Verification
-  - name: Obtain information about a registry key property Disabling TLS1.0 reg 1
-    ansible.windows.win_reg_stat:
-      path: HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\Server
-      name: DisabledByDefault
-    register: TLSServer
-
-  - name: Obtain information about a registry key property Disabling TLS1.0 reg 2
-    ansible.windows.win_reg_stat:
-      path: HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\Client
-      name: DisabledByDefault
-    register: TLSClient
-
-  
-  - name: Print var
-    debug:
-      msg: TLSServer {{TLSServer}}
-
-  - name: Obtain information about a registry key property
-    ansible.windows.win_reg_stat:
-      path: HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion
-      name: CommonFilesDir
-    register: common_files_dir

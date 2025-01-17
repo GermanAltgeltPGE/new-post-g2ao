@@ -172,7 +172,7 @@
      dest: C:\installs\output\log.txt
      content: |
        {{ ansible_hostname }} POST VALIDATION REPORT
-       4.a - Sweet32 ...................... {{ SW32 }}
+       4.A - Sweet32 ...................... {{ SW32 }}
        sw1  {{ SW1 }}
        sw2  {{ SW2 }}
        sw3  {{ SW3 }}
@@ -181,7 +181,7 @@
        TLSServer {{ TLSServer }}
        TLSClient {{ TLSClient }}
        {{ TLSServer.value }}
-       {{ TLSClient.value }}
+       4.C InsecureWindowsService ..... run script 
        4.D MSDT ...........................{{ MSDTKEY }}
        {{ MSDT }}
        4.E Speculative Execution...........{{ SPEX }}
@@ -190,4 +190,8 @@
        4.F Unquoted .... run script located in install\post
        4.G winRM
        4.H WinVerify trust ................{{ WVT }}
-       {{ WVFT.value }}
+       HKLM:\Software\Wow6432Node\Microsoft\Cryptography\Wintrust\Config  EnableCertPaddingCheck=1{{ WVFT.value }}
+
+       5. Validate Processor and RAM against SDP Spreadsheet 
+       Processor {{ ansible_processnsible_processor_count }}
+       RAM {{ansible_memtotal_mb }}
