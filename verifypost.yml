@@ -66,7 +66,7 @@
   - name: Define SW32 Conditional Variable
     set_fact:
        SW32: "true"
-   # when:  SW1.VALUE == 0
+    when:  SW1.VALUE == 0
 
   #### tls 
   - name: Disabling TLS1.0 reg 1
@@ -113,7 +113,7 @@
  
   - name: Define Speculative execution variable
     set_fact:
-       SPEX: "False"
+       SPEX: "Fail"
   
   - name: Speculative execution reg 1
     ansible.windows.win_reg_stat:
@@ -129,8 +129,8 @@
 
   - name: Speculative execution variable conditional
     set_fact:
-       SPEX: "True"
-    when: SPEX1.value == 333
+       SPEX: "Pass"
+    when: SPEX1.value == 72 and SPEX2.value == 3
 
 
 ########################
@@ -143,6 +143,7 @@
      content: |
        {{ ansible_hostname }} POST VALIDATION REPORT
        4.a - Sweet32 ...................... {{ SW32 }}
+       {{ SW1.value }}
        sw1  {{ SW1 }}
        sw2  {{ SW2 }}
        sw3  {{ SW3 }}
@@ -152,9 +153,9 @@
        TLSClient {{ TLSClient }}
        {{ TLSServer.value }}
        {{ TLSClient.value }}
-       4.D MSDTKEY {{ MSDTKEY }}
+       4.D MSDT ...........................{{ MSDTKEY }}
        {{ MSDT }}
-       4.E Speculative Execution  {{ SPEX }}
+       4.E Speculative Execution...........{{ SPEX }}
        {{ SPEX1.value }}
        {{ SPEX1 }}
        {{ SPEX2.value }}
