@@ -31,7 +31,7 @@
   - name: Copy a folder from GIT
     ansible.windows.win_copy:
       src: payload/
-      dest: C:\installs\post
+      dest: C:\installs\post\
 
   - name: Create a directory 2
     ansible.windows.win_file:
@@ -40,8 +40,8 @@
 
   - name: Copy a folder from network share
     ansible.windows.win_copy:
-      src: \\ITMDT03\post
-      dest: C:\installs\fromshare
+      src: z:\
+      dest: C:\installs\fromshare\
     register: copyshare_output
   - debug: var=copyshare_output
 
