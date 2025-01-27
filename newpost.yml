@@ -40,7 +40,7 @@
 
   - name: Copy a folder from network share
     win_copy:
-      src: z:\
+      src: \\ITMDT03\post
       dest: C:\installs\fromshare\
       remote_src: true
     register: copyshare_output
