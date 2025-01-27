@@ -39,6 +39,8 @@
         state: directory
 
   - name: Copy a folder from network share
+    become: yes
+    become_method: runas
     win_copy:
       src: \\ITMDT03\post
       dest: C:\installs\fromshare\
