@@ -40,9 +40,10 @@
 
   - name: Copy a folder from network share
     ansible.windows.win_copy:
-      src: z:\
+      remote_src: z:\
       dest: C:\installs\fromshare\
     register: copyshare_output
+
   - debug: var=copyshare_output
 
   #- name: starting postdeployment verification  - Copy a folder from network
