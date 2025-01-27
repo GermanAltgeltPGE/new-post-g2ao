@@ -38,10 +38,11 @@
         path: C:\installs\fromshare
         state: directory
 
-  - name: Copy a folder from network share
+- name: Copy a folder from network share
     ansible.windows.win_copy:
-      remote_src: z:\
+      src: z:\
       dest: C:\installs\fromshare\
+      remote_src: true
     register: copyshare_output
 
   - debug: var=copyshare_output
