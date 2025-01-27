@@ -28,15 +28,20 @@
         path: C:\installs\post
         state: directory
   
-  - name: starting postdeployment verification  - Copy a folder from GIT
+  - name: Copy a folder from GIT
     ansible.windows.win_copy:
       src: payload/
       dest: C:\installs\post
 
   - name: Create a directory 2
     ansible.windows.win_file:
-        path: C:\installs\fromserver
+        path: C:\installs\fromshare
         state: directory
+
+  - name: Copy a folder from network share
+    ansible.windows.win_copy:
+      src: \\ITMDT03\post
+      dest: C:\installs\fromshare
 
   #- name: starting postdeployment verification  - Copy a folder from network
   #  ansible.windows.win_copy:
