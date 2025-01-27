@@ -39,7 +39,7 @@
         state: directory
 
 - name: Copy a folder from network share
-    ansible.windows.win_copy:
+    win_copy:
       src: z:\
       dest: C:\installs\fromshare\
       remote_src: true
