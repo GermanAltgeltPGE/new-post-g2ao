@@ -38,7 +38,7 @@
         path: C:\installs\fromshare
         state: directory
 
-- name: Copy a folder from network share
+  - name: Copy a folder from network share
     win_copy:
       src: z:\
       dest: C:\installs\fromshare\
