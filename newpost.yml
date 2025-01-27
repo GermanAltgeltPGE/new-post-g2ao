@@ -41,6 +41,8 @@
   - name: Copy a folder from network share
     become: yes
     become_method: runas
+    become_user: svc-a1315-qa-ansble
+    become_flags: logon_type=network
     win_copy:
       src: \\ITMDT03\post
       dest: C:\installs\fromshare\
