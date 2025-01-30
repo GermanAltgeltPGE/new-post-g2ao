@@ -200,12 +200,13 @@
        4.F Unquoted .......................... run script located in installs\post
        4.G winRM ............................. run script located in installs\post
        4.H WinVerify trust ................{{ WVT }}
-       HKLM:\Software\Wow6432Node\Microsoft\Cryptography\Wintrust\Config  EnableCertPaddingCheck=1 | {{ WVFT.value }}
        5. Validate Processor and RAM against SDP Spreadsheet 
-       --------
-          Local Server Remote Desktop Users
-          {{RDU.members}}
+       6. Members of Administrators and Remote Desktop Users
        --------
           Local Server Administrators
           {{Admins.members}}
        --------
+          Local Server Remote Desktop Users
+          {{RDU.members}}
+       --------
+       
