@@ -21,3 +21,8 @@
     ansible.windows.win_file:
       path: C:\installs
       state: absent
+
+  - name: D - MSDT_Vulnerability - make reg key
+    ansible.windows.win_regedit:
+      path: HKCR:\ms-msdt
+      state: present
