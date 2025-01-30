@@ -95,6 +95,10 @@
 
 # D - MSDT_Vulnerability
 # reg delete HKEY_CLASSES_ROOT\ms-msdt /f
+  - name: Define TLS Variable
+    set_fact:
+       MSDT: "Fail"
+
   - name: Check if registry key exists
     win_reg_stat:
       path: HKCR:\ms-msdt
@@ -102,7 +106,7 @@
 
   - name: Fail if registry key is present
     fail:
-      msg: "Registry key HKCR:\\ms-msdt should not be present."
+      MSDT: "Pass"
     when: reg_key_status.exists
 
 
