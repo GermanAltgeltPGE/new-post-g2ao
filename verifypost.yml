@@ -97,7 +97,7 @@
 # reg delete HKEY_CLASSES_ROOT\ms-msdt /f
   - name: Define TLS Variable
     set_fact:
-       MSDT: "Fail"
+       MSDT: "Pass"
 
   - name: Check if registry key exists
     win_reg_stat:
@@ -106,7 +106,7 @@
 
   - name: Fail if registry key is present
     fail:
-      MSDT: "Pass"
+      MSDT: "Fail"
     when: reg_key_status.exists
 
 
@@ -193,18 +193,10 @@
        IP Addresses: {{ ansible_ip_addresses }}
        Vendor: {{ ansible_system_vendor }}
        4.A - Sweet32 ...................... {{ SW32 }}
-       sw1  {{ SW1 }}
-       sw2  {{ SW2 }}
-       sw3  {{ SW3 }}
-       sw4  {{ SW4 }}
        4.B - Disabling TLS 1.0 (B.0) ...... {{ TLS }}
-       HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\Server DisabledByDefault=0 |  {{ TLSServer.value }}
-       HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\S\Client DisabledByDefault=1 |  {{ TLSClient.value }}
        4.C InsecureWindowsService ............ run script located in installs\post
        4.D MSDT ...........................{{ MSDT }}
        4.E Speculative Execution...........{{ SPEX }}
-       HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management   FeatureSettingsOverride=72 | {{ SPEX1.value }}
-       HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management   FeatureSettingsOverrideMask=3  | {{ SPEX2.value }}
        4.F Unquoted .......................... run script located in installs\post
        4.G winRM ............................. run script located in installs\post
        4.H WinVerify trust ................{{ WVT }}
