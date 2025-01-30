@@ -95,20 +95,16 @@
 
 # D - MSDT_Vulnerability
 # reg delete HKEY_CLASSES_ROOT\ms-msdt /f
-  
-  - name: Define MSDT_Vulnerability Variable
-    set_fact:
-       MSDT: "Fail"
-  
-  - name: Obtain information about a registry key using short form
-    ansible.windows.win_reg_stat:
-      path: 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion'
-    register: MSDTKEY
+  - name: Check if registry key exists
+    win_reg_stat:
+      path: HKCR:\ms-msdt
+    register: reg_key_status
 
-  - name: Define MSDT_Vulnerability Variable
-    set_fact:
-       MSDT: "Pass"
-    when: MSDTKEY.EXIST == false
+  - name: Fail if registry key is present
+    fail:
+      msg: "Registry key HKCR:\\ms-msdt should not be present."
+    when: reg_key_status.exists
+
 
 # E - Speculative Execution
 # reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management" /v FeatureSettingsOverride /t REG_DWORD /d 72 /f
