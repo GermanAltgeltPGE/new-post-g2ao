@@ -22,10 +22,6 @@
   gather_facts: true
   tasks:
   
-  - setup:
-    register: ansible_facts
-  - debug: item
-    with_dict: ansible_facts
 
   - name: Create a directory 1
     ansible.windows.win_file:
@@ -205,6 +201,9 @@
        4.G winRM ............................. run script located in installs\post
        4.H WinVerify trust ................{{ WVT }}
        5. Validate Processor and RAM against SDP Spreadsheet 
+       Total RAM: {{ ansible_memtotal_mb }} MB"
+       Total RAM: {{ ansible_memtotal_gb }} GB"
+       
        6. Members of Administrators and Remote Desktop Users
        --------
           Local Server Administrators
