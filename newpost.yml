@@ -155,15 +155,16 @@
     ansible.windows.win_powershell:
       script: |
         echo "Unquoted - work in progress run script"
+
 # G - winrmpost - https enable winrm
   - name: WINRMPOST - enable winrm
     ansible.windows.win_powershell:
       script: |
         echo "Winrmpost - work in progress run script"
         # Removes existing HTTPS listeners (some builds have broken existing listeners)
-        #Get-ChildItem -Path WSMan:\localhost\listener | Where-Object { $_.Keys -Contains "transport=HTTPS" } | Remove-Item -Recurse -Force
+        # Get-ChildItem -Path WSMan:\localhost\listener | Where-Object { $_.Keys -Contains "transport=HTTPS" } | Remove-Item -Recurse -Force
         # Create new HTTPS listener with appropriate cert
-        #winrm quickconfig -transport:HTTPS -quiet
+        # winrm quickconfig -transport:HTTPS -quiet
 
 # H - WinVerify Trust Signature Validation
 # reg add "HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Cryptography\Wintrust\Config" /v EnableCertPaddingCheck /t REG_DWORD /d 1 /f
