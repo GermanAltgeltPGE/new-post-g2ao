@@ -38,18 +38,17 @@
         path: C:\installs\fromshare
         state: directory
 
-  - name: Copy a folder from network share
-    become: yes
-    become_method: runas
-    become_user: pge\svc-a1315-qa-ansble
-    become_flags: logon_type=network
-    win_copy:
-      src: \\ITMDT03\post
-      dest: C:\installs\fromshare\
-      remote_src: true
-    register: copyshare_output
+#    become: yes
+#    become_method: runas
+#    become_user: pge\svc-a1315-qa-ansble
+#    become_flags: logon_type=network
+#    win_copy:
+#      src: \\ITMDT03\post
+#      dest: C:\installs\fromshare\
+#      remote_src: true
+#    register: copyshare_output
 
-  - debug: var=copyshare_output
+#  - debug: var=copyshare_output
 
   #- name: starting postdeployment verification  - Copy a folder from network
   #  ansible.windows.win_copy:
