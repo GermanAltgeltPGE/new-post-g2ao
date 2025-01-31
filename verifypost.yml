@@ -21,7 +21,11 @@
   hosts: all
   gather_facts: true
   tasks:
-
+  
+  - setup:
+    register: ansible_facts
+  - debug: item
+    with_dict: ansible_facts
 
   - name: Create a directory 1
     ansible.windows.win_file:
@@ -97,7 +101,7 @@
 # reg delete HKEY_CLASSES_ROOT\ms-msdt /f
   - name: Define MSDT Variable
     set_fact:
-       MSDT: "Pass"
+       MSDT: "Unknown"
 
 #  - name: Check if MSDT registry key exists
 #    win_reg_stat:
