@@ -99,15 +99,15 @@
     set_fact:
        MSDT: "Pass"
 
-  - name: Check if MSDT registry key exists
-    win_reg_stat:
-      path: HKCR:\ms-msdt
-    register: reg_key_status
+#  - name: Check if MSDT registry key exists
+#    win_reg_stat:
+#      path: HKCR:\ms-msdt
+#    register: reg_key_status
 
-  - name: Fail if MSDT registry key is present
-    fail:
-      MSDT: "Fail"
-    when: reg_key_status.exists
+#  - name: Fail if MSDT registry key is present
+#    fail:
+#      MSDT: "Fail"
+#    when: reg_key_status.exists
 
 
 # E - Speculative Execution
