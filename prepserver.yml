@@ -22,7 +22,10 @@
       path: C:\installs
       state: absent
 
-  - name: D - MSDT_Vulnerability - make reg key
+  - name: E - Speculative Execution (E.0)
     ansible.windows.win_regedit:
-      path: HKCR:\ms-msdt
+      path: HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management
+      name: FeatureSettingsOverride
+      data: 0
+      type: dword
       state: present
