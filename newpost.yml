@@ -50,16 +50,16 @@
       remote_src: true
     register: copylocal_output
 
-#  - name: copy a file from server
-#    become: yes
-#    become_method: runas
-#    become_user: pge\svc-a1315-qa-ansble
-#    become_flags: logon_type=network
-#    win_copy:
-#      src: \\ITMDT03\post
-#      dest: C:\installs\fromshare\
-#      remote_src: true
-#    register: copyshare_output
+  - name: copy a file from server
+    become: yes
+    become_method: runas
+    become_user: pge\svc-a1315-qa-ansble
+    become_flags: logon_type=network
+    win_copy:
+      src: \\ITMDT03\post\
+      dest: C:\temp\
+      remote_src: true
+    register: copyshare_output
 
 #  - debug: var=copyshare_output
 
