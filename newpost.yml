@@ -55,14 +55,14 @@
       src: \\winteldev17\post\
       dest: C:\temp\bar
       remote_src: true
-    register: copyshare_output
+    register: copyshare_output17
 
   - name: copy a file from server winteldev18
     win_copy:
       src: \\winteldev18\post\
       dest: C:\temp\bar
       remote_src: true
-    register: copyshare_output
+    register: copyshare_output18
 
 
   - name: copy a file from server2
