@@ -189,7 +189,7 @@
       filter:
         - physical_disk
         - partitions
-    register: disKs
+    register: Disks 
 #14 Validate Patch Cycle – log into AD, search for hostname, check group membership to validate patch cycle 
 
 ########################
