@@ -198,9 +198,9 @@
        4.F Unquoted .......................... run script located in installs\post
        4.G winRM ............................. run script located in installs\post
        4.H WinVerify trust ................{{ WVT }}
-       5. Validate Processor and RAM against SDP Spreadsheet 
-       Total RAM: {{ ansible_memtotal_mb }} MB
-       Total RAM: {{ ansible_memtotal_mb/1024 }} GB
+       5. Validate Processor and RAM against SDP Spreadsheet
+       Total RAM: {{ (ansible_memtotal_mb/1024) | round }} GB
+       Number VCPU: {{ ansible_processor_vcpus }}
        6. Members of Administrators and Remote Desktop Users
        --------
           Local Server Administrators
