@@ -185,7 +185,7 @@
 #12 - qradar - deprecated is now an agent
 #13 Validate Disk Name and Disk Size against the values in the SDP 
   - name: get disk physical_disk and partition facts on the target
-    win_disk_facts:
+    community.windows.win_disk_facts:
       filter:
         - physical_disk
         - partitions
