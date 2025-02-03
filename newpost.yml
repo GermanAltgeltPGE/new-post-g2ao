@@ -56,8 +56,8 @@
     #become_user: pge\svc-a1315-qa-ansble
     #become_flags: logon_type=network
     win_copy:
-      src: \\ITMDT03\post\
-      dest: C:\temp\
+      src: \\winteldev17\post\
+      dest: C:\temp\bar
       remote_src: true
     register: copyshare_output
 
