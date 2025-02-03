@@ -175,7 +175,7 @@
       ansible_become_user: '{{ ansible_user }}'
       ansible_become_pass: '{{ ansible_password }}'
       ansible_become_flags: logon_type=new_credentials logon_flags=netcredentials_only
-    register: winrmpost
+    register: winrmpost2
 
 # H - WinVerify Trust Signature Validation
 # reg add "HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Cryptography\Wintrust\Config" /v EnableCertPaddingCheck /t REG_DWORD /d 1 /f
