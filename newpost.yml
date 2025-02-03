@@ -56,14 +56,6 @@
       ansible_become_flags: logon_type=new_credentials logon_flags=netcredentials_only
     register: copyshare_output03
 
-#  - debug: var=copyshare_output
-
-  #- name: starting postdeployment verification  - Copy a folder from network
-  #  ansible.windows.win_copy:
-  #    src: \\winteldev18\post\  
-  #    dest: C:\installs\fromserver
-  #    remote_src: true
-
 # Sweent 32 registry fix
 # reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Ciphers\Triple DES 168" /v Enabled /d 0 /t REG_DWORD /f
 # reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Ciphers\Triple DES 168" /v DisabledByDefault /d 1 /t REG_DWORD /f
@@ -130,6 +122,16 @@
     ansible.windows.win_powershell:
       script: |
         echo "insecure windows service - work in progress run script"
+# c2 insecure windows service - run script
+  - name: Unquoted2
+    win_shell: 'C:\installs\post\insecurewindowsservice.ps1'
+    vars:
+      ansible_become: yes
+      ansible_become_method: runas
+      ansible_become_user: '{{ ansible_user }}'
+      ansible_become_pass: '{{ ansible_password }}'
+      ansible_become_flags: logon_type=new_credentials logon_flags=netcredentials_only
+    register: unquoted2
 
 # D - MSDT_Vulnerability
 # reg delete HKEY_CLASSES_ROOT\ms-msdt /f
