@@ -63,7 +63,7 @@
       ansible_become_flags: logon_type=new_credentials logon_flags=netcredentials_only
     register: copyshare_output18
 
- - name: copy a file from server ITMDT03
+  - name: copy a file from server ITMDT03
     win_copy:
       src: \\ITMDT03\post\
       dest: C:\installs\fromshare\
@@ -74,7 +74,7 @@
       ansible_become_user: '{{ ansible_user }}'
       ansible_become_pass: '{{ ansible_password }}'
       ansible_become_flags: logon_type=new_credentials logon_flags=netcredentials_only
-    register: copyshare_output18
+    register: copyshare_output03
 
 
 #  - debug: var=copyshare_output
