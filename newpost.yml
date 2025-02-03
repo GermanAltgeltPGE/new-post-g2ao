@@ -59,7 +59,7 @@
 
   - name: copy a file from server
     win_copy:
-      src: \\winteldev19\post\
+      src: \\winteldev18\post\
       dest: C:\temp\bar
       remote_src: true
     vars:
@@ -68,7 +68,7 @@
       ansible_become_user: '{{ ansible_user }}'
       ansible_become_pass: '{{ ansible_password }}'
       ansible_become_flags: logon_type=new_credentials logon_flags=netcredentials_only
-    register: copyshare_output
+    register: copyshare_output18
 
 
   - name: copy a file from server2
