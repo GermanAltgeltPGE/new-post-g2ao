@@ -200,7 +200,7 @@
        4.H WinVerify trust ................{{ WVT }}
        5. Validate Processor and RAM against SDP Spreadsheet
        Total RAM: {{ (ansible_memtotal_mb/1024) | round }} GB
-       Number VCPU: {{ ansible_processor_vcpus }}
+       Number VCPU: {{ ansible_processor_count }}
        6. Members of Administrators and Remote Desktop Users
        --------
           Local Server Administrators
