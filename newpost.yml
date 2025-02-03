@@ -161,20 +161,31 @@
       type: dword
       state: present
 
-# F - Unquoted - run script
+# F - Unquoted - text
   - name: F -  Unquoted - text
     ansible.windows.win_powershell:
       script: |
         echo "F - Unquoted - work in progress run script"
 
+# F2 - Unquoted
+  - name: F2 - Unquoted
+    win_shell: 'C:\installs\post\unquoted.ps1'
+    vars:
+      ansible_become: yes
+      ansible_become_method: runas
+      ansible_become_user: '{{ ansible_user }}'
+      ansible_become_pass: '{{ ansible_password }}'
+      ansible_become_flags: logon_type=new_credentials logon_flags=netcredentials_only
+    register: unquoted
+
 # G - winrmpost-text
-  - name: G - winrmost-text
+  - name: G - winrmpost-text
     ansible.windows.win_powershell:
       script: |
         echo "G - WinRMPost - work in progress run script"
 
 # G2 - Winrmpost
-  - name: G - winrmpost
+  - name: G2 - winrmpost
     win_shell: 'C:\installs\post\winrmpost.ps1'
     vars:
       ansible_become: yes
