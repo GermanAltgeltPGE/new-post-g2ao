@@ -165,7 +165,13 @@
   - name: Unquoted
     ansible.windows.win_powershell:
       script: |
-        echo "Unquoted - work in progress run script"
+        echo "F - Unquoted - work in progress run script"
+
+# F - winrmpost
+  - name: Unquoted
+    ansible.windows.win_powershell:
+      script: |
+        echo "F - WinRMPost - work in progress run script"
 
 # G WinRM post
  # - name: winrmpost
