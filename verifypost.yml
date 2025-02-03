@@ -185,11 +185,11 @@
 #12 - qradar - deprecated is now an agent
 #13 Validate Disk Name and Disk Size against the values in the SDP 
   - name: get disk physical_disk and partition facts on the target
-    win_disk_facts:
-      filter:
-        - physical_disk
-        - partitions
-    register: Disks
+      win_disk_facts:
+        filter:
+          - physical_disk
+          - partitions
+    REGISTER: disKs
 #14 Validate Patch Cycle – log into AD, search for hostname, check group membership to validate patch cycle 
 
 ########################
