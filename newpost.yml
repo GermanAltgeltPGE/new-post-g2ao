@@ -50,13 +50,6 @@
       remote_src: true
     register: copylocal_output
 
-  - name: copy a file from server winteldev17
-    win_copy:
-      src: \\winteldev17\post\
-      dest: C:\temp\bar
-      remote_src: true
-    register: copyshare_output17
-
   - name: copy a file from server
     win_copy:
       src: \\winteldev18\post\
@@ -70,17 +63,6 @@
       ansible_become_flags: logon_type=new_credentials logon_flags=netcredentials_only
     register: copyshare_output18
 
-
-  - name: copy a file from server2
-    #become: yes
-    #become_method: runas
-    #become_user: pge\svc-a1315-qa-ansble
-    #become_flags: logon_type=network
-    win_copy:
-      src: \\winteldev18\post\
-      dest: C:\temp\bar
-      remote_src: true
-    register: copyshare_output
 
 #  - debug: var=copyshare_output
 
