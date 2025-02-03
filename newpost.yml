@@ -50,10 +50,23 @@
       remote_src: true
     register: copylocal_output
 
-  - name: copy a file from server
+  - name: copy a file from server winteldev18
     win_copy:
       src: \\winteldev18\post\
       dest: C:\temp\bar
+      remote_src: true
+    vars:
+      ansible_become: yes
+      ansible_become_method: runas
+      ansible_become_user: '{{ ansible_user }}'
+      ansible_become_pass: '{{ ansible_password }}'
+      ansible_become_flags: logon_type=new_credentials logon_flags=netcredentials_only
+    register: copyshare_output18
+
+ - name: copy a file from server ITMDT03
+    win_copy:
+      src: \\ITMDT03\post\
+      dest: C:\installs\fromshare\
       remote_src: true
     vars:
       ansible_become: yes
