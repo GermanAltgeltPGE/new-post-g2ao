@@ -166,15 +166,7 @@
       script: |
         echo "Unquoted - work in progress run script"
 
-# G - winrmpost - https enable winrm
-  - name: WINRMPOST - enable winrm
-# c - insecure windows service - run script
-  - name: Unquoted
-    ansible.windows.win_powershell:
-      script: |
-        echo "insecure windows service - work in progress run script"
-
-# c2 insecure windows service - run script
+# G WinRM post
   - name: winrmpost
     win_shell: 'C:\installs\post\winrmpost.ps1'
     vars:
@@ -195,4 +187,5 @@
       data: 1
       type: dword
       state: present
+    register: winverifytrust
 
