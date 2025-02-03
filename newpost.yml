@@ -38,6 +38,19 @@
         path: C:\installs\fromshare
         state: directory
 
+  - name: Create a directory 3
+    ansible.windows.win_file:
+        path: C:\temp\bar
+        state: directory
+  
+  - name: copy a file from local server
+    win_copy:
+      src: C:\temp\foo\
+      dest: C:\temp\bar\
+      remote_src: true
+    register: copylocal_output
+
+#  - name: copy a file from server
 #    become: yes
 #    become_method: runas
 #    become_user: pge\svc-a1315-qa-ansble
