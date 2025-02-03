@@ -177,6 +177,20 @@
       members:
       state: absent
     register: Admins
+#7 NIC Power Management: Uncheck “Allow the computer to turn off this device to save Power” 
+#8 Ensure that IPV4 and IPV6 are checked 
+#9 Net-BiOS: “Disabled” (was set to enabled in previous iterations) 
+#10 Ensure DNS suffix list: utility.pge.com, comp.pge.com, net.pge.com, pge.com 
+#11 Validate Trellix Service is running and configured to start automatically 
+#12 - qradar - deprecated is now an agent
+#13 Validate Disk Name and Disk Size against the values in the SDP 
+  - name: get disk physical_disk and partition facts on the target
+    win_disk_facts:
+      filter:
+        - physical_disk
+        - partitions
+    register: Disks
+#14 Validate Patch Cycle – log into AD, search for hostname, check group membership to validate patch cycle 
 
 ########################
 #     Output file
@@ -202,6 +216,8 @@
        Total RAM (GB) S: {{ (ansible_memtotal_mb/1024) | round }} GB
        Number of CPUs: {{ ansible_processor_count }}
        6. Members of Administrators and Remote Desktop Users
+       Add L1 group to Remote Users Group, Add L3 group to Administrators group 
+       IF NERC only NERC groups
        --------
           Local Server Administrators
           {{Admins.members}}
@@ -209,4 +225,5 @@
           Local Server Remote Desktop Users
           {{RDU.members}}
        --------
-       
+       13. Disks    
+       {{ Disks }}   
