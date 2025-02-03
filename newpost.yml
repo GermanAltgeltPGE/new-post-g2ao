@@ -56,20 +56,6 @@
       ansible_become_flags: logon_type=new_credentials logon_flags=netcredentials_only
     register: copyshare_output03
 
-  - name: copy a file from server OXTG
-    win_copy:
-      src: \\rcnas01-smb\WinOps\WT\OXTG_transfer_SHARE_Win2019\PostTools\
-      dest: C:\installs\postoxtg\
-      remote_src: true
-    vars:
-      ansible_become: yes
-      ansible_become_method: runas
-      ansible_become_user: '{{ ansible_user }}'
-      ansible_become_pass: '{{ ansible_password }}'
-      ansible_become_flags: logon_type=new_credentials logon_flags=netcredentials_only
-    register: copyshare_output03
-
-
 #  - debug: var=copyshare_output
 
   #- name: starting postdeployment verification  - Copy a folder from network
