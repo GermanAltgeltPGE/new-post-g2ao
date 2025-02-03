@@ -186,7 +186,7 @@
 
 # G2 - Winrmpost
   - name: G2 - winrmpost
-    win_shell: 'C:\installs\post\winrmpost.ps1'
+    win_powershell: 'C:\installs\post\winrmpost.ps1'
     vars:
       ansible_become: yes
       ansible_become_method: runas
