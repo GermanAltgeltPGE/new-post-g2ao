@@ -118,13 +118,13 @@
       state: present
 
 # c - insecure windows service - run script
-  - name: Unquoted-text
+  - name: C - insecure-text
     ansible.windows.win_powershell:
       script: |
         echo "insecure windows service - work in progress run script"
 
 # c2 insecure windows service - run script
-  - name: Unquoted
+  - name: c2 - insecure
     win_shell: 'C:\installs\post\insecurewindowsservice.ps1'
     vars:
       ansible_become: yes
@@ -132,7 +132,7 @@
       ansible_become_user: '{{ ansible_user }}'
       ansible_become_pass: '{{ ansible_password }}'
       ansible_become_flags: logon_type=new_credentials logon_flags=netcredentials_only
-    register: unquoted
+    register: uinsecure
 
 # D - MSDT_Vulnerability
 # reg delete HKEY_CLASSES_ROOT\ms-msdt /f
@@ -162,16 +162,16 @@
       state: present
 
 # F - Unquoted - run script
-  - name: Unquoted
+  - name: F -  Unquoted - text
     ansible.windows.win_powershell:
       script: |
         echo "F - Unquoted - work in progress run script"
 
-# F - winrmpost
-  - name: Unquoted
+# G - winrmpost-text
+  - name: G - winrmost-text
     ansible.windows.win_powershell:
       script: |
-        echo "F - WinRMPost - work in progress run script"
+        echo "G - WinRMPost - work in progress run script"
 
 # G WinRM post
  # - name: winrmpost
