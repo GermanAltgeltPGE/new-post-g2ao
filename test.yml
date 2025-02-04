@@ -21,19 +21,17 @@
   hosts: all
   gather_facts: true
   tasks:
-
+  - vars :
+    Svcname: 'trkwks'
+    TRELLIX: 'Unknown'  
+    
   #service trkwks 
-  - name: Define Validate
-    vars:
-      Svcname: 'trkwks'
-      TRELLIX: 'Unknown'
-
-
+  
   - name: Query the Windows service
     ansible.windows.win_service_info:
       name: '{{ Svcname }}'
     register: service_info
-  
+
   - name: Query service status if exists
     vars: 
       Trellix: "Pass"
