@@ -31,7 +31,7 @@
   
   - name: Query service status if exists
     debug:
-      msg: "Service exists "
+      msg: "Service exists {{ Service_info.name }}"
     when: service_info.exists
 
 
