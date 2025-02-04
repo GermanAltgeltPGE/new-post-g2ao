@@ -27,8 +27,8 @@
   tasks:
 
     
-  #service trkwks 
-  
+  #service trkwks s
+  #
   - name: Query the Windows service {{ svcname }}
     ansible.windows.win_service_info:
       name: '{{ Svcname }}'
