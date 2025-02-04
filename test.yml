@@ -24,8 +24,9 @@
 
   #service trkwks 
   - name: Define Validate
-    vars
+    vars:
       Svcname: 'trkwks'
+      TRELLIX: 'Unknown'
 
 
   - name: Query the Windows service
