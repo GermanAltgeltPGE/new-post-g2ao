@@ -58,7 +58,7 @@
 
   - name: copy folders from server ITMDT03
     win_copy:
-      src: \\ITMDT03\postsw\
+      src: \\ITMDT03\postsoftware\
       dest: C:\installs\softwareinstallers\
       remote_src: true
     vars:
@@ -68,7 +68,7 @@
       ansible_become_pass: '{{ ansible_password }}'
       ansible_become_flags: logon_type=new_credentials logon_flags=netcredentials_only
     register: copyshare_output03sw
-    
+
 # A - Sweent 32 registry fix
 # reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Ciphers\Triple DES 168" /v Enabled /d 0 /t REG_DWORD /f
 # reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Ciphers\Triple DES 168" /v DisabledByDefault /d 1 /t REG_DWORD /f
