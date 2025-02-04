@@ -1,0 +1,33 @@
+---
+- name: Gather credentials - PB1
+  hosts: all
+  gather_facts: false
+# prerequisites = have a collections folder in your repo
+# with requirements.yml in it with the following:
+#---
+#collections:
+#- pge_util.papm_util
+##
+  tasks:
+# 
+# task needed for credentials in playbookone.yml
+#
+  - name: Include task list in play - import - task 1
+    ansible.builtin.import_tasks:
+      # make sure to have playbookone in your repo 
+      file: playbookone.yml
+
+- name: PB2
+  hosts: all
+  gather_facts: true
+  tasks:
+
+#service trkwks 
+- name: "check status of services"
+  win_service:
+    name: 
+        - trkwks
+        - service2
+        - service3
+  register: result
+  failed_when: result is not defined
