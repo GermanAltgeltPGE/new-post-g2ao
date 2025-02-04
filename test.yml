@@ -25,7 +25,7 @@
   #service trkwks 
 
   - name: Query the Windows service
-    win_service_info:
+    ansible.windows.win_service_info:
       name: 'trkwks'
     register: service_info
   
