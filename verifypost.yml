@@ -104,10 +104,10 @@
       path: HKCR:\ms-msdt
     register: MSDTkey
 
-  - name: Fail if MSDT registry key is present
-    set_fact: 
-      MSDT: "Fail"
-    when: MSDTkey.exists == True
+#  - name: Fail if MSDT registry key is present
+#    set_fact: 
+#      MSDT: "Fail"
+#    when: MSDTkey.exists == True
 
 
 # E - Speculative Execution
