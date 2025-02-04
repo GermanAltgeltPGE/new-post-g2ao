@@ -185,7 +185,7 @@
 #11 Validate Trellix Service is running and configured to start automatically 
 
   - name: Trellix status 
-    var:
+    set_fact:
       Trellix: "Fail"
   
   - name: Get Service Status
@@ -194,7 +194,7 @@
     register: Trellixservicestatus
 
   - name: Trellix status 
-    var:
+    set_fact:
       Trellix: "Pass"
     when: Trellixservicestatus.exists
 
