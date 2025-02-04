@@ -29,10 +29,6 @@
       name: 'trkwks'
     register: service_info
 
-  - name: Display service status
-    debug:
-      msg: |
-        Service {{ service_info.name }} exists: {{ service_info.exists }}
-        Status: {{ service_info.status }}
+
 
   
