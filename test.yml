@@ -29,7 +29,7 @@
     
   #service trkwks 
   
-  - name: Query the Windows service
+  - name: Query the Windows service {{ svcname }}
     ansible.windows.win_service_info:
       name: '{{ Svcname }}'
     register: service_info
