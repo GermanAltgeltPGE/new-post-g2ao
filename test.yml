@@ -22,12 +22,12 @@
   gather_facts: true
   tasks:
 
-#service trkwks 
-- name: "check status of services"
-  win_service:
-    name: 
-        - trkwks
-        - service2
-        - service3
-  register: result
-  failed_when: result is not defined
+  #service trkwks 
+  - name: "check status of services"
+    win_service:
+      name: 
+          - trkwks
+          - service2
+          - service3
+    register: result
+    failed_when: result is not defined
