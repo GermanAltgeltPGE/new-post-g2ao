@@ -207,7 +207,7 @@
        4.A - Sweet32 ...................... {{ SW32 }}
        4.B - Disabling TLS 1.0 (B.0) ...... {{ TLS }}
        4.C InsecureWindowsService ............ run script located in installs\post
-       4.D MSDT ...........................{{ MSDT }}
+       4.D MSDT ...........................{{ MSDT.exists }}
        4.E Speculative Execution...........{{ SPEX }}
        4.F Unquoted .......................... run script located in installs\post
        4.G winRM ............................. run script located in installs\post
