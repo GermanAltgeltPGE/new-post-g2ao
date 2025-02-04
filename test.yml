@@ -33,7 +33,7 @@
     vars: 
       Trellix: "Pass"
     debug:
-      msg: "Service exists {{ service_info.status }}"
+      msg: "Service exists {{ service_info.state }}"
     when: service_info.exists
 
 
