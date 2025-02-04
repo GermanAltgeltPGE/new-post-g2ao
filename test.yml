@@ -36,7 +36,7 @@
 
   - name: MOdify Trellix var if service exists T
     set_fact: 
-      Trellix: "Pass"
+      Trellix: "Pass {{ service_info.state }}"
     when: service_info.exists
 
   - name: MOdify Trellix var if service exists F
