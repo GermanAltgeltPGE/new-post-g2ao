@@ -40,6 +40,10 @@
       msg: "Service exists {{ Svcname }}"
     when: service_info.exists
 
+  - name: Trellix
+    debug:
+      msg: "{{ Trellix }}"
+
 
 
 
