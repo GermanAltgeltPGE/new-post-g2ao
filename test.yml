@@ -21,6 +21,7 @@
   hosts: all
   vars :
     Svcname: "trkwks"
+    Trellixexists: "False"
     Trellix: "Unknown" 
   gather_facts: true
   tasks:
