@@ -19,11 +19,12 @@
 
 - name: PB2
   hosts: all
+  vars :
+    Svcname: trkwks
+    Trellix: Unknown  
   gather_facts: true
   tasks:
-  - vars :
-      Svcname: trkwks
-      Trellix: Unknown  
+
     
   #service trkwks 
   
