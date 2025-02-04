@@ -191,14 +191,7 @@
   - name: Get Service Status
     ansible.windows.win_service_info:
       name: TRKWKS
-    register: Trellixservicesexiste
-
-  - name: "check status of services"
-    win_service:
-      name: 
-          - TRKWKS
-    register: Trellixresult
-    when: Trellixservicesexiste.exists
+    register: Trellixservicesexist
 
   - name: Trellix status 
     set_fact:
