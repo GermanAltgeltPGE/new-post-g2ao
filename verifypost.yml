@@ -102,13 +102,17 @@
   - name: Check if MSDT registry key exists
     win_reg_stat:
       path: HKCR:\ms-msdt
-    register: MSDT
+    register: MSDTkey
 
-#  - name: Fail if MSDT registry key is present
-#    fail:
-#      MSDT: "Fail"
-#    when: reg_key_status.exists
+  - name: Fail if MSDT registry key is present
+    fail:
+      MSDT: "Fail"
+    when: MSDTkey.exists
 
+  - name: Fail if MSDT registry key is present
+    fail:
+      MSDT: "Pass"
+    when: MSDTkey.exists == False
 
 # E - Speculative Execution
 
