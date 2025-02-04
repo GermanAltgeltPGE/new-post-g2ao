@@ -40,7 +40,7 @@
 
   - name: MOdify Trellix var if service exists F
     set_fact: 
-      Trellix: "Fail"
+      Trellix: "Fail - {{ Svcname }} service does not exist"
     when: service_info.exists == False
 
   - name: Trellix
