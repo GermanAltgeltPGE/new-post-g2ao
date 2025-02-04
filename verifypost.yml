@@ -190,7 +190,7 @@
   
   - name: Get Service Status
     ansible.windows.win_service_info:
-      name: McAfeeFramework
+      name: TRKWKS
     register: Trellixservicestatus
 
   - name: Trellix status 
