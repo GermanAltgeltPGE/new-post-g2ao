@@ -28,6 +28,11 @@
     ansible.windows.win_service_info:
       name: 'trkwks2'
     register: service_info
+  
+  - name: Query service status if existsa
+      vars:
+        ServiceExists: PASS
+    when: service_info.exists == TRUE
 
 
 
