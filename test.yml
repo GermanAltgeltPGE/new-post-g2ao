@@ -20,7 +20,7 @@
 - name: PB2
   hosts: all
   vars :
-    Svcname: "trkwks2"
+    Svcname: "trkwks"
     Trellix: "Unknown" 
   gather_facts: true
   tasks:
@@ -40,7 +40,7 @@
 
   - name: MOdify Trellix var if service exists F
     set_fact: 
-      Trellix: "False"
+      Trellix: "Fail"
     when: service_info.exists == False
 
   - name: Trellix
