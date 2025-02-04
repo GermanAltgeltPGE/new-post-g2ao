@@ -30,8 +30,10 @@
     register: service_info
   
   - name: Query service status if exists
+    vars: 
+      Trellix: "Pass"
     debug:
-      msg: "Service exists {{ Service_info.name }}"
+      msg: "Service exists "
     when: service_info.exists
 
 
