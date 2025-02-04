@@ -29,10 +29,7 @@
           - trkwks
           - TrellixDLPAgentService
     register: result
-  - debug: 
-      var: result
-      verbosity: 4
-
+    failed_when: result is not defined
     
 
   
