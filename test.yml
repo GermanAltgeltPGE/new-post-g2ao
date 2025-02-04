@@ -34,7 +34,7 @@
     register: service_info
 
   - name: MOdify Trellix var if service exists
-    vars: 
+    set_fact: 
       Trellix: Pass
     debug:
       msg: "Service exists {{ Svcname }}"
