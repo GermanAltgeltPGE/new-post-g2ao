@@ -29,10 +29,10 @@
       name: 'trkwks2'
     register: service_info
   
-  - name: Query service status if existsa
-    vars:
-      ServiceExists: "PASS"
-    when: service_info.exists == TRUE
+  - name: Query service status if exists
+    debug:
+      msg "Service exists "
+    when: service_info.exists
 
 
 
