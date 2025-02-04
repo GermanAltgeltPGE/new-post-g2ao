@@ -30,8 +30,8 @@
     register: service_info
   
   - name: Query service status if existsa
-      vars:
-        ServiceExists: PASS
+    vars:
+      ServiceExists: "PASS"
     when: service_info.exists == TRUE
 
 
