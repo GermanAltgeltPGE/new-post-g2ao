@@ -33,10 +33,15 @@
       name: '{{ Svcname }}'
     register: service_info
 
-  - name: MOdify Trellix var if service exists
+  - name: MOdify Trellix var if service exists T
     set_fact: 
       Trellix: "Pass"
     when: service_info.exists
+
+  - name: MOdify Trellix var if service exists F
+    set_fact: 
+      Trellix: "False"
+    when: service_info.exists == False
 
   - name: Trellix
     debug:
