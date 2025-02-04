@@ -99,10 +99,10 @@
     set_fact:
        MSDT: "Unknown"
 
-#  - name: Check if MSDT registry key exists
-#    win_reg_stat:
-#      path: HKCR:\ms-msdt
-#    register: reg_key_status
+  - name: Check if MSDT registry key exists
+    win_reg_stat:
+      path: HKCR:\ms-msdt
+    register: MSDT
 
 #  - name: Fail if MSDT registry key is present
 #    fail:
