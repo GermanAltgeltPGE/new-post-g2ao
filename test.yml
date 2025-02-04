@@ -23,10 +23,14 @@
   tasks:
 
   #service trkwks 
+  - name: Define Validate
+    vars
+      Svcname: 'trkwks'
+
 
   - name: Query the Windows service
     ansible.windows.win_service_info:
-      name: 'trkwks'
+      name: '{{ Svcname }}'
     register: service_info
   
   - name: Query service status if exists
