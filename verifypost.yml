@@ -105,7 +105,7 @@
     register: MSDTkey
 
   - name: Fail if MSDT registry key is present
-    fail:
+    set_fact: 
       MSDT: "Fail"
     when: MSDTkey.exists == True
 
