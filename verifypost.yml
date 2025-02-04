@@ -191,7 +191,7 @@
   - name: Get Trellix Service Status
     ansible.windows.win_service_info:
       name: TRKWKS
-    register: Trellixserviceexists
+    register: Trellixservicestatus
 
 
 #12 - qradar - deprecated is now an agent
@@ -237,7 +237,7 @@
           Local Server Remote Desktop Users
           {{RDU.members}}
        --------
-       11. Trellix Service ..................{{ Trellixservicesexist }}
+       11. Trellix Service StatusS ..................{{ Trellixservicestatus }}
        Trellix Service exists ..................{{ Trellix }}
        13. Disks    
        {{ Disks }}   
