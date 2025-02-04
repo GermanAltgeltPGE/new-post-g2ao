@@ -182,6 +182,11 @@
 #9 Net-BiOS: “Disabled” (was set to enabled in previous iterations) 
 #10 Ensure DNS suffix list: utility.pge.com, comp.pge.com, net.pge.com, pge.com 
 #11 Validate Trellix Service is running and configured to start automatically 
+  - Name: 11 - Trellix Service
+      ansible.builtin.systemd:
+      name: "postgresql@13-main"
+    register: Trellixservicestatus
+
 #12 - qradar - deprecated is now an agent
 #13 Validate Disk Name and Disk Size against the values in the SDP 
   - name: get disk physical_disk and partition facts on the target
@@ -225,5 +230,6 @@
           Local Server Remote Desktop Users
           {{RDU.members}}
        --------
+       11. Trellix Service ..................{{ Trellixservicestatus }}
        13. Disks    
        {{ Disks }}   

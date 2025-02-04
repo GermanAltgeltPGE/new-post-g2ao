@@ -43,7 +43,7 @@
         path: C:\installs\postOXTG
         state: directory
 
-  - name: copy a file from server ITMDT03
+  - name: copy folders from server ITMDT03
     win_copy:
       src: \\ITMDT03\post\
       dest: C:\installs\fromshare\
