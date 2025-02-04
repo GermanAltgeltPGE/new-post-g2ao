@@ -97,7 +97,7 @@
 # reg delete HKEY_CLASSES_ROOT\ms-msdt /f
   - name: Define MSDT Variable
     set_fact:
-       MSDT: "Unknown"
+       MSDT: "Pass"
 
   - name: Check if MSDT registry key exists
     win_reg_stat:
@@ -109,10 +109,6 @@
       MSDT: "Fail"
     when: MSDTkey.exists
 
-  - name: Fail if MSDT registry key is present
-    fail:
-      MSDT: "Pass"
-    when: MSDTkey.exists == False
 
 # E - Speculative Execution
 
