@@ -184,10 +184,19 @@
 
 #11 Validate Trellix Service is running and configured to start automatically 
 
+  - name: Trellix status 
+    var:
+      Trellix: "Fail"
+  
   - name: Get Service Status
     ansible.windows.win_service_info:
       name: McAfeeFramework
     register: Trellixservicestatus
+
+  - name: Trellix status 
+    var:
+      Trellix: "Pass"
+    when: Trellixservicestatus.exists
 
 #12 - qradar - deprecated is now an agent
 #13 Validate Disk Name and Disk Size against the values in the SDP 
@@ -233,5 +242,6 @@
           {{RDU.members}}
        --------
        11. Trellix Service ..................{{ Trellixservicestatus }}
+       Trellix Service exists ..................{{ Trellix }}
        13. Disks    
        {{ Disks }}   
