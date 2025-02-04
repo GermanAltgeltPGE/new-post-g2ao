@@ -28,18 +28,11 @@
     ansible.windows.win_service_info:
       name: 'trkwks'
     register: service_info
-  
-  - name: Query the Windows service
-    win_service_info:
-      name: 'trkwks2'
-    register: service_info2
 
   - name: Display service status
     debug:
       msg: >
         Service {{ service_info.name }} exists: {{ service_info.exists }}
         Status: {{ service_info.status }}
-        Service {{ service_info2.name }} exists: {{ service_info2.exists }}
-        Status: {{ service_info2.status }}
 
   
