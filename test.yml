@@ -26,7 +26,7 @@
 
   - name: Query the Windows service
     ansible.windows.win_service_info:
-      name: 'trkwks2'
+      name: 'trkwks'
     register: service_info
   
   - name: Query service status if exists
