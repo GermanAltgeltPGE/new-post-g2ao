@@ -29,7 +29,7 @@
           - trkwks
           - TrellixDLPAgentService
     register: result
-    debug: 
+  - debug: 
       var: result
       verbosity: 4
 
