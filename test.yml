@@ -36,8 +36,6 @@
   - name: MOdify Trellix var if service exists
     set_fact: 
       Trellix: "Pass"
-    debug:
-      msg: "Service exists {{ Svcname }}"
     when: service_info.exists
 
   - name: Trellix
