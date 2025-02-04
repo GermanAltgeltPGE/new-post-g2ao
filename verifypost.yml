@@ -181,9 +181,11 @@
 #8 Ensure that IPV4 and IPV6 are checked 
 #9 Net-BiOS: “Disabled” (was set to enabled in previous iterations) 
 #10 Ensure DNS suffix list: utility.pge.com, comp.pge.com, net.pge.com, pge.com 
+
 #11 Validate Trellix Service is running and configured to start automatically 
-  - Name: 11 - Trellix Service
-      ansible.builtin.systemd:
+
+  - name: Get Service Status
+    ansible.builtin.systemd:
       name: "McAfeeFramework"
     register: Trellixservicestatus
 
