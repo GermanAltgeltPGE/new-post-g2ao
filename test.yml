@@ -20,7 +20,7 @@
 - name: PB2
   hosts: all
   vars :
-    Svcname: "trkwks"
+    Svcname: "trkwks2"
     Trellixexists: "False"
     Trellix: "Unknown" 
   gather_facts: true
