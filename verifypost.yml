@@ -193,12 +193,12 @@
       name: TRKWKS
     register: Trellixservicesexiste
 
- - name: "check status of services"
-  win_service:
-    name: 
-        - TRKWKS
-  register: Trellixresult
-  when: Trellixservicesexiste.exists
+  - name: "check status of services"
+    win_service:
+      name: 
+          - TRKWKS
+    register: Trellixresult
+    when: Trellixservicesexiste.exists
 
   - name: Trellix status 
     set_fact:
