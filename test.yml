@@ -29,8 +29,9 @@
           - trkwks
           - TrellixDLPAgentService
     register: result
+    debug: 
+      msg: {{ result }}
     failed_when: result is not defined
-    debug: result
     
 
   
