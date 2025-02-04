@@ -195,8 +195,8 @@
 
   - name: Trellix status 
     set_fact:
-      Trellix: "Pass Service Started"
-    when: Trellixresult.state == Started
+      Trellix: "Pass Service Exists"
+    when: Trellixservicesexist.exist
 
 #12 - qradar - deprecated is now an agent
 #13 Validate Disk Name and Disk Size against the values in the SDP 
