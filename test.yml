@@ -20,8 +20,8 @@
 - name: PB2
   hosts: all
   vars :
-    Svcname: trkwks
-    Trellix: Unknown  
+    Svcname: "trkwks"
+    Trellix: "Unknown" 
   gather_facts: true
   tasks:
 
@@ -35,14 +35,14 @@
 
   - name: MOdify Trellix var if service exists
     set_fact: 
-      Trellix: Pass
+      Trellix: "Pass"
     debug:
       msg: "Service exists {{ Svcname }}"
     when: service_info.exists
 
   - name: Trellix
     debug:
-      msg: "{{ Trellix }} {{ service_info }}"
+      msg: "Trellix.... {{ Trellix }} SVC...{{ service_info }}"
 
 
 
