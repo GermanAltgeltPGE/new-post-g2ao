@@ -185,8 +185,8 @@
 #11 Validate Trellix Service is running and configured to start automatically 
 
   - name: Get Service Status
-    ansible.builtin.systemd:
-      name: "McAfeeFramework"
+    ansible.windows.win_service_info:
+      name: McAfeeFramework
     register: Trellixservicestatus
 
 #12 - qradar - deprecated is now an agent
