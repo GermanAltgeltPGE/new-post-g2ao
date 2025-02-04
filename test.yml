@@ -31,7 +31,7 @@
 
   - name: Display service status
     debug:
-      msg: >
+      msg: |
         Service {{ service_info.name }} exists: {{ service_info.exists }}
         Status: {{ service_info.status }}
 
