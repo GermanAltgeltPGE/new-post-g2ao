@@ -188,15 +188,15 @@
     set_fact:
       Trellix: "Fail"
   
-  - name: Get Service Status
+  - name: Get Trellix Service Status
     ansible.windows.win_service_info:
       name: TRKWKS
-    register: Trellixservicesexist
+    register: Trellixserviceexists
 
   - name: Trellix status 
     set_fact:
       Trellix: "Pass Service Exists"
-    when: Trellixservicesexist.exist
+    when: Trellixservicexists.exist
 
 #12 - qradar - deprecated is now an agent
 #13 Validate Disk Name and Disk Size against the values in the SDP 
