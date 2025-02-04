@@ -33,7 +33,7 @@
       name: '{{ Svcname }}'
     register: service_info
 
-  - name: Query service status if exists
+  - name: MOdify Trellix var if service exists
     vars: 
       Trellix: "Pass"
     debug:
@@ -42,7 +42,7 @@
 
   - name: Trellix
     debug:
-      msg: "{{ Trellix }}"
+      msg: "{{ Trellix }} {{ service_info }}"
 
 
 
