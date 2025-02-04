@@ -184,7 +184,7 @@
 #11 Validate Trellix Service is running and configured to start automatically 
   - Name: 11 - Trellix Service
       ansible.builtin.systemd:
-      name: "postgresql@13-main"
+      name: "McAfeeFramework"
     register: Trellixservicestatus
 
 #12 - qradar - deprecated is now an agent
