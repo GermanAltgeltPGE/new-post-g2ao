@@ -107,7 +107,7 @@
   - name: Fail if MSDT registry key is present
     fail:
       MSDT: "Fail"
-    when: MSDTkey.exists
+    when: MSDTkey.exists == True
 
 
 # E - Speculative Execution
