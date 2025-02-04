@@ -30,6 +30,7 @@
           - TrellixDLPAgentService
     register: result
     failed_when: result is not defined
+    debug: result
     
 
   
