@@ -22,8 +22,8 @@
   gather_facts: true
   tasks:
   - vars :
-    Svcname: 'trkwks'
-    TRELLIX: 'Unknown'  
+    Svcname: trkwks
+    Trellix: Unknown  
     
   #service trkwks 
   
