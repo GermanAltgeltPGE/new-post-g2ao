@@ -53,12 +53,16 @@
     ansible.windows.win_service:
       name: '{{ Svcname }}'
     register: services_state
+  
+  - name: change Trellix if running
+    set_fact:
+      Trellix: "Pass - service running"
+    when: services_state.state == running
 
 
   - name: Debug
     debug:
-      var: services_state.state
-    when: services_state is defined
+      var: Trellix {{ Trellix }}
 
 
   
