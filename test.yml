@@ -43,7 +43,7 @@
     register: service_state
     when: service_info is defined
 
-  - name: MOdify Trellix var if service is not there
+  - name: Modify Trellix var if service is not there
     set_fact: 
       Trellix: "Fail - Service {{ Svcname }} not there"
     when: service_info is not defined
