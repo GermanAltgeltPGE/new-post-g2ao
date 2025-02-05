@@ -20,7 +20,7 @@
 - name: PB2
   hosts: all
   vars :
-    Svcname: "trkwks2"
+    Svcname: "trkwks"
     Trellix: Unknown 
     svcname2: "trkwks"
     Trellix2: Unknown 
