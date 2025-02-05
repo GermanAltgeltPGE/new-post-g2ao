@@ -48,15 +48,15 @@
       Trellix: "Fail - Service {{ Svcname }} not there"
     when: service_info is not defined
   
-  - name: MOdify Trellix var if service is running
-    set_fact: 
-      Trellix: "Pass - Service {{ Svcname }} service is running"
-    when: service_state.state == "Running"
+  #- name: MOdify Trellix var if service is running
+  #  set_fact: 
+  #    Trellix: "Pass - Service {{ Svcname }} service is running"
+  #  when: service_state.state == "Running"
 
-  - name: MOdify Trellix var if service exists F
-    set_fact: 
-      Trellix: "Fail - Service {{ Svcname }} service is not running"
-    when: service_state.state != "Running"
+  #- name: MOdify Trellix var if service exists F
+  #  set_fact: 
+  #    Trellix: "Fail - Service {{ Svcname }} service is not running"
+  #  when: service_state.state != "Running"
     
   - name: Trellix display status
     debug:
