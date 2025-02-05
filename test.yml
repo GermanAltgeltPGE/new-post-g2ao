@@ -66,7 +66,7 @@
 
   - name: Debug
     debug:
-      var: TrellixEXISTS {{ TrellixEXISTS }} Trellix {{ Trellix }} servoces_state = {{ services_state }}
+      msg: TrellixEXISTS {{ TrellixEXISTS }} Trellix {{ Trellix }} servoces_state = {{ services_state }}
 
 
   
