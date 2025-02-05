@@ -50,14 +50,14 @@
 
 
   - name: Ensure the service is running
-    win_service:
-      name: {{ Svcname }}
-      state: started
-    register: service_status
+      win_service:
+        name: 'trkwks'
+        state: started
+      register: service_status
 
-  - name: Display service status
-    debug:
-      msg: "The service is {{ service_status.state }}."
+    - name: Display service status
+      debug:
+        msg: "The service is {{ service_status.state }}."
 
 
   
