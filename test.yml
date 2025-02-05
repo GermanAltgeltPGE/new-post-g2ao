@@ -20,7 +20,7 @@
 - name: PB2
   hosts: all
   vars :
-    Svcname: "bits"
+    Svcname: "bits2"
     Trellix: Unknown 
     svcname2: "trkwks"
     Trellix2: Unknown 
@@ -40,7 +40,7 @@
     set_fact: 
       Trellix: "Fail - Service {{ Svcname }} not there"
     when: service_info is not defined
-
+    
   - name: modify Trellix if service_info is Defined
     block:  
       - name: Get service status if service exists Block
@@ -52,12 +52,14 @@
         set_fact: 
          Trellix: "Pass - Service {{ Svcname }} service is running"
         when: service_state.state == 'running'
+        ignore_errors: true
       
       - name: MOdify Trellix var if service exists Block
         set_fact: 
           Trellix: "Fail - Service {{ Svcname }} service is not running"
         when: service_state.state != 'running'
-      
+        ignore_errors: true
+    
       - name: Trellix display status Block
         debug:
           msg: "Trellix.... {{ Trellix }}  sv.... {{ service_state }}"
