@@ -35,9 +35,9 @@
     register: service_info
 
   - name: MOdify Trellix var if service exists T
-    win_service_info:
+    ansible.windows.win_service:
       name: '{{ Svcname }}'
-      register: service_state
+    register: service_state
     when: service_info.exists
 
   - name: MOdify Trellix var if service exists F
