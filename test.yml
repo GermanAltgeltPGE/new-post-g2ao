@@ -35,8 +35,8 @@
     register: service_info
 
   - name: MOdify Trellix var if service exists T
-    set_fact: 
-      Trellix: "Pass- {{ Svcname }} service does exist"
+    service_facts:
+      register: '{{ Svcname }}'
     when: service_info.exists
 
   - name: MOdify Trellix var if service exists F
