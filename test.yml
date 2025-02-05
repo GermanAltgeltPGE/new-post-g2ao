@@ -36,19 +36,18 @@
       name: '{{ Svcname }}'
     register: service_info
 
-  - name: Get service status if service exists
-    ansible.windows.win_service:
-      name: '{{ Svcname }}'
-    register: service_state
-    when: service_info is defined
-
   - name: Modify Trellix var if service is not there
     set_fact: 
       Trellix: "Fail - Service {{ Svcname }} not there"
     when: service_info is not defined
-  
-  block:
-    
+
+  - name: modify Trellix if service_info is Defined
+  block:  
+    - name: Get service status if service exists
+      ansible.windows.win_service:
+        name: '{{ Svcname }}'
+      register: service_state
+     
     - name: MOdify Trellix var if service is running
       set_fact: 
         Trellix: "Pass - Service {{ Svcname }} service is running"
@@ -58,6 +57,7 @@
       set_fact: 
         Trellix: "Fail - Service {{ Svcname }} service is not running"
       when: service_state.state != 'running'
+
   when: service_info is defined
   
 
