@@ -49,7 +49,7 @@
   #    msg: "Trellix.... {{ Trellix }} SVC...{{ service_info }}"
 
 
-  - name: Ensure the service is running
+    - name: Ensure the service is running
       win_service:
         name: 'trkwks'
         state: started
