@@ -31,38 +31,28 @@
   tasks:
   #service trkwks s
   #
-  #- name: Query the Windows service T
-  #  ansible.windows.win_service_info:
-  #    name: '{{ Svcname }}'
-  #  register: service_info
-#- name: MOdify Trellix var if service exists T
-#    ansible.windows.win_service:
-#      name: '{{ Svcname }}'
-#    register: service_state
-#    when: service_info.exists
-  #- name: MOdify Trellix var if service exists F
-  #  set_fact: 
-  #    Trellix: "Fail - {{ Svcname }} service does not exist"
-  #  when: service_info.exists == False
-  #- name: Trellix
-  #  debug:
-  #    msg: "Trellix.... {{ Trellix }} SVC...{{ service_info }}"
+  - name: Query the Windows service T
+    ansible.windows.win_service_info:
+      name: '{{ Svcname }}'
+    register: service_info
+
+  - name: MOdify Trellix var if service exists T
+    ansible.windows.win_service:
+      name: '{{ Svcname }}'
+    register: service_state
+    when: service_info.exists
+
+  - name: MOdify Trellix var if service exists F
+    set_fact: 
+      Trellix: "Fail - {{ Svcname }} service does not exist"
+    when: service_info.exists == False
+    
+  - name: Trellix display status
+    debug:
+      msg: "Trellix.... {{ Trellix }} SVC...{{ service_info }}"
 
 
-    - name: Ensure the service is running
-      win_service:
-        name: 'trkwkss'
-        state: started
-      register: service_status
 
-    - name: change Trellix variable
-      set_fact:
-        Trellix: "Pass"
-      when:  service_status.state == "running"
-
-    - name: Display service status
-      debug:
-        msg: "The service is {{ service_status.state }}.Trellix {{ Trellix }}"
 
 
   
