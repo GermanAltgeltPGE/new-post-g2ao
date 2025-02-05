@@ -51,7 +51,7 @@
 
     - name: Ensure the service is running
       win_service:
-        name: 'trkwks'
+        name: 'trkwkss'
         state: started
       register: service_status
 
