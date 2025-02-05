@@ -50,7 +50,7 @@
 
 
   - name: collect facts about system services
-    ansible.windows.win_service_info:
+    ansible.windows.win_service:
       name: '{{ Svcname }}'
     register: services_state
 
