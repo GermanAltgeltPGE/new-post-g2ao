@@ -49,24 +49,15 @@
   #    msg: "Trellix.... {{ Trellix }} SVC...{{ service_info }}"
 
 
-  - name: collect facts about system services
-    ansible.windows.win_service:
-      name: '{{ Svcname }}'
-    register: service_info
-  
-  - name: change Trellix if running
-    set_fact:
-      TrellixEXISTS: Pass
-    when: service_info.state=running
+  - name: Ensure the service is running
+    win_service:
+      name: {{ Svcname }}
+      state: started
+    register: service_status
 
-  - name: change Trellix if running
-    set_fact:
-      TrellixEXISTS: FAIL
-    when: service_info is not defined
-
-  - name: Debug
+  - name: Display service status
     debug:
-      msg: TrellixEXISTS {{ TrellixEXISTS }} Trellix {{ Trellix }} service_info = {{ service_info }}
+      msg: "The service is {{ service_status.state }}."
 
 
   
