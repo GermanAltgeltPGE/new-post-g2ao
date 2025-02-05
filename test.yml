@@ -60,7 +60,7 @@
     
   - name: Trellix display status
     debug:
-      msg: "Trellix.... {{ Trellix }} SVC...{{ service_state }}"
+      msg: "Trellix.... {{ Trellix }} state... {{ service_state.state }} SVC...{{ service_state }} "
 
 
 
