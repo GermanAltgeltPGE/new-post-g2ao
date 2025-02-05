@@ -49,12 +49,12 @@
   #    msg: "Trellix.... {{ Trellix }} SVC...{{ service_info }}"
 
 
-- name: collect facts about system services
-  ansible.windows.win_service_info:
-  register: services_state
+  - name: collect facts about system services
+    ansible.windows.win_service_info:
+    register: services_state
 
-- name: Debug
-  debug:
-    var: services_state
+  - name: Debug
+    debug:
+      var: services_state
 
   
