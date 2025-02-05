@@ -21,10 +21,9 @@
   hosts: all
   vars :
     Svcname: "trkwks"
-    Trellixexists: Unknown 
     Trellix: Unknown 
-    svc2: "trkwks" #not there
-    svcnt: "Unknown" #not there
+    svcname2: "trkwks"
+    Trellix2: Unknown 
     svc3: "Unknown" #stopped
     svcst: "Unknown" #not there
   gather_facts: true
@@ -51,12 +50,12 @@
   - name: MOdify Trellix var if service is running
     set_fact: 
       Trellix: "Pass - Service {{ Svcname }} service is running"
-    when: service_state.state == "Running"
+    when: service_state.state == 'Running'
 
   - name: MOdify Trellix var if service exists F
     set_fact: 
       Trellix: "Fail - Service {{ Svcname }} service is not running"
-    when: service_state.state != "Running"
+    when: service_state.state != 'Running'
     
   - name: Trellix display status
     debug:
