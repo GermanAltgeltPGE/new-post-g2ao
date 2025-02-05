@@ -48,15 +48,15 @@
           name: '{{ Svcname }}'
         register: service_state
       
-     # - name: MOdify Trellix var if service is running
-     #   set_fact: 
-     #     Trellix: "Pass - Service {{ Svcname }} service is running"
-     #   when: service_state.state == 'running'
+      - name: MOdify Trellix var if service is running
+        set_fact: 
+          Trellix: "Pass - Service {{ Svcname }} service is running"
+        when: service_state.state == 'running'
       
-     # - name: MOdify Trellix var if service exists F
-     #   set_fact: 
-     #     Trellix: "Fail - Service {{ Svcname }} service is not running"
-     #   when: service_state.state != 'running'
+      - name: MOdify Trellix var if service exists F
+        set_fact: 
+          Trellix: "Fail - Service {{ Svcname }} service is not running"
+        when: service_state.state != 'running'
 
     when: service_info is defined
   
