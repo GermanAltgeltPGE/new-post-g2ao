@@ -21,8 +21,8 @@
   hosts: all
   vars :
     Svcname: "trkwks"
-    Trellixexists: "False"
-    Trellix: "Unknown" 
+    Trellixexists: Unknown 
+    Trellix: Unknown 
     svc2: "trkwks" #not there
     svcnt: "Unknown" #not there
     svc3: "Unknown" #stopped
@@ -56,13 +56,17 @@
   
   - name: change Trellix if running
     set_fact:
-      Trellix: "Pass - service running"
+      TrellixEXISTS: Pass - service DOES EXIST
     when: services_state is defined
 
+  - name: change Trellix if running
+    set_fact:
+      TrellixEXISTS: FAIL - service DOES NOT EXIST
+    when: services_state is not defined
 
   - name: Debug
     debug:
-      var: Trellix {{ Trellix }} servoces_state = {{ services_state }}
+      var: TrellixEXISTS {{ TrellixEXISTS }} Trellix {{ Trellix }} servoces_state = {{ services_state }}
 
 
   
