@@ -55,9 +55,14 @@
         state: started
       register: service_status
 
+    - name: change Trellix variable
+      set_fact:
+        Trellix: "Pass"
+      when:  service_status.state == running
+
     - name: Display service status
       debug:
-        msg: "The service is {{ service_status.state }}."
+        msg: "The service is {{ service_status.state }}.Trellix {{ Trellix }}"
 
 
   
