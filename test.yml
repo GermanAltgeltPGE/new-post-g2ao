@@ -58,7 +58,7 @@
     - name: change Trellix variable
       set_fact:
         Trellix: "Pass"
-      when:  service_status.state == running
+      when:  service_status.state == "running"
 
     - name: Display service status
       debug:
