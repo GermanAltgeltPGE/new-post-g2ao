@@ -56,12 +56,12 @@
   
   - name: change Trellix if running
     set_fact:
-      TrellixEXISTS: Pass - service DOES EXIST
+      TrellixEXISTS: Pass
     when: services_state is defined
 
   - name: change Trellix if running
     set_fact:
-      TrellixEXISTS: FAIL - service DOES NOT EXIST
+      TrellixEXISTS: FAIL
     when: services_state is not defined
 
   - name: Debug
