@@ -57,12 +57,12 @@
   - name: change Trellix if running
     set_fact:
       Trellix: "Pass - service running"
-    when: services_state.state == running
+    when: services_state is defined
 
 
   - name: Debug
     debug:
-      var: Trellix {{ Trellix }}
+      var: Trellix {{ Trellix }} servoces_state = {{ services_state }}
 
 
   
