@@ -41,23 +41,26 @@
       name: '{{ Svcname }}'
     register: service_state
     when: service_info is defined
+
+  - name: Modify Trellix var if service is not there
+    set_fact: 
+      Trellix: "Fail - Service {{ Svcname }} not there"
+    when: service_info is not defined
   
   block:
-    - name: Modify Trellix var if service is not there
-      set_fact: 
-        Trellix: "Fail - Service {{ Svcname }} not there"
-      when: service_info is not defined
     
     - name: MOdify Trellix var if service is running
       set_fact: 
         Trellix: "Pass - Service {{ Svcname }} service is running"
       when: service_state.state == 'running'
+    
+    - name: MOdify Trellix var if service exists F
+      set_fact: 
+        Trellix: "Fail - Service {{ Svcname }} service is not running"
+      when: service_state.state != 'running'
   when: service_info is defined
   
-- name: MOdify Trellix var if service exists F
-  set_fact: 
-    Trellix: "Fail - Service {{ Svcname }} service is not running"
-  when: service_state.state != 'running'
+
   
 - name: Trellix display status
   debug:
