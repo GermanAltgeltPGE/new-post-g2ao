@@ -46,8 +46,7 @@
   - name: MOdify Trellix var if service is running T
     set_fact:
       Trellix: "Pass - running"
-    register: service_state
-    when: service_state == "running"
+    when: service_state.state == "running"
 
   - name: MOdify Trellix var if service exists F
     set_fact: 
