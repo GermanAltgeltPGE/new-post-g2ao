@@ -31,7 +31,7 @@
   tasks:
   #service trkwks s
   #
-  
+
   - name: Query the Windows service T
     ansible.windows.win_service_info:
       name: '{{ Svcname }}'
@@ -42,6 +42,12 @@
       name: '{{ Svcname }}'
     register: service_state
     when: service_info.exists
+
+  - name: MOdify Trellix var if service is running T
+    set_fact:
+      Trellix: "Pass - running"
+    register: service_state
+    when: service_state == "running"
 
   - name: MOdify Trellix var if service exists F
     set_fact: 
