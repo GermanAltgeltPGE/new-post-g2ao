@@ -57,9 +57,7 @@
   - name: change Trellix if running
     set_fact:
       TrellixEXISTS: Pass
-    when: |
-         services_state is defined
-         service_state.state==running
+    when: service_state.state==running
 
   - name: change Trellix if running
     set_fact:
