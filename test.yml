@@ -54,8 +54,11 @@
       name: '{{ Svcname }}'
     register: services_state
 
+
   - name: Debug
     debug:
-      var: services_state
+      var: services_state.state
+    when: services_state is defined
+
 
   
