@@ -19,12 +19,12 @@
 
   - name: Remove directory structure
     ansible.windows.win_file:
-      path: C:\installs
+      path: D:\installs
       state: absent
   
   - name: Remove directory structure
     ansible.windows.win_file:
-      path: C:\post\fromoxtg
+      path: d:\post\fromoxtg
       state: absent
   
 

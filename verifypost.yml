@@ -210,7 +210,7 @@
 
   - name: "Ansible | Creating a file with content 1"
     win_copy:
-     dest: C:\installs\output\log.txt
+     dest: D:\installs\output\log.txt
      content: |
        {{ ansible_hostname }} POST VALIDATION REPORT
        OS Name and architecture: {{ ansible_os_name }} {{ ansible_architecture2 }}

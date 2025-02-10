@@ -25,28 +25,28 @@
 
   - name: Create a directory 1
     ansible.windows.win_file:
-        path: C:\installs\post
+        path: D:\installs\post
         state: directory
   
   - name: Copy a folder from GIT
     ansible.windows.win_copy:
       src: payload/
-      dest: C:\installs\post\
+      dest: D:\installs\post\
 
   - name: Create a directory 2
     ansible.windows.win_file:
-        path: C:\installs\fromshare
+        path: D:\installs\fromshare
         state: directory
   
   - name: Create a directory 3
     ansible.windows.win_file:
-        path: C:\installs\softwareinstallers
+        path: D:\installs\softwareinstallers
         state: directory
 
   - name: copy folders from server ITMDT03
     win_copy:
       src: \\ITMDT03\post\
-      dest: C:\installs\fromshare\
+      dest: D:\installs\fromshare\
       remote_src: true
     vars:
       ansible_become: yes
@@ -59,7 +59,7 @@
   - name: copy folders from server ITMDT03
     win_copy:
       src: \\ITMDT03\postsoftware\
-      dest: C:\installs\softwareinstallers\
+      dest: D:\installs\softwareinstallers\
       remote_src: true
     vars:
       ansible_become: yes
@@ -138,7 +138,7 @@
 
 # c2 insecure windows service - run script
   - name: c2 - insecure
-    win_shell: 'C:\installs\post\insecurewindowsservice.ps1'
+    win_shell: 'D:\installs\post\insecurewindowsservice.ps1'
     vars:
       ansible_become: yes
       ansible_become_method: runas
@@ -182,7 +182,7 @@
 
 # F2 - Unquoted
   - name: F2 - Unquoted
-    win_shell: 'C:\installs\post\unquoted.ps1'
+    win_shell: 'D:\installs\post\unquoted.ps1'
     vars:
       ansible_become: yes
       ansible_become_method: runas
