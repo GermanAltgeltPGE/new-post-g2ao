@@ -25,7 +25,7 @@
 
   - name: Create a directory 1
     ansible.windows.win_file:
-        path: C:\installs\output
+        path: D:\installs\output
         state: directory
 
 ####
