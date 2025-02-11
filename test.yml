@@ -22,7 +22,7 @@
   hosts: all
   vars :
     svc: Unknown
-    svcname: tapisrv222
+    svcname: tapisrv
   gather_facts: true
   tasks:
 
