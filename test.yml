@@ -32,7 +32,7 @@
         register: svcinfo
 
       - name: Check service exists
-        ansible.windows.win_service_info:
+        ansible.windows.win_service:
           name: "{{ svcname }}"
         register: svcdata
         when: svcinfo.exists == true
