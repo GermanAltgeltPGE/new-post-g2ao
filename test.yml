@@ -44,7 +44,7 @@
   always:
     - name: 
       debug:
-        msg: {{ Trellix }}
+        msg: "{{ Trellix }}"
 
   
 
