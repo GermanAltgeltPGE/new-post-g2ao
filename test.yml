@@ -26,21 +26,30 @@
   gather_facts: true
   tasks:
 
-  - name: Check service exists
-    ansible.windows.win_service_info:
-      name: "{{ svcname }}"
-    register: svcinfo
-  
-  - name: service does not exist
-    debug: 
-      msg: Service does not exist
-    when: svcinfo.exists == false
+  block:
+    - name: Check service exists
+      ansible.windows.win_service:
+        name: "{{ svcname }}"
+      register: svcinfo
+    
+    - name: error
+      set fact:
+        Trellix: PASS
 
-    block:
-      - name: service does exist
-        debug: 
-          msg: "{{ svcinfo.exists }}"
-      when: svcinfo.exists == true
+  rescue:
+    - name: error
+      set fact:
+        Trellix: FAIL
+    
+  always:
+    - name: 
+      debug:
+        msg: {{ Trellix }}
+
+  
+
+
+    
 
 
 
