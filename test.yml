@@ -45,7 +45,7 @@
 
   - name: display service status
     debug:
-      msg: service_state.state
+      msg: {{ service_state.state }}
     when: results.exists == true
 
 
