@@ -26,14 +26,14 @@
   gather_facts: true
   tasks:
 
-  - name: "check status of test-service"
+  - name: Check service status
     win_service:
-      name: {{ scvname }}
+      name: Trellix
     register: result
 
   - name: Trellix display status
     debug:
-      msg: " {{ Trellix }} ###  {{ result }}"
+      msg:   result 
 
 
 
