@@ -22,14 +22,14 @@
   hosts: all
   vars :
     Trellix: Unknown 
-    svcname: aaaTrellixaaa
+    svcname: Trellix
 
   gather_facts: true
   tasks:
 
   - name: Check service exists
     ansible.windows.win_service_info:
-      name: aaaTrellixaaa
+      name: bitg
     register: results
   
   - name: service does not exist
