@@ -41,7 +41,7 @@
     ansible.windows.win_service:
       name: Themes
     register: svcresults
-    when: results.exists == true
+    when: svcinfo.exists == true
 
   - name: display service status
     debug:
