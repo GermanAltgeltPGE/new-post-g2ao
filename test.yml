@@ -29,17 +29,17 @@
   - name: Check service exists
     win_service:
       name: Trellixasdf
-    register: result
+    register: results
   
   - name: service does not exist
     debug: 
       msg: Service does not exist
-    when: result is not defined
+    when: results is undefined
 
   - name: service does exist
     debug:
       msg: Service does exist
-    when: result is defined
+    when: results is defined
 
 
 
