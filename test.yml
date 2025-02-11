@@ -38,7 +38,7 @@
 
   - name: service does exist
     debug: 
-      msg: "{{ svcinfo }}"
+      msg: "{{ svcinfo.services.display_name }}"
     when: svcinfo.exists == true
 
 
