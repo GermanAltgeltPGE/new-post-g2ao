@@ -37,10 +37,19 @@
         register: svcdata
         when: svcinfo.exists == true
 
-      - name: Service there but not running
-        set_fact:
-          svc: service - {{ svcname }} - exists and state is {{ svcdata.state }}
-        when: svcdata is defined and svcdata.state == stopped
+      - name: if service exists
+        Block:
+        - name: Service there returms state on svc var
+          set_fact:
+            svc: Pass - {{ svcname }} - exists and state is {{ svcdata.state }}
+          when: svcdata.state= = Stopped
+
+        - name: Service there returms state on svc var
+          set_fact:
+            svc: Fail - {{ svcname }} - exists and state is {{ svcdata.state }}
+          when: svcdata.state != Stopped
+
+        when: svcdata is defined 
 
       - name: service not there
         set_fact:
