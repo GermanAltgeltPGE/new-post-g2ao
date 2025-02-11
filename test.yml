@@ -21,7 +21,7 @@
   hosts: all
   vars :
     Trellix: Unknown 
-    svcname: "trellix"
+    svcname: "Trellix"
 
   gather_facts: true
   tasks:
@@ -37,31 +37,7 @@
     set_fact: 
       Trellix: "Fail - Service {{ Svcname }} not there"
     when: service_info is not defined
-    
-  - name: modify Trellix if service_info is Defined
-    block:  
-      - name: Get service status if service exists Block
-        ansible.windows.win_service:
-          name: '{{ Svcname }}'
-        register: service_state
-      
-      - name: MOdify Trellix var if service is runningBlock
-        set_fact: 
-         Trellix: "Pass - Service {{ Svcname }} service is running"
-        when: service_state.state == 'running'
-        ignore_errors: true
-      
-      - name: MOdify Trellix var if service exists Block
-        set_fact: 
-          Trellix: "Fail - Service {{ Svcname }} service is not running"
-        when: service_state.state != 'running'
-        ignore_errors: true
-    
-      - name: Trellix display status Block
-        debug:
-          msg: "Trellix.... {{ Trellix }}  sv.... {{ service_state }}"
-    when: service_info is defined
-  
+ 
 
   - name: Trellix display status
     debug:
