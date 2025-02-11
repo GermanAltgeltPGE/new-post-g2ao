@@ -38,7 +38,7 @@
 
   - name: service does exist
     debug: 
-      msg: Service does exist
+      msg: svcinfo.display_name
     when: svcinfo.exists == true
 
 
