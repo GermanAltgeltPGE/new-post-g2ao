@@ -25,8 +25,7 @@
     svcname: Themes23232
   gather_facts: true
   tasks:
-  - name: Service check
-    block:
+
       - name: Check service exists
         ansible.windows.win_service:
           name: "{{ svcname }}"
@@ -34,14 +33,14 @@
 
       - name: error
         set_fact:
-          Trellix: Pass - service not there
-      
-    rescue:
+          Trellix: Pass - service there
+        when: svcinfo.exists == true
+
       - name: error
         set_fact:
           Trellix: FAIL - service not there
-      
-    always:
+        when: svcinfo.exists == fail
+
       - name: 
         debug:
           msg: "{{ Trellix }}"
