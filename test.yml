@@ -27,8 +27,8 @@
   tasks:
 
   - name: Check service exists
-    win_service_info:
-      name: Trellixasdfsssss
+    ansible.windows.win_service_info:
+      name: TRKWKS
     register: results
   
   - name: service does not exist
