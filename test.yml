@@ -31,14 +31,14 @@
       name: Trellix
     register: result
   
-  - name: modify Trellix variable
+  - name: service does not exist
     debug: 
-      msg: Service not existant
+      msg: Service does not exist
     when: result is not defined
 
-  - name: Trellix display status
+  - name: service does exist
     debug:
-      msg:   result 
+      msg: Service does exist
     when: result is defined
 
 
