@@ -35,11 +35,11 @@
     debug: 
       msg: Service does not exist
     when: svcinfo.exists == false
-
-  - name: service does exist
-    debug: 
-      msg: "{{ svcinfo.exists }}"
-    when: svcinfo.exists == true
+  block:
+    - name: service does exist
+      debug: 
+        msg: "{{ svcinfo.exists }}"
+  when: svcinfo.exists == true
 
 
 
