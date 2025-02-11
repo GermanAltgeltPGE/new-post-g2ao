@@ -38,7 +38,7 @@
 
   block:
     - name: get service status
-      ansible.windows.win_service_info:
+      ansible.windows.win_service:
         name: Themes
       register: service_state
 
