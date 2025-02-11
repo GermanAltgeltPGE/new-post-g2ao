@@ -21,7 +21,7 @@
   hosts: all
   vars :
     Trellix: Unknown 
-    svcname: "aaaTrellixaaa"
+    svcname: aaaTrellixaaa
 
   gather_facts: true
   tasks:
