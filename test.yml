@@ -26,14 +26,20 @@
   gather_facts: true
   tasks:
 
-  - name: Check service status
+  - name: Check service exists
     win_service:
       name: Trellix
     register: result
+  
+  - name: modify Trellix variable
+    debug: 
+      msg: Service not existant
+    when: result is not defined
 
   - name: Trellix display status
     debug:
       msg:   result 
+    when: result is defined
 
 
 
