@@ -21,8 +21,8 @@
 - name: PB2
   hosts: all
   vars :
-    svc: Pass
-    svcname: Themes
+    svc: Unknown
+    svcname: tapisrv
   gather_facts: true
   tasks:
 
