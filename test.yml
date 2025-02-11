@@ -39,15 +39,15 @@
 
       - name: if service exists
         Block:
-        - name: Service there returms state on svc var
-          set_fact:
-            svc: Pass - {{ svcname }} - exists and state is {{ svcdata.state }}
-          when: svcdata.state= = Stopped
+          - name: Service there returms state on svc var
+            set_fact:
+              svc: Pass - {{ svcname }} - exists and state is {{ svcdata.state }}
+            when: svcdata.state == Stopped
 
-        - name: Service there returms state on svc var
-          set_fact:
-            svc: Fail - {{ svcname }} - exists and state is {{ svcdata.state }}
-          when: svcdata.state != Stopped
+          - name: Service there returms state on svc var
+            set_fact:
+              svc: Fail - {{ svcname }} - exists and state is {{ svcdata.state }}
+            when: svcdata.state != Stopped
 
         when: svcdata is defined 
 
