@@ -28,13 +28,12 @@
 
   - name: "check status of test-service"
     win_service:
-      name: "{{ scvname }}"
+      name: {{ scvname }}
     register: result
-    failed_when: result is not defined
 
   - name: Trellix display status
     debug:
-      msg: result
+      msg: " {{ Trellix }} ###  {{ result }}"
 
 
 
