@@ -28,24 +28,15 @@
   #service trkwks s
   #
 
-  - name: Query the Windows service T
-    ansible.windows.win_service_info:
-      name: '{{ Svcname }}'
-    register: service_info
-
-  - name: Modify Trellix var if service is not there
-    set_fact: 
-      Trellix: "Fail - Service {{ Svcname }} not there"
-    when: service_info is undefined
-
-  - name: Modify Trellix var if service is not there
-    set_fact: 
-      Trellix: "Pass - Service {{ Svcname }} there"
-    when: service_info is defined
+- name: "check status of test-service"
+  win_service:
+    name: {{ scvname }}
+  register: result
+  failed_when: result is not defined
 
   - name: Trellix display status
     debug:
-      msg: "Trellix.... {{ Trellix }}  "
+      msg: "Trellix {{ svcname }}.... {{ Trellix }}  "
 
 
 
