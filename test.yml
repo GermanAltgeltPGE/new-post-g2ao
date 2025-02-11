@@ -21,8 +21,8 @@
 - name: PB2
   hosts: all
   vars :
-    Trellix: Unknown 
-    svcname: Themes2
+    Trellix: Pass
+    svcname: Themes
   gather_facts: true
   tasks:
   - name: Service check
@@ -31,9 +31,11 @@
         ansible.windows.win_service:
           name: "{{ svcname }}"
         register: svcinfo
+
+      - name: error
+        set_fact:
+          Trellix: Pass - service not there
       
-
-
     rescue:
       - name: error
         set_fact:
