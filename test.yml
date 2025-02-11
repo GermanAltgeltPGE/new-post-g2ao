@@ -34,12 +34,12 @@
   - name: service does not exist
     debug: 
       msg: Service does not exist
-    when: results is undefined
+    when: results.exists == false
 
   - name: service does exist
     debug:
       msg: Service does exist
-    when: results is defined
+    when: results.exists == true
 
 
 
