@@ -34,7 +34,7 @@
 
   - name: Trellix display status
     debug:
-      msg: "Trellix {{ svcname }}.... {{ Trellix }}  "
+      msg: result
 
 
 
