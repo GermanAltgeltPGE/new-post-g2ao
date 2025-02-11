@@ -28,7 +28,7 @@
 
   - name: Check service exists
     ansible.windows.win_service_info:
-      name: TRKWKSsssssssss
+      name: TRKWKS
     register: results
   
   - name: service does not exist
