@@ -27,7 +27,7 @@
   tasks:
 
   - name: Check service exists
-    win_service-Info:
+    win_service_Info:
       name: Trellixasdfsssss
     register: results
   
