@@ -21,7 +21,7 @@
 - name: PB2
   hosts: all
   vars :
-    svcstatu: Pass
+    svc: Pass
     svcname: Themes
   gather_facts: true
   tasks:
