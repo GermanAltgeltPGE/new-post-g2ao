@@ -22,7 +22,7 @@
   hosts: all
   vars :
     Trellix: Pass
-    svcname: Themes
+    svcname: Themes23232
   gather_facts: true
   tasks:
   - name: Service check
