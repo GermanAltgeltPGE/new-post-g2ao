@@ -27,19 +27,21 @@
   tasks:
   - name: Service check
     block:
+      - name: error
+        set_fact:
+          Trellix: PASS - service there
+          
       - name: Check service exists
         ansible.windows.win_service:
           name: "{{ svcname }}"
         register: svcinfo
       
-      - name: error
-        set_fact:
-          Trellix: PASS
+
 
     rescue:
       - name: error
         set_fact:
-          Trellix: FAIL
+          Trellix: FAIL - service not there
       
     always:
       - name: 
