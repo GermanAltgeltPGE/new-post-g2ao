@@ -39,7 +39,7 @@
       - name: error
         set_fact:
           Trellix: FAIL - service not there
-        when: svcinfo.exists == fail
+        when: svcinfo.exists == false
 
       - name: 
         debug:
