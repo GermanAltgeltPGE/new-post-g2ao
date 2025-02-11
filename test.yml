@@ -31,18 +31,18 @@
           name: "{{ svcname }}"
         register: svcinfo
 
-      - name: Check service exists
+      - name: Check service state
         ansible.windows.win_service:
           name: "{{ svcname }}"
         register: svcdata
         when: svcinfo.exists == true
 
-      - name: Service there
+      - name: Service there but not running
         set_fact:
           svc: Fail - {{ svcname }} - service is there and state is {{ svcdata.state }}
         when: ((svcinfo.exists == true) and (svcdata is defined)) and svcdata.state == "Stopped"
 
-      - name: error service not there
+      - name: service not there
         set_fact:
           svc: FAIL - {{ svcname }} -   service not there 
         when: svcinfo.exists == false
