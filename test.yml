@@ -40,7 +40,7 @@
       - name: Service there but not running
         set_fact:
           svc: service - {{ svcname }} - exists and state is {{ svcdata.state }}
-        when: svcdata is defined
+        when: svcdata.state == stopped
 
       - name: service not there
         set_fact:
