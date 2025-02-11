@@ -36,8 +36,12 @@
   - name: Modify Trellix var if service is not there
     set_fact: 
       Trellix: "Fail - Service {{ Svcname }} not there"
-    when: service_info is not defined
- 
+    when: service_info is undefined
+
+   - name: Modify Trellix var if service is not there
+    set_fact: 
+      Trellix: "Pass - Service {{ Svcname }} there"
+    when: service_info is defined
 
   - name: Trellix display status
     debug:
