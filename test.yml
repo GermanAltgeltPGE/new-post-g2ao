@@ -53,7 +53,7 @@
 
       - name: Service data
         debug:
-          msg: "{{ svcdata }}"
+          msg: "{{ svcdata.state }}"
         when: svcdata is defined
 
   
