@@ -21,24 +21,24 @@
   hosts: all
   vars :
     Trellix: Unknown 
-    svcname: "Trellix"
+    svcname: "aaaTrellixaaa"
 
   gather_facts: true
   tasks:
 
   - name: Check service exists
     ansible.windows.win_service_info:
-      name: TRKWKS
+      name: {{ svcname }}
     register: results
   
   - name: service does not exist
     debug: 
-      msg: Service does not exist
+      msg: Service {{ svcname }} does not exist
     when: results.exists == false
 
   - name: service does exist
     debug:
-      msg: Service does exist
+      msg: Service {{ svcname }} does exist
     when: results.exists == true
 
 
