@@ -40,11 +40,11 @@
       - name: Service there
         set_fact:
           svc: Fail - {{ svcname }} - service is there and state is {{ svcdata.state }}
-        when: ((svcinfo.exists == true) and (svcdata is defined)) and svcdata.state ="Stopped"
+        when: ((svcinfo.exists == true) and (svcdata is defined)) and svcdata.state == "Stopped"
 
       - name: error service not there
         set_fact:
-          svc: FAIL - {{ svcname }} -   service not there
+          svc: FAIL - {{ svcname }} -   service not there 
         when: svcinfo.exists == false
       
       - name: svcinfo
