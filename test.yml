@@ -45,7 +45,7 @@
 
   - name: display service status
     debug:
-      msg: svcresults
+      msg: {{ svcresults }}
     when: svcresults is defined 
 
 
