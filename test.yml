@@ -43,7 +43,7 @@
 
       - name: svc exists
         debug:
-          msg: "svc {{ svc }}"
+          msg: "svc {{ svcname }} {{ svc }}"
 
 
 
