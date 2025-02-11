@@ -39,7 +39,7 @@
 
       - name: Service there
         set_fact:
-          svc: Pass - {{ svcname }} - service is there and status {{ svcdata.description }}
+          svc: Pass - {{ svcname }} - service is there and status {{ svcdata }}
         when: (svcinfo.exists == true) and (svcdata is defined)
 
       - name: error service not there
