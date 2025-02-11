@@ -22,7 +22,7 @@
   hosts: all
   vars :
     Trellix: Unknown 
-    svcname: Themes
+    svcname: "Themes"
   gather_facts: true
   tasks:
 
