@@ -28,7 +28,7 @@
 
   - name: Check service exists
     win_service:
-      name: Trellix
+      name: Trellixasdf
     register: result
   
   - name: service does not exist
