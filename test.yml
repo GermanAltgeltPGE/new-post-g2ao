@@ -35,11 +35,11 @@
         ansible.windows.win_service_info:
           name: "{{ svcname }}"
         register: svcdata
-        when: svcinfo == true
+        when: svcinfo.exists == true
 
       - name: Service there
         set_fact:
-          svc: Pass - {{ svcname }} - service is there and status {{ svcdata }}
+          svc: Pass - {{ svcname }} - service is there and svcdata {{ svcdata }}
         when: (svcinfo.exists == true) and (svcdata is defined)
 
       - name: error service not there
