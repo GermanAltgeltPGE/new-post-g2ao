@@ -29,7 +29,7 @@
       - name: Check service exists
         ansible.windows.win_service_info:
           name: "{{ svcname }}"
-        register: svc
+        register: svcinfo
 
       - name: Service there
         set_fact:
@@ -40,17 +40,6 @@
         set_fact:
           svc: FAIL - service not there
         when: svcinfo.exists == false
-
-      - name: Check service exists
-        ansible.windows.win_service:
-          name: "{{ svcname }}"
-        register: svcdata
-        when: svcinfo.exists == true
-      
-      - name: Service data
-        set_fact:
-          svc: "{{svcname}} is in {{ svcdata.state }} state"
-        when: svcdata is defined
 
       - name: svc exists
         debug:
