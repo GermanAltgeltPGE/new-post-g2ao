@@ -28,7 +28,7 @@
 
   - name: Check service exists
     ansible.windows.win_service_info:
-      name: Themes2
+      name: Themes
     register: svcinfo
   
   - name: service does not exist
@@ -37,7 +37,6 @@
     when: svcinfo.exists == false
 
   - name: service does exist
-    ansible.windows.win_service:
     debug: 
       msg: Service does exist
     when: svcinfo.exists == true
