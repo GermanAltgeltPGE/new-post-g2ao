@@ -23,7 +23,6 @@
   vars :
     Trellix: Unknown 
     svcname: Themes
-
   gather_facts: true
   tasks:
 
@@ -37,10 +36,16 @@
       msg: Service does not exist
     when: results.exists == false
 
-  - name: service does exist
-    debug:
-      msg: Service does exist
-    when: results.exists == true
+  block:
+    - name: get service status
+      ansible.windows.win_service_info:
+        name: Themes
+      register: service_state
+
+    - name: display service status
+      debug:
+        msg: servoce_state
+  when: results.exists == true
 
 
 
