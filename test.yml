@@ -34,12 +34,12 @@
   
   - name: service does not exist
     debug: 
-      msg: "Service {{ svcname }} does not exist"
+      msg: Service does not exist
     when: results.exists == false
 
   - name: service does exist
     debug:
-      msg: "Service {{ svcname }} does exist"
+      msg: Service does exist
     when: results.exists == true
 
 
