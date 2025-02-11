@@ -22,7 +22,7 @@
   hosts: all
   vars :
     svc: Unknown
-    svcname: tapisrvssss
+    svcname: tapisrv
   gather_facts: true
   tasks:
 
@@ -31,10 +31,16 @@
           name: "{{ svcname }}"
         register: svcinfo
 
+      - name: Check service exists
+        ansible.windows.win_service_info:
+          name: "{{ svcname }}"
+        register: svcdata
+        when: svcinfo == true
+
       - name: Service there
         set_fact:
-          svc: Pass - service there
-        when: svcinfo.exists == true
+          svc: Pass - service there and status {{ svcdatae }}
+        when: svcinfo.exists == true and svcdata is defined
 
       - name: error service not there
         set_fact:
