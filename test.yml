@@ -22,7 +22,7 @@
   hosts: all
   vars :
     svc: Unknown
-    svcname: tapisrv
+    svcname: tapisrvssss
   gather_facts: true
   tasks:
 
@@ -40,6 +40,11 @@
         set_fact:
           svc: FAIL - service not there
         when: svcinfo.exists == false
+      
+      - name: svcinfo
+        debug:
+          msg: "svcinfo {{ svcinfo }} "
+        when: svcinfo is defined
 
       - name: svc exists
         debug:
