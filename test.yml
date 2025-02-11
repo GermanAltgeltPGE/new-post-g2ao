@@ -25,14 +25,12 @@
 
   gather_facts: true
   tasks:
-  #service trkwks s
-  #
 
-- name: "check status of test-service"
-  win_service:
-    name: {{ scvname }}
-  register: result
-  failed_when: result is not defined
+  - name: "check status of test-service"
+    win_service:
+      name: {{ scvname }}
+    register: result
+    failed_when: result is not defined
 
   - name: Trellix display status
     debug:
