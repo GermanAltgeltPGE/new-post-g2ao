@@ -36,16 +36,13 @@
       msg: Service does not exist
     when: svcinfo.exists == false
 
-  - name: get service status
+  - name: service does exist
     ansible.windows.win_service:
-      name: Themes
-    register: svcresults
+    debug: 
+      msg: Service does exist
     when: svcinfo.exists == true
 
-  - name: display service status
-    debug:
-      msg: svcresults 
-    when: svcresults is defined 
+
 
 
 
