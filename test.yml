@@ -31,19 +31,30 @@
           name: "{{ svcname }}"
         register: svcinfo
 
-      - name: error
+      - name: Service there
         set_fact:
           Trellix: Pass - service there
         when: svcinfo.exists == true
 
-      - name: error
+      - name: Check service exists
+        ansible.windows.win_service:
+          name: "{{ svcname }}"
+        register: svcdata
+        when: svcinfo.exists == true
+
+      - name: error service not there
         set_fact:
           Trellix: FAIL - service not there
         when: svcinfo.exists == false
 
-      - name: 
+      - name: Trellix exists
         debug:
           msg: "{{ Trellix }}"
+
+      - name: Service data
+        debug:
+          msg: "{{ svcdata }}"
+        when: svcdata is defined
 
   
 
