@@ -44,7 +44,7 @@
 
       - name: Service there but not running
         set_fact:
-          svc:Pass - {{ svcname }} - service is there and state is {{ svcdata.state }}
+          svc: Pass - {{ svcname }} - service is there and state is {{ svcdata.state }}
         when: svcdata is defined and svcdata.state != Stopped
 
       - name: service not there
