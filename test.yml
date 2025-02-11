@@ -20,12 +20,9 @@
 - name: PB2
   hosts: all
   vars :
-    Svcname: "bits2"
     Trellix: Unknown 
-    svcname2: "trkwks"
-    Trellix2: Unknown 
-    svc3: "Unknown" #stopped
-    svcst: "Unknown" #not there
+    svcname: "trellix"
+
   gather_facts: true
   tasks:
   #service trkwks s
