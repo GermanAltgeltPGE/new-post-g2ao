@@ -27,7 +27,7 @@
   tasks:
 
       - name: Check service exists
-        ansible.windows.win_service:
+        ansible.windows.win_service_info:
           name: "{{ svcname }}"
         register: svcinfo
 
