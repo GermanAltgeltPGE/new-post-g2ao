@@ -21,7 +21,7 @@
 - name: PB2
   hosts: all
   vars :
-    Trellix: Pass
+    svcstatu: Pass
     svcname: Themes
   gather_facts: true
   tasks:
@@ -33,12 +33,12 @@
 
       - name: Service there
         set_fact:
-          Trellix: Pass - service there
+          svc: Pass - service there
         when: svcinfo.exists == true
 
       - name: error service not there
         set_fact:
-          Trellix: FAIL - service not there
+          svc: FAIL - service not there
         when: svcinfo.exists == false
 
       - name: Check service exists
@@ -49,17 +49,14 @@
       
       - name: Service data
         set_fact:
-          Trellix: "{{svcname}} is in {{ svcdata.state }} state"
+          svc: "{{svcname}} is in {{ svcdata.state }} state"
         when: svcdata is defined
 
-      - name: Trellix exists
+      - name: svc exists
         debug:
-          msg: "{{ Trellix }}"
+          msg: "{{ svc }}"
 
-      - name: Service data
-        debug:
-          msg: "{{ svcdata.state }}"
-        when: svcdata is defined
+
 
   
 
