@@ -22,13 +22,13 @@
   hosts: all
   vars :
     Trellix: Unknown 
-    svcname: "Themes"
+    svcname: Themes
   gather_facts: true
   tasks:
 
   - name: Check service exists
     ansible.windows.win_service_info:
-      name: {{ svcname }}
+      name: "{{ svcname }}"
     register: svcinfo
   
   - name: service does not exist
