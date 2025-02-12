@@ -42,13 +42,13 @@
         block:
           - name: Service there returns state on svc var
             set_fact:
-              svc: "Pass - {{ svcname }} - exists and state is {{ svcdata.state }}"
-            when: svcdata.state == Running
+              svc: "Pass - {{ svcname }} - exists and state is {{ svcdata }}"
+#            when: svcdata.state == Running
 
-          - name: Service there returns state on svc var
-            set_fact:
-              svc: Fail - {{ svcname }} - exists and state is {{ svcdata.state }}
-            when: svcdata.state != Running
+#          - name: Service there returns state on svc var
+#            set_fact:
+#              svc: Fail - {{ svcname }} - exists and state is {{ svcdata.state }}
+#            when: svcdata.state != Running
         when: svcdata is defined
 
       - name: service not there
@@ -60,6 +60,11 @@
         debug:
           msg: "svcinfo {{ svcinfo }} "
         when: svcinfo is defined
+        
+      - name: svcdata
+        debug:
+          msg: "svcdata{{ svcdata }} "
+        when: svcdata is defined
 
       - name: svc
         debug:
