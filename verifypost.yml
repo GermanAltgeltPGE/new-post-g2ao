@@ -209,7 +209,7 @@
 
       - name: Service there returns state on svc var
         set_fact:
-          Trellixsvc: Fail - {{ Trelliixsvcname }} - exists and state is {{ Trellixsvcdata.state }}
+          Trellixsvc: Fail - {{ Trellixsvcname }} - exists and state is {{ Trellixsvcdata.state }}
         when: Trellixsvcdata.state|lower != "running"
     when: Trellixsvcinfo.exists == true
 
