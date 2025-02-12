@@ -37,19 +37,19 @@
         register: svcdata
         when: svcinfo.exists == true
 
-      - name: if service exists
+      - name: if service exists return state in svc
+        when: svcdata is defined D
         Block:
-          - name: Service there returms state on svc var
+          - name: Service there returns state on svc var
             set_fact:
               svc: Pass - {{ svcname }} - exists and state is {{ svcdata.state }}
-            when: svcdata.state == Stopped
+            when: svcdata.state == Running
 
-          - name: Service there returms state on svc var
+          - name: Service there returns state on svc var
             set_fact:
               svc: Fail - {{ svcname }} - exists and state is {{ svcdata.state }}
-            when: svcdata.state != Stopped
-
-        when: svcdata is defined 
+            when: svcdata.state != Running
+        
 
       - name: service not there
         set_fact:
