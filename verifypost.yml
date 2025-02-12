@@ -264,7 +264,6 @@
           Local Server Remote Desktop Users
           {{RDU.members}}
        --------
-       11. Trellix Service StatusS ..................{{ Trellixservicestatus }}
-       Trellix Service exists ..................{{ TrellixSvc }}
+       11. Trellix ..................{{ TrellixSvc }}
        13. Disks    
        {{ Disks }}   
