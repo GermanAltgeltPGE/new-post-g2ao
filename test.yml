@@ -34,25 +34,26 @@
   tasks:
 
       - name: Check service exists
-        ansible.windows.win_service_info:
-          name: "{{ svcname }}"
         vars:
           ansible_become: yes
           ansible_become_method: runas
           ansible_become_user: '{{ ansible_user }}'
           ansible_become_pass: '{{ ansible_password }}'
-          ansible_become_flags: logon_type=new_credentials logon_flags=netcredentials_only
+          ansible_become_flags: logon_type=new_credentials logon_flags=netcredentials_only      
+        ansible.windows.win_service_info:
+          name: "{{ svcname }}"
+
         register: svcinfo
 
       - name: Check service state
-        ansible.windows.win_service:
-          name: "{{ svcname }}"
         vars:
           ansible_become: yes
           ansible_become_method: runas
           ansible_become_user: '{{ ansible_user }}'
           ansible_become_pass: '{{ ansible_password }}'
           ansible_become_flags: logon_type=new_credentials logon_flags=netcredentials_only
+        ansible.windows.win_service:
+          name: "{{ svcname }}"
         register: svcdata
         when: svcinfo.exists == true
 
