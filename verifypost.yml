@@ -22,7 +22,11 @@
   gather_facts: true
   vars:
       Trellixsvcname: "Masvc"
-#      Trellixsvc: Unknown
+      ansible_become: yes
+      ansible_become_method: runas
+      ansible_become_user: '{{ ansible_user }}'
+      ansible_become_pass: '{{ ansible_password }}'
+      ansible_become_flags: logon_type=new_credentials logon_flags=netcredentials_only
   tasks:
   
 
