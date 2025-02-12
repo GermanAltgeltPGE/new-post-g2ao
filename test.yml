@@ -23,7 +23,7 @@
   hosts: all
   vars :
     svc: Unknown
-    svcname: wlidsvc
+    svcname: Wcmsvc
   gather_facts: true
   tasks:
 
