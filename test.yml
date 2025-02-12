@@ -23,7 +23,7 @@
   hosts: all
   vars :
     svc: Unknown
-    svcname: tapisrv
+    svcname: wlidsvc
   gather_facts: true
   tasks:
 
@@ -43,12 +43,12 @@
           - name: Service there returns state on svc var
             set_fact:
               svc: "Pass - {{ svcname }} - exists and state is {{ svcdata.stopped }}"
-            when: svcdata.state == "Running"
+            when: svcdata.state == "running"
 
           - name: Service there returns state on svc var
             set_fact:
               svc: Fail - {{ svcname }} - exists and state is {{ svcdata.state }}
-            when: svcdata.state != "Running"
+            when: svcdata.state != "running"
         when: svcdata is defined
 
       - name: service not there
