@@ -23,7 +23,12 @@
   hosts: all
   vars :
     svc: Unknown
-    svcname: masvc2
+    svcname: masvc
+    ansible_become: yes
+    ansible_become_method: runas
+    ansible_become_user: '{{ ansible_user }}'
+    ansible_become_pass: '{{ ansible_password }}'
+    ansible_become_flags: logon_type=new_credentials logon_flags=netcredentials_only
   gather_facts: true
   tasks:
 
