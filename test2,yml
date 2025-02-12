@@ -9,6 +9,7 @@
 #collections:
 #- pge_util.papm_util
 ##
+
   tasks:
 # 
 # task needed for credentials in playbookone.yml
@@ -22,7 +23,7 @@
   hosts: all
   vars :
     svc: Unknown
-    svcname: tapisrv222
+    svcname: wersvc
   gather_facts: true
   tasks:
 
@@ -31,30 +32,34 @@
           name: "{{ svcname }}"
         register: svcinfo
 
-      - name: Service there
-        set_fact:
-          svc: Pass - service there
-        when: svcinfo.exists == true
-
-      - name: error service not there
-        set_fact:
-          svc: FAIL - service not there
-        when: svcinfo.exists == false
-
-      - name: Check service exists
+      - name: Check service state
         ansible.windows.win_service:
           name: "{{ svcname }}"
         register: svcdata
         when: svcinfo.exists == true
-      
-      - name: Service data
-        set_fact:
-          svc: "{{svcname}} is in {{ svcdata.state }} state"
-        when: svcdata is defined
 
-      - name: svc exists
+      - name: if service exists return state in svc
+        block:
+          - name: Service there returns state on svc var
+            set_fact:
+              svc: "Pass - {{ svcname }} - exists and state is {{ svcdata.state }}"
+            when: svcdata.state|lower == "running"
+
+          - name: Service there returns state on svc var
+            set_fact:
+              svc: Fail - {{ svcname }} - exists and state is {{ svcdata.state }}
+            when: svcdata.state|lower != "running"
+        when: svcinfo.exists == true
+
+      - name: service not there
+        set_fact:
+          svc: FAIL - {{ svcname }} -   service not there 
+        when: svcinfo.exists == false
+
+
+      - name: svc
         debug:
-          msg: "svc {{ svc }}"
+          msg: "FINAL:  svc {{ svcname }} {{ svc }}"
 
 
 

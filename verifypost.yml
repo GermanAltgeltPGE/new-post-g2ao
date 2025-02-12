@@ -186,12 +186,39 @@
 
   - name: Trellix status 
     set_fact:
-      Trellix: "Fail"
-  
-  - name: Get Trellix Service Status
+      Trellixsvcname: "wersvc"
+      Trellixsvc: Unknown
+
+  - name: Check service exists
     ansible.windows.win_service_info:
-      name: TRKWKS
-    register: Trellixservicestatus
+      name: "{{ Trellixsvcname }}"
+    register: Trellixsvcinfo
+
+  - name: Check service state
+    ansible.windows.win_service:
+      name: "{{ Trellixsvcname }}"
+    register: Trelllixsvcdata
+    when: Trellixsvcinfo.exists == true
+
+  - name: if service exists return state in svc
+    block:
+      - name: Service there returns state on svc var
+        set_fact:
+          Trelliixsvc: "Pass - {{ Trellixsvcname }} - exists and state is {{ Trellixsvcdata.state }}"
+        when: Trellixsvcdata.state|lower == "running"
+
+      - name: Service there returns state on svc var
+        set_fact:
+          Trellixsvc: Fail - {{ Trelliixsvcname }} - exists and state is {{ Trellixsvcdata.state }}
+        when: Trellixsvcdata.state|lower != "running"
+    when: Trellixsvcinfo.exists == true
+
+  - name: service not there
+    set_fact:
+      Trellixsvc: FAIL - {{ Trelliixsvcname }} -   service not there 
+    when: Trellixsvcinfo.exists == false
+
+
 
 
 #12 - qradar - deprecated is now an agent
@@ -238,6 +265,6 @@
           {{RDU.members}}
        --------
        11. Trellix Service StatusS ..................{{ Trellixservicestatus }}
-       Trellix Service exists ..................{{ Trellix }}
+       Trellix Service exists ..................{{ TrellixSvc }}
        13. Disks    
        {{ Disks }}   
