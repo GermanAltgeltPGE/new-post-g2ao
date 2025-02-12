@@ -215,7 +215,7 @@
 
   - name: service not there
     set_fact:
-      Trellixsvc: FAIL - {{ Trelliixsvcname }} -   service not there 
+      Trellixsvc: FAIL - {{ Trellixsvcname }} -   service not there 
     when: Trellixsvcinfo.exists == false
 
 #12 - qradar - deprecated is now an agent
