@@ -55,16 +55,6 @@
         set_fact:
           svc: FAIL - {{ svcname }} -   service not there 
         when: svcinfo.exists == false
-      
-      - name: svcinfo
-        debug:
-          msg: "svcinfo {{ svcinfo }} "
-        when: svcinfo is defined
-
-      - name: svcdata
-        debug:
-          msg: "svcdata{{ svcdata }} "
-        when: svcdata is defined
 
       - name: svc
         debug:
