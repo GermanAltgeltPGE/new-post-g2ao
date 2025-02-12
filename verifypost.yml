@@ -21,8 +21,8 @@
   hosts: all
   gather_facts: true
   vars:
-      Trellixsvcname: "wersvc"
-      Trellixsvc: Unknown
+      Trellixsvcname: "Masvc"
+#      Trellixsvc: Unknown
   tasks:
   
 
