@@ -204,7 +204,7 @@
     block:
       - name: Service there returns state on svc var
         set_fact:
-          Trelliixsvc: "Pass - {{ Trellixsvcname }} - exists and state is {{ Trellixsvcdata.state }}"
+          Trellixsvc: "Pass - {{ Trellixsvcname }} - exists and state is {{ Trellixsvcdata.state }}"
         when: Trellixsvcdata.state|lower == "running"
 
       - name: Service there returns state on svc var
