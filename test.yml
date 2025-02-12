@@ -49,7 +49,7 @@
             set_fact:
               svc: Fail - {{ svcname }} - exists and state is {{ svcdata.state }}
             when: svcdata.state|lower != "running"
-        when: svcdata is defined
+        when: svcinfo.exists == true
 
       - name: service not there
         set_fact:
