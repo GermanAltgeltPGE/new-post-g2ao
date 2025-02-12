@@ -23,7 +23,7 @@
   hosts: all
   vars :
     svc: Unknown
-    svcname: tapisrv2
+    svcname: tapisrv
   gather_facts: true
   tasks:
 
@@ -50,9 +50,6 @@
               svc: Fail - {{ svcname }} - exists and state is {{ svcdata.state }}
             when: svcdata.state != Running
         when: svcdata is defined
-
-        
-        
 
       - name: service not there
         set_fact:
