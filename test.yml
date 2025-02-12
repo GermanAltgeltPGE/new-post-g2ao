@@ -42,7 +42,7 @@
         block:
           - name: Service there returns state on svc var
             set_fact:
-              svc: "Pass - {{ svcname }} - exists and state is {{ svcdata.stopped }}"
+              svc: "Pass - {{ svcname }} - exists and state is {{ svcdata.state }}"
             when: svcdata.state == "running"
 
           - name: Service there returns state on svc var
