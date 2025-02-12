@@ -44,6 +44,11 @@
         register: svcdata
         when: svcinfo.exists == true
 
+      - name: service not there
+        set_fact:
+          svc: UNKNOWN - {{ svcname }} - cannot read status, verify manually
+        when: svcinfo.exists == true
+
       - name: if service exists return state in svc
         block:
           - name: Service there returns state on svc var
@@ -61,6 +66,8 @@
         set_fact:
           svc: FAIL - {{ svcname }} -   service not there 
         when: svcinfo.exists == false
+      
+      
 
 
       - name: svc
