@@ -20,6 +20,9 @@
 - name: PB2
   hosts: all
   gather_facts: true
+  vars:
+      Trellixsvcname: "wersvc"
+      Trellixsvc: Unknown
   tasks:
   
 
@@ -184,10 +187,7 @@
 
 #11 Validate Trellix Service is running and configured to start automatically 
 
-  - name: Trellix status 
-    set_fact:
-      Trellixsvcname: "wersvc"
-      Trellixsvc: Unknown
+
 
   - name: Check service exists
     ansible.windows.win_service_info:
