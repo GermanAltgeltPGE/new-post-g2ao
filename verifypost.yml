@@ -197,7 +197,7 @@
   - name: Check service state
     ansible.windows.win_service:
       name: "{{ Trellixsvcname }}"
-    register: Trelllixsvcdata
+    register: Trellixsvcdata
     when: Trellixsvcinfo.exists == true
 
   - name: if service exists return state in svc
