@@ -23,7 +23,7 @@
   hosts: all
   vars :
     svc: Unknown
-    svcname: Wcmsvc2222
+    svcname: Wcmsvc
   gather_facts: true
   tasks:
 
