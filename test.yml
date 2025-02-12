@@ -23,7 +23,7 @@
   hosts: all
   vars :
     svc: Unknown
-    svcname: wersvc
+    svcname: masvc
   gather_facts: true
   tasks:
 
