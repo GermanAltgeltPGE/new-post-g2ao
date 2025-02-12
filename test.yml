@@ -38,17 +38,19 @@
         when: svcinfo.exists == true
 
       - name: if service exists return state in svc
-        when: svcdata is defined 
-        Block:
+        when: svcdata is defined
+        block:
           - name: Service there returns state on svc var
             set_fact:
-              svc: Pass - {{ svcname }} - exists and state is {{ svcdata.state }}
+              svc: "Pass - {{ svcname }} - exists and state is {{ svcdata.state }}"
             when: svcdata.state == Running
 
           - name: Service there returns state on svc var
             set_fact:
               svc: Fail - {{ svcname }} - exists and state is {{ svcdata.state }}
             when: svcdata.state != Running
+
+        
         
 
       - name: service not there
