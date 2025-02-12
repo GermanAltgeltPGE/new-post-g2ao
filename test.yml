@@ -23,7 +23,7 @@
   hosts: all
   vars :
     svc: Unknown
-    svcname: Wcmsvc
+    svcname: wersvc
   gather_facts: true
   tasks:
 
@@ -55,6 +55,7 @@
         set_fact:
           svc: FAIL - {{ svcname }} -   service not there 
         when: svcinfo.exists == false
+
 
       - name: svc
         debug:
