@@ -23,7 +23,8 @@
   hosts: all
   vars :
     svc: Unknown - error
-    svcname: masvc2
+    svcname: masvc
+    Trellix: Unknown
     
   gather_facts: True
   ignore_errors: True
@@ -34,11 +35,19 @@
         (get-service -name "{{svcname}}").status
       register: svcstatus
 
+    - name: out 1
     - debug:
         var: svcstatus
         verbosity: 2
-      #when: svcstatus is Defined
 
-      
+    - name: out 2
+    - debug:
+        msg: "{{svcname}} is running ... "
+      when: svcstatus|lower == "running"
+    
+    - name: out 3
+    - debug:
+        msg: "{{svcname}} is not running ... "
+      when: svcstatus|lower != "running"
     
 
