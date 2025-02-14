@@ -43,11 +43,11 @@
     - name: out 2
       debug:
         msg: "{{svcname}} is running ... "
-      when: svcstatus|lower == "running"
+      when: svcstatus == "Running"
     
     - name: out 3
       debug:
         msg: "{{svcname}} is not running ... "
-      when: svcstatus|lower != "running"
+      when: svcstatus != "Running"
     
 
