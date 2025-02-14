@@ -31,8 +31,7 @@
     - name: powershell get service info
       ansible.windows.win_shell:
        script: |
-        $env:computername
-        $Env:UserName
+        $(Get-CimInstance Win32_ComputerSystem | select username).username
 
     - name: svc
       debug:
