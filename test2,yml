@@ -23,19 +23,43 @@
   hosts: all
   vars :
     svc: Unknown
-    svcname: wersvc
+    svcname: masvc
+    ansible_become: yes
+    ansible_become_method: runas
+    ansible_become_user: '{{ ansible_user }}'
+    ansible_become_pass: '{{ ansible_password }}'
+    ansible_become_flags: logon_type=new_credentials logon_flags=netcredentials_only
   gather_facts: true
+  ignore_errors: true
   tasks:
 
       - name: Check service exists
+        vars:
+          ansible_become: yes
+          ansible_become_method: runas
+          ansible_become_user: '{{ ansible_user }}'
+          ansible_become_pass: '{{ ansible_password }}'
+          ansible_become_flags: logon_type=new_credentials logon_flags=netcredentials_only      
         ansible.windows.win_service_info:
           name: "{{ svcname }}"
+
         register: svcinfo
 
       - name: Check service state
+        vars:
+          ansible_become: yes
+          ansible_become_method: runas
+          ansible_become_user: '{{ ansible_user }}'
+          ansible_become_pass: '{{ ansible_password }}'
+          ansible_become_flags: logon_type=new_credentials logon_flags=netcredentials_only
         ansible.windows.win_service:
           name: "{{ svcname }}"
         register: svcdata
+        when: svcinfo.exists == true
+
+      - name: service not there
+        set_fact:
+          svc: UNKNOWN - {{ svcname }} - cannot read status, verify manually
         when: svcinfo.exists == true
 
       - name: if service exists return state in svc
@@ -55,6 +79,8 @@
         set_fact:
           svc: FAIL - {{ svcname }} -   service not there 
         when: svcinfo.exists == false
+      
+      
 
 
       - name: svc
