@@ -34,65 +34,10 @@
           ansible_become_user: '{{ ansible_user }}'
           ansible_become_pass: '{{ ansible_password }}'
           ansible_become_flags: logon_type=new_credentials logon_flags=netcredentials_only
-
-        block:          
-          - name: Check service exists
-            ignore_errors: true     
-            ansible.windows.win_service_info:
-              name: "{{ svcname }}"
-
-            register: svcinfo
-
-          - name: Check service state
-            ansible.windows.win_service:
-              name: "{{ svcname }}"
-            register: svcdata
-            when: svcinfo.exists == true
-
-          - name: service not there
-            set_fact:
-              svc: UNKNOWN - {{ svcname }} - cannot read status, verify manually
-            when: svcinfo.exists == true
-
-          - name: if service exists return state in svc
-            block:
-              - name: Service there returns state on svc var
-                set_fact:
-                  svc: "Pass - {{ svcname }} - exists and state is {{ svcdata.state }}"
-                when: svcdata.state|lower == "running"
-
-              - name: Service there returns state on svc var
-                set_fact:
-                  svc: Fail - {{ svcname }} - exists and state is {{ svcdata.state }}
-                when: svcdata.state|lower != "running"
-            when: svcinfo.exists == true
-
-          - name: service not there
-            set_fact:
-              svc: FAIL - {{ svcname }} -   service not there 
-            when: svcinfo.exists == false
-        
-        rescue:
-          - name: change svc to show ignore_errors
-            set_fact:
-              svc: FAIL = error accessing service
+      
+      - name: powershell get service info
 
 
       - name: svc
         debug:
           msg: "FINAL:  svc {{ svcname }} {{ svc }}"
-
-
-
-  
-
-
-    
-
-
-
-
-
-
-
-  
