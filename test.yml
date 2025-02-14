@@ -23,7 +23,9 @@
   hosts: all
   vars :
     svc: Unknown
+    svc2: Unknown
     svcname: masvc
+    
   gather_facts: True
   ignore_errors: True
   
@@ -37,3 +39,19 @@
     - name: svc
       debug:
         msg: "FINAL:  svc {{ svcname }} {{ svc }}"
+    
+    - name: Check service state
+      vars:
+        ansible_become: yes
+        ansible_become_method: runas
+        ansible_become_user: '{{ ansible_user }}'
+        ansible_become_pass: '{{ ansible_password }}'
+        ansible_become_flags: logon_type=new_credentials logon_flags=netcredentials_only
+      ansible.windows.win_service:
+        name: "{{ massvc2 }}"
+      register: svc2
+    
+    - name: svc2
+      debug:
+        msg: "FINAL:  svc {{ svcname }} {{ svc2 }}"
+\
