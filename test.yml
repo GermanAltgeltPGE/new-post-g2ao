@@ -29,8 +29,7 @@
   
   tasks:
     - name: powershell get service info
-      ansible.windows.win_shell:
-       script: |
+      ansible.windows.win_shell: |
         $(Get-CimInstance Win32_ComputerSystem | select username).username
       register: svc
 
