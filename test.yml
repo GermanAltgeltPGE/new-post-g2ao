@@ -27,21 +27,19 @@
   gather_facts: true
   
   tasks:
-      - name: get status of service
-        vars:
-          ansible_become: yes
-          ansible_become_method: runas
-          ansible_become_user: '{{ ansible_user }}'
-          ansible_become_pass: '{{ ansible_password }}'
-          ansible_become_flags: logon_type=new_credentials logon_flags=netcredentials_only
+#      - name: get status of service
+
       
-      - name: powershell get service info
-        ansible.windows.win_powershell:
-          script: |
-            get-service -name masvc
-          register: svc
+  - name: powershell get service info
+
+      ansible.windows.win_powershell:
+      script: |
+          get-service -name masvc
+      register: svc
+
+  
 
 
-      - name: svc
-        debug:
-          msg: "FINAL:  svc {{ svcname }} {{ svc }}"
+  - name: svc
+    debug:
+      msg: "FINAL:  svc {{ svcname }} {{ svc }}"
