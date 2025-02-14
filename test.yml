@@ -32,8 +32,7 @@
   tasks:
     - name: powershell get service info
       ansible.windows.win_shell: |
-        $env:username
-        get-service -name masvc
+        get-service -name masvc | select state
       register: svc
 
     - name: svc
