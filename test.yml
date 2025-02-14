@@ -43,11 +43,11 @@
     - name: out 2
       debug:
         msg: "{{svcname}} is running ... "
-      when: svc == "Running"
+      when: svc.stdout == "Running\r\n"
     
     - name: out 3
       debug:
         msg: "{{svcname}} is not running ... "
-      when: svc != "Running"
+      when: svc.stdout != "Running\r\n"
     
 
