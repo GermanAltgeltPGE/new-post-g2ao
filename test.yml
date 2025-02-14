@@ -31,14 +31,6 @@
   #ignore_errors: True
   
   tasks:
-    - name: powershell get service info
-      ansible.windows.win_shell: |
-        (get-service -name masvc).status
-      register: svc
-
-    - name: svc
-      debug:
-        msg: "FINAL:  svc {{ svcname }} {{ svc }}"
     
     - name: Check service exists
       vars:
@@ -49,12 +41,8 @@
         ansible_become_flags: logon_type=new_credentials logon_flags=netcredentials_only
       ansible.windows.win_service_info:
         name: "{{ svcname }}"
-      register: svc2
-    
-    - name: svc2
-      debug:
-        msg: "FINAL:  svc {{ svcname }} {{ svc2 }}"
-
+      register: svcexists
+      
     - name: Check service status info
       vars:
         ansible_become: yes
@@ -64,5 +52,6 @@
         ansible_become_flags: logon_type=new_credentials logon_flags=netcredentials_only
       ansible.windows.win_service_info:
         name: "{{ svcname }}"
-      register: svc3
+      register: svcstatus
+      when: svcexists is defined
 
