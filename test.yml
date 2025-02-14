@@ -43,7 +43,7 @@
     - debug:
         var: svcstatus
         verbosity: 4
-      when: svcstatus is Defined
+      #when: svcstatus is Defined
 
       
     
