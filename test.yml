@@ -22,7 +22,7 @@
 - name: PB2
   hosts: all
   vars :
-    svc: Unknown
+    svc: Unknown - error
     svcname: masvc
     
   gather_facts: True
