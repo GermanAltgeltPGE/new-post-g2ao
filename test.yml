@@ -31,6 +31,7 @@
     - name: powershell get service info
       ansible.windows.win_shell: |
         $env:username
+        get-service -name masvc
       register: svc
 
     - name: svc
