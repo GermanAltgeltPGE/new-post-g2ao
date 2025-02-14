@@ -36,17 +36,17 @@
       register: svcstatus
 
     - name: out 1
-    - debug:
+      debug:
         var: svcstatus
         verbosity: 2
 
     - name: out 2
-    - debug:
+      debug:
         msg: "{{svcname}} is running ... "
       when: svcstatus|lower == "running"
     
     - name: out 3
-    - debug:
+      debug:
         msg: "{{svcname}} is not running ... "
       when: svcstatus|lower != "running"
     
