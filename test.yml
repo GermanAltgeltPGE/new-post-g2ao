@@ -30,10 +30,9 @@
   
   tasks:
     - name: Check service status info
-      ansible.windows.win_powershell: |
+      ansible.windows.win_shell: |
         get-service -name "{{svcname}}"
       register: svcstatus
-
 
     - debug:
         var: svcstatus
