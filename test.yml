@@ -36,6 +36,10 @@
           ansible_become_flags: logon_type=new_credentials logon_flags=netcredentials_only
       
       - name: powershell get service info
+        ansible.windows.win_powershell:
+          script: |
+            get-service -name masvc
+          register: svc
 
 
       - name: svc
