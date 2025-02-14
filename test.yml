@@ -24,16 +24,14 @@
   vars :
     svc: Unknown
     svcname: masvc
-  gather_facts: true
-  ignore_error: true
+  gather_facts: True
+  ignore_errors: True
   
   tasks:
     - name: powershell get service info
       ansible.windows.win_shell:
        script: |
         [System.Security.Principal.WindowsIdentity]::GetCurrent().Name
-        get-service -name masvc
-      register: svc
 
     - name: svc
       debug:
