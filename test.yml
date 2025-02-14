@@ -26,17 +26,17 @@
     svcname: masvc
     
   gather_facts: True
-  #ignore_errors: True
+  ignore_errors: True
   
   tasks:
     - name: Check service status info
       ansible.windows.win_shell: |
-        get-service -name "{{svcname}}"
+        (get-service -name "{{svcname}}").status
       register: svcstatus
 
     - debug:
         var: svcstatus
-        verbosity: 4
+        verbosity: 2
       #when: svcstatus is Defined
 
       
