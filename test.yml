@@ -23,26 +23,12 @@
   hosts: all
   vars :
     svc: Unknown
-    svc2: Unknown
-    svc3: Unknown
     svcname: masvc
     
   gather_facts: True
   #ignore_errors: True
   
   tasks:
-    
-    - name: Check service exists
-      vars:
-        ansible_become: yes
-        ansible_become_method: runas
-        ansible_become_user: '{{ ansible_user }}'
-        ansible_become_pass: '{{ ansible_password }}'
-        ansible_become_flags: logon_type=new_credentials logon_flags=netcredentials_only
-      ansible.windows.win_service_info:
-        name: "{{ svcname }}"
-      register: svcexists
-      
     - name: Check service status info
       vars:
         ansible_become: yes
@@ -53,5 +39,12 @@
       ansible.windows.win_service_info:
         name: "{{ svcname }}"
       register: svcstatus
-      when: svcexists is defined
+
+    - debug:
+        var: svcstatus
+        verbosity: 4
+      when: svcstatus is Defined
+
+      
+    
 
