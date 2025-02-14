@@ -27,19 +27,12 @@
   gather_facts: true
   
   tasks:
-#      - name: get status of service
-
-      
-  - name: powershell get service info
-
+    - name: powershell get service info
       ansible.windows.win_powershell:
-      script: |
-          get-service -name masvc
-      register: svc
+       script: |
+           get-service -name masvc
+       register: svc
 
-  
-
-
-  - name: svc
-    debug:
-      msg: "FINAL:  svc {{ svcname }} {{ svc }}"
+    - name: svc
+      debug:
+        msg: "FINAL:  svc {{ svcname }} {{ svc }}"
