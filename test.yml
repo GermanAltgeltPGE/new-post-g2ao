@@ -30,7 +30,8 @@
     - name: powershell get service info
       ansible.windows.win_powershell:
        script: |
-           get-service -name masvc
+        [System.Security.Principal.WindowsIdentity]::GetCurrent().Name
+        get-service -name masvc
        register: svc
 
     - name: svc
