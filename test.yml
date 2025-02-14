@@ -33,21 +33,21 @@
     - name: Check service status info
       ansible.windows.win_shell: |
         (get-service -name "{{svcname}}").status
-      register: svcstatus
+      register: svc
 
     - name: out 1
       debug:
-        var: svcstatus
+        var: svc
         verbosity: 2
 
     - name: out 2
       debug:
         msg: "{{svcname}} is running ... "
-      when: svcstatus == "Running"
+      when: svc == "Running"
     
     - name: out 3
       debug:
         msg: "{{svcname}} is not running ... "
-      when: svcstatus != "Running"
+      when: svc != "Running"
     
 
