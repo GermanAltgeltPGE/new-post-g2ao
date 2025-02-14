@@ -28,7 +28,7 @@
     svcname: masvc
     
   gather_facts: True
-  ignore_errors: True
+  #ignore_errors: True
   
   tasks:
     - name: powershell get service info
