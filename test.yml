@@ -24,6 +24,7 @@
   vars :
     svc: Unknown
     svc2: Unknown
+    svc3: Unknown
     svcname: masvc
     
   gather_facts: True
@@ -39,7 +40,7 @@
       debug:
         msg: "FINAL:  svc {{ svcname }} {{ svc }}"
     
-    - name: Check service status
+    - name: Check service exists
       vars:
         ansible_become: yes
         ansible_become_method: runas
@@ -53,4 +54,15 @@
     - name: svc2
       debug:
         msg: "FINAL:  svc {{ svcname }} {{ svc2 }}"
+
+    - name: Check service status info
+      vars:
+        ansible_become: yes
+        ansible_become_method: runas
+        ansible_become_user: '{{ ansible_user }}'
+        ansible_become_pass: '{{ ansible_password }}'
+        ansible_become_flags: logon_type=new_credentials logon_flags=netcredentials_only
+      ansible.windows.win_service_info:
+        name: "{{ svcname }}"
+      register: svc3
 
