@@ -48,15 +48,18 @@
       register: Trellix_pwr
       when: Trellix.exists
 
-    - debug: 1
+    - name: 1
+      debug: 
         var: Trellix_pwr.output.string
       when: Trellix_pwr is defined
 
-    - debug: 2
+    - name: 2
+      debug: 
         var: Trellix_svc
       when: Trellix_svc is defined
 
-    - debug: 3
+    - name: 3
+      debug: 
         var: Trellix.exists
       
 
