@@ -50,7 +50,7 @@
 
     - name: 1
       debug: 
-        var: Trellix_pwr.output_String
+        var: Trellix_pwr.output.String
       when: Trellix_pwr is defined
 
     - name: 2
