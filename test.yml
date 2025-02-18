@@ -44,7 +44,7 @@
     - name: get service status powershell
       ansible.windows.win_powershell:
        script: |
-        "{{ svcname }}"
+        (get-service -name {{ svcname }}).status
       register: Trellix_pwr
       when: Trellix.exists
 
