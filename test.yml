@@ -50,13 +50,13 @@
 
     - name: 0
       set_fact:
-       svc: "Pass - Victory"
+       svc: "Pass - {{ svcname }} service status is running"
       when: Trellix_pwr.output[0].String == "Running"
 
     - name: 1
       set_fact:
-       svc: "status {{ Trellix_svc.state }}"
-      when: Trellix_svc is defined
+       svc: "PASS - {{ svcname }} status is  {{ Trellix_svc.state }}"
+      when: (Trellix_svc is defined) and (Trellix_svc.status|lower is defined )
 
     - name: 2
       debug:
