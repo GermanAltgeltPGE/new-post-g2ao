@@ -50,20 +50,23 @@
 
     - name: 0
       set_fact:
-       svc: "Pass - {{ svcname }} service status is running"
+       Trellix: "Pass - {{ svcname }} service status is running"
       when: Trellix_pwr.output[0].String|lower == "running"
 
     - name: 1
       set_fact:
-       svc: "PASS - {{ svcname }} status is  {{ Trellix_svc.state }}"
+       Trellix: "PASS - {{ svcname }} status is  {{ Trellix_svc.state }}"
       when: (Trellix_svc is defined) and (Trellix_svc.status|lower == "running"  )
 
     - name: 2
       set_fact:
-       svc: "Fail - {{ svcname }} status is  {{ Trellix_svc.state }}"
+       Trellix: "Fail - {{ svcname }} status is  {{ Trellix_svc.state }}"
       when: (Trellix_svc is defined) and (Trellix_svc.status|lower != "running"  )
 
     - name: 3
       set_fact:
-       svc: "Fail - {{ svcname }} is not existant"
+       Trellix: "Fail - {{ svcname }} is not existant"
       when: (Trellix.exists == false)
+
+    - name: message
+      msg: "Trellix = {{ Trellix }}"
