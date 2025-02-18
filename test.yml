@@ -23,7 +23,7 @@
   hosts: all
   vars :
     svc: Unknown - error
-    svcname: masvc
+    svcname: masvc2
     Trellix: Fail 
     
   gather_facts: True
