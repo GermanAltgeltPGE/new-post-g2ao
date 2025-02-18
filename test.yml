@@ -56,7 +56,7 @@
     - name: 1
       set_fact:
        svc: "PASS - {{ svcname }} status is  {{ Trellix_svc.state }}"
-      when: (Trellix_svc is defined) and (Trellix_svc.status|lower is defined )
+      when: (Trellix_svc is defined) and (Trellix_svc.status|lower == "running"  )
 
     - name: 2
       debug:
