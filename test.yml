@@ -48,7 +48,7 @@
 
     - name: out 1
       debug:
-        var: svc.stdout_lines
+        var: svc
         verbosity: 2
 
     - name: out 2
@@ -61,4 +61,8 @@
         msg: "{{svcname}} is not running ... "
       when: svc.stdout != "Running\r\n"
     
+    - name: out 4
+      debug:
+        msg: "{{svcname}} error ... "
+      when: svc.stderr is defined
 
