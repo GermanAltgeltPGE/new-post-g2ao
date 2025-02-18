@@ -40,7 +40,7 @@
        script: |
         (get-service -name {{ svcname }} -erroraction silentlycontinue).status
       register: servicestatuspwr
-      when: svcstatus.exists
+      when: svcexists.exists
 
     - name: service there and running
       set_fact:
