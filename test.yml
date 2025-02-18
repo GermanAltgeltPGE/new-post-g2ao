@@ -38,7 +38,7 @@
     - name: get service status powershell
       ansible.windows.win_powershell:
        script: |
-        (get-service -name {{ svcname }}).status
+        (get-service -name {{ svcname }} -erroraction silentlycontinue).status
       register: servicestatuspwr
       when: svcstatus.exists
 
