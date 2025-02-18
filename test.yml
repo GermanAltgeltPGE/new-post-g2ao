@@ -48,10 +48,15 @@
       register: service_pwr
       when: svcstatus.exists
   
-    - name: service not there
+    - name: service there
       set_fact:
         Trellix: Unknown - svcexists
       when: svcexists.exists
+    
+    - name: service there and running
+      set_fact:
+        Trellix: Unknown - svcexists
+      when: (service_pwr.output[0].String == "Running") or (svcstatus.status == "Running")
 
     - name: service not there
       set_fact:
