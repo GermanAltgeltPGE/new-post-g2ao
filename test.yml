@@ -45,7 +45,7 @@
     - name: service there and running
       set_fact:
         Trellix: Unknown - exists and state is {{ servicestatuspwr}}
-      when: servicestatuspwr
+      when: servicestatuspwr is defined
 
     - name: service not there
       set_fact:
@@ -56,3 +56,6 @@
       debug: 
        msg: "Trellix = {{ Trellix }}"
 
+    - name: variable
+      debug: 
+       var: servicestatuspwr
