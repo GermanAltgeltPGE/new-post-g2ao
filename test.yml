@@ -23,7 +23,7 @@
   hosts: all
   vars :
     svc: Unknown - error
-    svcname: masvc2
+    svcname: massvc
     Trellix: Unknown
     
   gather_facts: True
@@ -33,7 +33,7 @@
     - name: Check service status info
       ansible.windows.win_shell: |
         try{
-        $svc=(get-service | ?{$_.name -eq "massvc"}).status
+        $svc=(get-service | ?{$_.name -eq {{ svcname }}}).status
         if ($svc.length -eq 0) {
             "Fail-not there"
             } else {
