@@ -47,27 +47,18 @@
         (get-service -name {{ svcname }}).status
       register: service_pwr
       when: svcstatus.exists
+   
+    - name: service not there
+      set_fact:
+        Trellix: Fail - {{ svcname }} doesnt exist
+      when: svcexists.exists
+
+    - name: service not there
+      set_fact:
+        Trellix: Unknown - {{ svcname }} doesnt exist
+      when: svcexists.exists == False
+
 
     - name: 0
-      set_fact:
-       Trellix: "Pass - {{ svcname }} service status is running"
-      when: service_pwr.output[0].String|lower == "running"
-
-    - name: 1
-      set_fact:
-       Trellix: "PASS - {{ svcname }} status is  {{ Trellix_svc.state }}"
-      when: (svcexists.exists) and (svcstatus.status|lower == "running"  )
-
-    - name: 2
-      set_fact:
-       Trellix: "Fail - {{ svcname }} status is  {{ Trellix_svc.state }}"
-      when: (svcexists.exists) and (svcstatus.status|lower != "running"  )
-
-    - name: 3
-      set_fact:
-       Trellix: "Fail - {{ svcname }} is not existant"
-      when: (svcexists.exists == false)
-
-    - name: message
-      debug:
        msg: "Trellix = {{ Trellix }}"
+
