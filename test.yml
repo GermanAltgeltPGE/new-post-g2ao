@@ -55,7 +55,7 @@
 
     - name: service not there
       set_fact:
-        Trellix: Unknown - {{ svcname }} doesnt exist
+        Trellix: Unknown - {{ svcname }} does exist
       when: svcexists.exists == False
 
 
