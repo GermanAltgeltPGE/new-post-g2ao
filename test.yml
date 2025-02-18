@@ -49,7 +49,7 @@
       when: Trellix.exists
 
     - debug:
-        var: Trellix_pwr
+        var: Trellix_pwr.string
       when: Trellix_pwr is defined
 
     - debug:
