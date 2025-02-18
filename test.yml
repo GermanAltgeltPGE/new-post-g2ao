@@ -49,7 +49,7 @@
       when: Trellix.exists
 
     - name: 0
-      degub:  
+      debug:  
        msg: "Victory"
       when: Trellix_pwr.output[0].String == "Running"
 
