@@ -60,5 +60,6 @@
 
 
     - name: 0
+      debug: 
        msg: "Trellix = {{ Trellix }}"
 
