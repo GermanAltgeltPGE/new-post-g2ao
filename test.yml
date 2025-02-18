@@ -23,7 +23,7 @@
   hosts: all
   vars :
     svc: Unknown - error
-    svcname: masvc1
+    svcname: masvc
     Trellix: Unknown
     
   gather_facts: True
@@ -43,7 +43,7 @@
     - debug:
         var: Trellix_svc
       when: Trellix_svc is defined
-      
+
     - debug:
         var: Trellix.exists
       
