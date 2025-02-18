@@ -48,6 +48,11 @@
       register: Trellix_pwr
       when: Trellix.exists
 
+    - name: 0
+      degub:  
+       msg: Trellix_pwr.output[0]
+      when: Trellix_pwr is defined
+
     - name: 1
       debug: 
         var: Trellix_pwr.output[0]
