@@ -34,25 +34,18 @@
       ansible.windows.win_service_info:
        name: "{{ svcname }}"
       register: svcexists
-    
-    - name: get service status
-      ansible.windows.win_service:
-       name: "{{ svcname }}"
-      register: svcstatus
-      when: svcexists.exists
 
     - name: get service status powershell
       ansible.windows.win_powershell:
        script: |
         (get-service -name {{ svcname }}).status
-      register: service_pwr
+      register: servicestatuspwr
       when: svcstatus.exists
 
-    
     - name: service there and running
       set_fact:
-        Trellix: Unknown - svcexists
-      when: (service_pwr.output[0].String == "Running") or (svcstatus.status == "Running")
+        Trellix: Unknown - exists and state is {{ servicestatuspwr}}
+      when: servicestatuspwr
 
     - name: service not there
       set_fact:
