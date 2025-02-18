@@ -41,7 +41,7 @@
       register: Trellix_svc
  
     - debug:
-        var: Trellix_svc
+        var: Trellix_svc.status
       when: Trellix_svc is defined
 
     - debug:
