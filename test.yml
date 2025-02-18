@@ -24,7 +24,7 @@
   vars :
     svc: Unknown - error
     svcname: masvc
-    Trellix: Unknown
+    Trellix: Fail 
     
   gather_facts: True
   ignore_errors: True
@@ -51,7 +51,7 @@
     - name: 0
       set_fact:
        svc: "Pass - {{ svcname }} service status is running"
-      when: Trellix_pwr.output[0].String == "Running"
+      when: Trellix_pwr.output[0].String|lower == "running"
 
     - name: 1
       set_fact:
@@ -60,6 +60,6 @@
 
     - name: 2
       debug:
-        msg: svc
+        msg: svc = {{ svc }}
 
 
