@@ -35,14 +35,19 @@
        (get-service {{ svcname }}).status 
       register: svc
 
-    - name: out 1
+    - name: status 1
       set_fact:
         svc: "Pass - service is running"
       when: svc.stdout == "Running\r\n"
     
-    - name: out 2
-      debug:
+    - name: status 2
+      set_fact:
         msg: "Fail - {{svcname}} is not running ... "
       when: svc.stdout != "Running\r\n"
+
+    - name: output 
+      debug:
+        var: svc
+      
 
 
