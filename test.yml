@@ -31,23 +31,12 @@
   
   tasks:
     - name: Check service status info
-      ansible.windows.win_shell: |
-       (get-service {{ svcname }}).status 
-      register: svc
-
-    - name: status 1
-      set_fact:
-        svc: "Pass - service is running"
-      when: svc.stdout == "Running\r\n"
-    
-    - name: status 2
-      set_fact:
-        msg: "Fail - {{svcname}} is not running ... "
-      when: svc.stdout != "Running\r\n"
-
-    - name: output 
-      debug:
-        var: svc
+      ansible.windows.win_service_info:
+       name: "{{ svcname }}"
+      register: Trellix
+ 
+    - debug:
+        var: Trellix
       
 
 
