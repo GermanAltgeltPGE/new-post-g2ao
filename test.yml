@@ -69,4 +69,5 @@
       when: (Trellix.exists == false)
 
     - name: message
-      msg: "Trellix = {{ Trellix }}"
+      debug:
+       msg: "Trellix = {{ Trellix }}"
