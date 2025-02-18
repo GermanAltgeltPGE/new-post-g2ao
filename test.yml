@@ -46,8 +46,7 @@
        script: |
         (get-service -name {{ svcname }}).status
       register: service_pwr
-      when: svcstat
-      us.exists
+      when: svcstatus.exists
 
     - name: 0
       set_fact:
