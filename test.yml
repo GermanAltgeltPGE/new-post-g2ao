@@ -44,7 +44,7 @@
 
     - name: service there and running
       set_fact:
-        Trellix: Unknown - exists and state is {{ servicestatuspwr}}
+        Trellix: Unknown - exists and state is {{ Trellix_pwr.output[0].String }}
       when: servicestatuspwr is defined
 
     - name: service not there
