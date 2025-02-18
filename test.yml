@@ -59,7 +59,7 @@
       when: svcexists.exists == False
 
 
-    - name: 0
+    - name: output
       debug: 
        msg: "Trellix = {{ Trellix }}"
 
