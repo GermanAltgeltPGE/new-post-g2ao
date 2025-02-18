@@ -48,7 +48,7 @@
 
     - name: out 1
       debug:
-        var: svc
+        var: svc.stdout_lines
         verbosity: 2
 
     - name: out 2
