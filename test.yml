@@ -39,6 +39,11 @@
       ansible.windows.win_service:
        name: "{{ svcname }}"
       register: Trellix_svc
+       
+      rescue:
+    - name: Print when errors
+      ansible.builtin.debug:
+        msg: 'I caught an error, can do stuff here to fix it, :-)'
  
     - debug:
         var: Trellix_svc
