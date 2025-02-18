@@ -30,11 +30,20 @@
   ignore_errors: True
   
   tasks:
-    - name: Check service status info
+    - name: Checkif service exists
       ansible.windows.win_service_info:
        name: "{{ svcname }}"
       register: Trellix
+    
+    - name: get service status
+      ansible.windows.win_service:
+       name: "{{ svcname }}"
+      register: Trellix_svc
  
+    - debug:
+        var: Trellix_svc
+      when: Trellix_svc is defined
+      
     - debug:
         var: Trellix.exists
       
