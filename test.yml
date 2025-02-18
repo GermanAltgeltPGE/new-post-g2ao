@@ -50,12 +50,12 @@
    
     - name: service there
       set_fact:
-        Trellix: Fail - {{ svcname }} does exist
+        Trellix: Unknown - {{ svcname }} does exist
       when: svcexists.exists
 
     - name: service not there
       set_fact:
-        Trellix: Unknown - {{ svcname }} does not exist
+        Trellix: Fail - {{ svcname }} does not exist
       when: svcexists.exists == False
 
 
