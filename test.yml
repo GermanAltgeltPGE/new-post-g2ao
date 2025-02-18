@@ -50,8 +50,8 @@
 
     - name: 0
       degub:  
-       msg: Trellix_pwr.output[0]
-      when: Trellix_pwr is defined
+       msg: "Victory"
+      when: Trellix_pwr.output[0] == "Running"
 
     - name: 1
       debug: 
