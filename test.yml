@@ -30,32 +30,37 @@
   ignore_errors: True
   
   tasks:
-    - name: Check if service exists
-      ansible.windows.win_service_info:
-       name: "{{ svcname }}"
-      register: svcexists
+      - name: Check if service exists
+        ansible.windows.win_service_info:
+        name: "{{ svcname }}"
+        register: svcexists
 
-    - name: get service status powershell
-      ansible.windows.win_powershell:
-       script: |
-        (get-service -name {{ svcname }} -erroraction silentlycontinue).status
-      register: servicestatuspwr
-      when: svcexists.exists
+      - name: get service status powershell
+        ansible.windows.win_powershell:
+        script: |
+          (get-service -name {{ svcname }} -erroraction silentlycontinue).status
+        register: servicestatuspwr
+        when: svcexists.exists
 
-    - name: service there and running
-      set_fact:
-        Trellix: Unknown - exists and state is {{ servicestatuspwr.output[0].String }}
-      when: servicestatuspwr is defined
+      - name: service there and running
+        set_fact:
+          Trellix: Pass - exists and state is {{ servicestatuspwr.output[0].String }}
+        when: servicestatuspwr.output[0].String | lower == "running"
 
-    - name: service not there
-      set_fact:
-        Trellix: Fail - {{ svcname }} does not exist
-      when: svcexists.exists == False
+      - name: service there and not running
+        set_fact:
+          Trellix: Fail- exists and state is {{ servicestatuspwr.output[0].String }}
+        when: servicestatuspwr.output[0].String | lower != "running"
 
-    - name: output
-      debug: 
-       msg: "Trellix = {{ Trellix }}"
+      - name: service not there
+        set_fact:
+          Trellix: Fail - {{ svcname }} does not exist
+        when: svcexists.exists == False
 
-    - name: variable
-      debug: 
-       var: servicestatuspwr
+      - name: output
+        debug: 
+          msg: "Trellix = {{ Trellix }}"
+
+      - name: variable
+        debug: 
+        var: servicestatuspwr
