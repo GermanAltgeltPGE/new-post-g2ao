@@ -66,4 +66,4 @@
     - name: 3
       set_fact:
        svc: "Fail - {{ svcname }} is not existant"
-      when: (Trellix_svc is notdefined))
+      when: (Trellix.exists == false)
