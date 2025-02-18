@@ -47,17 +47,16 @@
         (get-service -name {{ svcname }}).status
       register: service_pwr
       when: svcstatus.exists
-   
-    - name: service there
+  
+    - name: service not there
       set_fact:
-        Trellix: Unknown - {{ svcname }} does exist
+        Trellix: Unknown - svcexists
       when: svcexists.exists
 
     - name: service not there
       set_fact:
         Trellix: Fail - {{ svcname }} does not exist
       when: svcexists.exists == False
-
 
     - name: output
       debug: 
