@@ -48,14 +48,14 @@
       register: service_pwr
       when: svcstatus.exists
    
-    - name: service not there
+    - name: service there
       set_fact:
-        Trellix: Fail - {{ svcname }} doesnt exist
+        Trellix: Fail - {{ svcname }} does exist
       when: svcexists.exists
 
     - name: service not there
       set_fact:
-        Trellix: Unknown - {{ svcname }} does exist
+        Trellix: Unknown - {{ svcname }} does not exist
       when: svcexists.exists == False
 
 
