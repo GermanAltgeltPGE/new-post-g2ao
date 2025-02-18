@@ -32,18 +32,7 @@
   tasks:
     - name: Check service status info
       ansible.windows.win_shell: |
-        try{
-        $svc=(get-service | ?{$_.name -eq {{ svcname }}}).status
-        if ($svc.length -eq 0) {
-            "Fail-not there"
-            } else {
-            if ($svc -eq "Running") {
-            "Pass" } else {"Fail-not Running"}
-            }
-        }
-        catch {
-            write-host "Fail-Error"
-            }
+       (get-service {{ svcname }}).status 
       register: svc
 
     - name: out 1
