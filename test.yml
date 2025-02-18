@@ -49,23 +49,17 @@
       when: Trellix.exists
 
     - name: 0
-      debug:  
-       msg: "Victory"
+      set_fact:
+       svc: "Pass - Victory"
       when: Trellix_pwr.output[0].String == "Running"
 
     - name: 1
-      debug: 
-        var: Trellix_pwr.output[0]
-      when: Trellix_pwr is defined
-
-    - name: 2
-      debug: 
-        var: Trellix_svc
+      set_fact:
+       svc: "status {{ Trellix_svc.state }}"
       when: Trellix_svc is defined
 
-    - name: 3
-      debug: 
-        var: Trellix.exists
-      
+    - name: 2
+      debug:
+        msg: svc
 
 
