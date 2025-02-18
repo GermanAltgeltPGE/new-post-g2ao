@@ -36,22 +36,13 @@
       register: svc
 
     - name: out 1
-      debug:
-        var: svc
-        verbosity: 2
-
-    - name: out 2
-      debug:
-        msg: "{{svcname}} is running ... "
+      set_fact:
+        svc: "Pass - service is running"
       when: svc.stdout == "Running\r\n"
     
-    - name: out 3
+    - name: out 2
       debug:
-        msg: "{{svcname}} is not running ... "
+        msg: "Fail - {{svcname}} is not running ... "
       when: svc.stdout != "Running\r\n"
-    
-    - name: out 4
-      debug:
-        msg: "{{svcname}} error ... "
-      when: svc.stderr is defined
+
 
