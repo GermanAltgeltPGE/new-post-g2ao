@@ -36,7 +36,7 @@
       register: Trellix
  
     - debug:
-        var: Trellix
+        var: Trellix.exists
       
 
 
