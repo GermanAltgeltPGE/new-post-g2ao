@@ -39,12 +39,19 @@
       ansible.windows.win_service:
        name: "{{ svcname }}"
       register: Trellix_svc
-       
-      rescue:
-    - name: Print when errors
-      ansible.builtin.debug:
-        msg: 'I caught an error, can do stuff here to fix it, :-)'
- 
+      when: Trellix.exists
+
+    - name: get service status powershell
+      ansible.windows.win_powershell:
+       script: |
+        "{{ svcname }}"
+      register: Trellix_pwr
+      when: Trellix.exists
+
+    - debug:
+        var: Trellix_pwr
+      when: Trellix_pwr is defined
+
     - debug:
         var: Trellix_svc
       when: Trellix_svc is defined
