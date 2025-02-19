@@ -58,4 +58,4 @@
 
       - name: variable
         debug: 
-        var: servicestatuspwr
+          var: servicestatuspwr
