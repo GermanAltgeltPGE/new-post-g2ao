@@ -23,7 +23,7 @@
   hosts: all
   vars :
     svc: Unknown - error
-    svcname: masvc
+    svcname: masvc2
     Trellix: Fail 
     
   gather_facts: True
@@ -44,8 +44,8 @@
 
       - name: service there returns status
         set_fact:
-          Trellix: Unkniwn - exists and state is {{ servicestatuspwr.output[0].String }}
-        when: servicestatuspwr is defined
+          Trellix: Unknown - exists and state is {{ servicestatuspwr.output[0].String }}
+        when: (servicestatuspwr is defined) and ()
 
       - name: service not there
         set_fact:
