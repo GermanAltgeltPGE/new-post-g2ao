@@ -32,7 +32,7 @@
   tasks:
       - name: Check if service exists
         ansible.windows.win_service_info:
-        name: "{{ svcname }}"
+          name: "{{ svcname }}"
         register: svcexists
 
       - name: get service status powershell
