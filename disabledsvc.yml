@@ -31,7 +31,7 @@
     ansible.windows.win_service:
       name: "spool"
     register: spoolersvc
-    when: spoolerisvcnfo.exists == true
+    when: spoolersvcnfo.exists == true
 
   - name: display Spooler
     debug: 
