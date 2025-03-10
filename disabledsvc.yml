@@ -60,6 +60,7 @@
   - name: display Spoolersvc
     debug: 
       var: WinHttpAutoProxySvc.state
+    when: WinHttpAutoProxySvc.exists
 
 
 
