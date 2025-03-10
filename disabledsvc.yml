@@ -30,12 +30,12 @@
   - name: Check service state
     ansible.windows.win_service:
       name: "spool"
-    register: spoolersvc
+    register: Spoolersvc
     when: Spoolersvcinfo.exists
 
   - name: display Spooler
     debug: 
-      var: spoolersvcinfo
+      var: Spoolersvcinfo
 
   - name: display Spooler
     debug: 
