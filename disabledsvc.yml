@@ -20,6 +20,9 @@
 - name: PB2
   hosts: all
   gather_facts: true
+  vars:
+    Spooler: Unknown
+    Spooler2: Unknown
 
   tasks:
 
@@ -32,7 +35,7 @@
   - name: display Spooler
     debug: 
       var: spooler.exists
-      
+
 # Check for disabled services 01
   - name: Find Spooler2
     ansible.windows.win_service_info:
