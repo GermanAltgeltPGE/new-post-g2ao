@@ -22,7 +22,7 @@
 # will change file location from c:\\temp to D:\\installs if it exists
 # Change the following lines with your playbook tasks
 #
-- name:  post install - PlayBook 2
+- name:  post install - PlayBook 2 -
   hosts: all 
   no_log: false
   vars:
