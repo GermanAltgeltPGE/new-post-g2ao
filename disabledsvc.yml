@@ -45,22 +45,22 @@
   - name: Check "WinHTTP Web Proxy Auto-Discovery Service" service exists
     ansible.windows.win_service_info:
       name: "WinHttpAutoProxySvc"
-    register: WinHttpAutoProxySvcsinfo
+    register: WHsvcinfo
 
   - name: Check "WinHTTP Web Proxy Auto-Discovery Service" service state if exists
     ansible.windows.win_service:
       name: "WinHttpAutoProxySvc"
-    register: WinHttpAutoProxySvc
-    when: WinHttpAutoProxySvcinfo.exists
+    register: WHsvc
+    when: WHsvcinfoexists
 
-  - name: display Spoolersvcinfo
+  - name: display WHsvcinfo.exists 
     debug: 
-      var: WinHttpAutoProxySvc.exists
+      var: WHsvcinfo.exists
 
-  - name: display Spoolersvc
+  - name: display WHsvc state
     debug: 
-      var: WinHttpAutoProxySvc.state
-    when: WinHttpAutoProxySvc.exists
+      var: WHsvc.state
+    when: WWHsvcinfo.exists
 
 
 
