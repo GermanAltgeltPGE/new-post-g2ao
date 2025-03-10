@@ -22,6 +22,7 @@
   gather_facts: true
 
   tasks:
+  #spooler
   - name: Check "spooler" service exists
     ansible.windows.win_service_info:
       name: "Spooler"
@@ -40,7 +41,25 @@
   - name: display Spoolersvc
     debug: 
       var: Spoolersvc.state
-  
+ # "WinHTTP Web Proxy Auto-Discovery Service"
+  - name: Check "WinHTTP Web Proxy Auto-Discovery Service" service exists
+    ansible.windows.win_service_info:
+      name: "WinHttpAutoProxySvc"
+    register: WinHttpAutoProxySvcsinfo
+
+  - name: Check "WinHTTP Web Proxy Auto-Discovery Service" service state if exists
+    ansible.windows.win_service:
+      name: "Spooler"
+    register: WinHttpAutoProxySvc
+    when: WinHttpAutoProxySvcinfo.exists
+
+  - name: display Spoolersvcinfo
+    debug: 
+      var: WinHttpAutoProxySvc.exists
+
+  - name: display Spoolersvc
+    debug: 
+      var: WinHttpAutoProxySvc.state
 
 
 
