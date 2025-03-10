@@ -22,14 +22,14 @@
   gather_facts: true
 
   tasks:
-  - name: Check "spool" service exists
+  - name: Check "spooler" service exists
     ansible.windows.win_service_info:
       name: "Spooler"
     register: Spoolersvcinfo
 
   - name: Check "spooler" service state if exists
     ansible.windows.win_service:
-      name: "Spool"
+      name: "Spooler"
     register: Spoolersvc
     when: Spoolersvcinfo.exists
 
