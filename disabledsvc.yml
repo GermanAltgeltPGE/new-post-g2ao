@@ -30,7 +30,9 @@
     register: Spooler
     
   - name: display Spooler
-    debug: spooler.exists
+    debug: 
+      var: spooler.exists
+      
 # Check for disabled services 01
   - name: Find Spooler2
     ansible.windows.win_service_info:
@@ -38,7 +40,8 @@
     register: Spooler2
   
   - name: display Spooler2
-    debug: spooler2.exists
+    debug: 
+      var: spooler2.exists
   
 
 
