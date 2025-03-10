@@ -21,30 +21,30 @@
   hosts: all
   gather_facts: true
   vars:
-    Spooler: Unknown
-    Spooler2: Unknown
+    Sp1: Unknown
+    Sp2: Unknown
 
   tasks:
 
 # Check for disabled services 00
   - name: Find Spooler
     ansible.windows.win_service_info:
-      name: Spooler
-    register: Spooler
+      name: "spooler"
+    register: Sp1
     
   - name: display Spooler
     debug: 
-      var: spooler.exists
+      var: sp
 
 # Check for disabled services 01
   - name: Find Spooler2
     ansible.windows.win_service_info:
-      name: Spooler2
-    register: Spooler2
-  
+      name: "Spooler2"
+    register: Sp2
+# Check for disabled services 02
   - name: display Spooler2
     debug: 
-      var: spooler2.exists
+      var: sp2
   
 
 
