@@ -49,7 +49,7 @@
 
   - name: Check "WinHTTP Web Proxy Auto-Discovery Service" service state if exists
     ansible.windows.win_service:
-      name: "Spooler"
+      name: "WinHttpAutoProxySvc"
     register: WinHttpAutoProxySvc
     when: WinHttpAutoProxySvcinfo.exists
 
