@@ -20,32 +20,26 @@
 - name: PB2
   hosts: all
   gather_facts: true
-  vars:
-    Sp1: Unknown
-    Sp2: Unknown
 
   tasks:
-
-# Check for disabled services 00
-  - name: Find Spooler
+  - name: Check service exists
     ansible.windows.win_service_info:
-      name: "spooler"
-    register: Sp1
-    
+      name: "spool"
+    register: Spoolersvcinfo
+
+  - name: Check service state
+    ansible.windows.win_service:
+      name: "spool"
+    register: spoolersvc
+    when: spoolerisvcnfo.exists == true
+
   - name: display Spooler
     debug: 
-      var: sp1
+      var: spoolersvcinfo
 
-# Check for disabled services 01
-  - name: Find Spooler2
-    ansible.windows.win_service_info:
-      name: "Spooler2"
-    register: sp2
-
-# Check for disabled services 02
-  - name: display Spooler2
+  - name: display Spooler
     debug: 
-      var: sp2
+      var: spoolersvc
   
 
 
