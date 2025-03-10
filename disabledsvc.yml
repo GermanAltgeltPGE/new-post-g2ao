@@ -24,12 +24,12 @@
   tasks:
   - name: Check "spool" service exists
     ansible.windows.win_service_info:
-      name: "spool"
+      name: "Spool"
     register: Spoolersvcinfo
 
   - name: Check "spool" service state if exists
     ansible.windows.win_service:
-      name: "spool"
+      name: "Spool"
     register: Spoolersvc
     when: Spoolersvcinfo.exists
 
