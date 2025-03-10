@@ -23,7 +23,7 @@
 
   tasks:
 
-# Check for disabled services 0
+# Check for disabled services 00
   - name: Find Spooler
     ansible.windows.win_service_info:
       name: Spooler
@@ -31,7 +31,7 @@
     
   - name: display Spooler
     debug: spooler.exists
-# Check for disabled services 1
+# Check for disabled services 01
   - name: Find Spooler2
     ansible.windows.win_service_info:
       name: Spooler2
