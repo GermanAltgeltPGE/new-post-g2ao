@@ -34,13 +34,14 @@
     
   - name: display Spooler
     debug: 
-      var: sp
+      var: sp1
 
 # Check for disabled services 01
   - name: Find Spooler2
     ansible.windows.win_service_info:
       name: "Spooler2"
-    register: Sp2
+    register: sp2
+
 # Check for disabled services 02
   - name: display Spooler2
     debug: 
