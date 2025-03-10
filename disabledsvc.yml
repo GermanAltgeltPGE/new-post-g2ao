@@ -41,6 +41,7 @@
   - name: display Spoolersvc
     debug: 
       var: Spoolersvc.state
+
  # "WinHTTP Web Proxy Auto-Discovery Service"
   - name: Check "WinHTTP Web Proxy Auto-Discovery Service" service exists
     ansible.windows.win_service_info:
@@ -60,7 +61,7 @@
   - name: display WHsvc state
     debug: 
       var: WHsvc.state
-    when: WWHsvcinfo.exists
+    when: WHsvcinfo.exists
 
 
 
