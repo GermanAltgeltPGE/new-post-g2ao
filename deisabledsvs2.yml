@@ -24,9 +24,10 @@
   tasks:
   # "WinHTTP Web Proxy Auto-Discovery Service"
   # name: "spooler","WinHttpAutoProxySvc"
-  - name: Add several users
+  - name: loop through services
     debug: 
-      msg: "{{ item }}"
+      msg: "{{ item.name }}"
+      register: {{ item.result }}
     loop:
-     - "spooler"
-     - "WinHttpAutoProxySvc"
+      - { name: 'spooler', result : 'S1' }
+      - { name: 'WinHttpAutoProxySvc"', result: 'S2' }
