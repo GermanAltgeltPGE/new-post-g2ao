@@ -27,7 +27,7 @@
   - name: loop through services
     debug: 
       msg: "{{ item.name }}"
-      register: "{{ item.result }}"
+    register: "{{ item.result }}"
     loop:
       - { name: 'spooler', result : 'S1' }
       - { name: 'WinHttpAutoProxySvc"', result: 'S2' }
