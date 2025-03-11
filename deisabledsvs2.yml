@@ -22,12 +22,11 @@
   gather_facts: true
 
   tasks:
-  #spooler
- # "WinHTTP Web Proxy Auto-Discovery Service"
- # name: "spooler","WinHttpAutoProxySvc"
+  # "WinHTTP Web Proxy Auto-Discovery Service"
+  # name: "spooler","WinHttpAutoProxySvc"
   - name: Add several users
     debug: 
-      msg: {{ item }}
+      msg: "{{ item }}"
     loop:
      - "spooler"
      - "WinHttpAutoProxySvc"
