@@ -20,8 +20,9 @@
 - name: PB2
   hosts: all
   gather_facts: true
-  vars: 
-      Services: EMPTY service
+  vars:
+      servicesinfo: EMPTY service
+      services: EMPTY service
  
 
   tasks:
