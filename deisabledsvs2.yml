@@ -21,22 +21,15 @@
   hosts: all
   gather_facts: true
   vars: 
-      S1: EMPTY
-      S2: EMPTY
-      S3: EMPTY
-      S4: EMPTY
+      Services: EMPTY service
+ 
 
   tasks:
-  # "WinHTTP Web Proxy Auto-Discovery Service"
-  # name: "spooler","WinHttpAutoProxySvc"
-  #- name: loop through services
-  #  debug: 
-  #    msg: "{{ item.name }}"
 
   - name: check service
     ansible.windows.win_service_info:
       name: "{{ item.name }}"
-    register: {{ item.result }}
+    register: {services
     loop:
       - { name: 'spooler', result : 'S1' }
       - { name: 'WinHttpAutoProxySvc"', result: 'S2' }
