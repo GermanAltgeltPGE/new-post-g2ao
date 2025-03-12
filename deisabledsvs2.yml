@@ -21,10 +21,10 @@
   hosts: all
   gather_facts: true
   vars: 
-    S1:EMPTY
-    S2:EMPTY
-    S3:EMPTY
-    S4:EMPTY
+      S1:EMPTY
+      S2:EMPTY
+      S3:EMPTY
+      S4:EMPTY
 
   tasks:
   # "WinHTTP Web Proxy Auto-Discovery Service"
