@@ -41,8 +41,9 @@
       -  name: 'WinHttpAutoProxySvc'
   
   - debug:
-      var: "{{ item }}"
+      var: servicesinfo
       verbosity: 4
-    loop:
-      -  name: 'servicesinfo'
-      -  name: 'services'
+      
+  - debug:
+      var: services
+      verbosity: 4
