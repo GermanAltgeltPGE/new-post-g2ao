@@ -26,14 +26,23 @@
 
   tasks:
 
-  - name: check services loop
+  - name: check services info
+    ansible.windows.win_service_info:
+      name: "{{ item }}"
+    register: servicesinfo
+
+  - name: check service status
     ansible.windows.win_service_info:
       name: "{{ item }}"
     register: services
+     
     loop:
       -  name: 'spooler'
       -  name: 'WinHttpAutoProxySvc'
   
   - debug:
-      var: services
+      var: "{{ item }}"
       verbosity: 4
+    loop:
+      -  name: 'servicesinfo'
+      -  name: 'services'
