@@ -20,7 +20,7 @@
 - name: PB2
   hosts: all
   gather_facts: true
-  Vars: 
+  vars: 
     S1:EMPTY
     S2:EMPTY
     S3:EMPTY
@@ -34,7 +34,7 @@
       msg: "{{ item.name }}"
   - name: check service
     ansible.windows.win_service_info:
-      name: "Spooler"
+      name: "{{ item.name }}"
     #register: "{{ item.result }}"
     loop:
       - { name: 'spooler', result : 'S1' }
