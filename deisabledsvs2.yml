@@ -29,7 +29,7 @@
   - name: check service
     ansible.windows.win_service_info:
       name: "{{ item.name }}"
-    register: {services
+    register: services
     loop:
       - { name: 'spooler', result : 'S1' }
       - { name: 'WinHttpAutoProxySvc"', result: 'S2' }
