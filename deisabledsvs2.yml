@@ -29,9 +29,10 @@
   tasks:
   # "WinHTTP Web Proxy Auto-Discovery Service"
   # name: "spooler","WinHttpAutoProxySvc"
-  - name: loop through services
-    debug: 
-      msg: "{{ item.name }}"
+  #- name: loop through services
+  #  debug: 
+  #    msg: "{{ item.name }}"
+
   - name: check service
     ansible.windows.win_service_info:
       name: "{{ item.name }}"
