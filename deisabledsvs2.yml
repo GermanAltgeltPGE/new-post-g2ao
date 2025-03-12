@@ -26,13 +26,14 @@
 
   tasks:
 
-  - name: check service
+  - name: check services loop
     ansible.windows.win_service_info:
       name: "{{ item.name }}"
     register: services
     loop:
       - { name: 'spooler', result : 'S1' }
       - { name: 'WinHttpAutoProxySvc"', result: 'S2' }
-
+  
+  - name: output services varable
   - debug:
       var: services
