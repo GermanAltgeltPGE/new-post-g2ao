@@ -33,3 +33,6 @@
     loop:
       - { name: 'spooler', result : 'S1' }
       - { name: 'WinHttpAutoProxySvc"', result: 'S2' }
+
+  - debug:
+      var: services
