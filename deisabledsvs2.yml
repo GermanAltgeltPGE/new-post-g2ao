@@ -31,8 +31,12 @@
     ansible.windows.win_service_info:
       name: "{{ item }}"
     register: servicesinfo
+    loop:
+      -  name: 'spooler'
+      -  name: 'WinHttpAutoProxySvc'
+      
   - name: check service status
-    ansible.windows.win_service_info:
+    ansible.windows.win_service:
       name: "{{ item }}"
     register: services
     loop:
