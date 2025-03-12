@@ -20,6 +20,11 @@
 - name: PB2
   hosts: all
   gather_facts: true
+  Vars: 
+    S1:EMPTY
+    S2:EMPTY
+    S3:EMPTY
+    S4:EMPTY
 
   tasks:
   # "WinHTTP Web Proxy Auto-Discovery Service"
@@ -27,6 +32,9 @@
   - name: loop through services
     debug: 
       msg: "{{ item.name }}"
+  - name: check service
+    ansible.windows.win_service_info:
+      name: "Spooler"
     #register: "{{ item.result }}"
     loop:
       - { name: 'spooler', result : 'S1' }
