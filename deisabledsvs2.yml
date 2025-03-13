@@ -53,10 +53,12 @@
       -  name: 'msiscsi'
       
   
-  - debug:
+  - name: servicesinfo variable
+    debug:
       var: servicesinfo
-      verbosity: 4
+      verbosity: 2
 
-  - debug:
+  - name: services variable
+    debug:
       var: services
-      verbosity: 4
+      verbosity: 2
