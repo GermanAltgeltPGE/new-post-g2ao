@@ -55,7 +55,7 @@
   
   - name: servicesinfo variable
     debug:
-      msg: "servicesinfo is {{ serviceinfo }}"
+      msg: "servicesinfo is {{ servicesinfo }}"
       verbosity: 2
 
   - name: services variable
