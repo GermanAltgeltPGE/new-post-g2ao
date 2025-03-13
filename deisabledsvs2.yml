@@ -34,11 +34,16 @@
     loop:
       -  name: 'spooler'
       -  name: 'WinHttpAutoProxySvc'
+      -  name: 'UmRdpService'
+      -  name: 'TapiSrv'
+      -  name: 'snmptrap'
+      -  name: 'msiscsi'
 
   - name: check service status
     ansible.windows.win_service:
       name: "{{ item }}"
     register: services
+
     loop:
       -  name: 'spooler'
       -  name: 'WinHttpAutoProxySvc'
