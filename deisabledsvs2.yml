@@ -55,10 +55,10 @@
   
   - name: servicesinfo variable
     debug:
-      var: servicesinfo
+      msg: "servicesinfo is {{ serviceinfo }}"
       verbosity: 2
 
   - name: services variable
     debug:
-      var: services
+      msg: "services is {{ services }}"
       verbosity: 2
