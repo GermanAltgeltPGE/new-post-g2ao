@@ -32,4 +32,4 @@
 
     - name: message
       debug:
-        msg: '[[ servicesinfo ]]'
+        msg:  '{{servicesinfo}}'
