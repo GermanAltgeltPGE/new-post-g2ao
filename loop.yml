@@ -34,6 +34,10 @@
       debug:
         msg:  servicesinfo.results
       
+    - name: var2
+      debug:
+        msg:  servicesinfo.results.item
+
     - name: message 2
       debug:
         msg:  '{{servicesinfo}}'
