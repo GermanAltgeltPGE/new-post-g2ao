@@ -28,11 +28,5 @@
       - name: Most basic loop
         debug:
           msg: '{{ item }}'
-
-      - name: service info
-        ansible.windows.win_service_info:
-          name: '{{ item }}'
-        register: servicesinfo
-
       loop: '{{ svcnames }}'
 
