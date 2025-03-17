@@ -21,7 +21,7 @@
   hosts: all
   gather_facts: true
   vars:
-    svcnames: "['WinHttpAutoProxySvc','spooler','UmRdpService'.'TapiSrv','snmptrap','msiscsi']"
+    svcnames: "['WinHttpAutoProxySvc','spooler','UmRdpService','TapiSrv','snmptrap','msiscsi']"
  
   tasks:
     - name: loop services
