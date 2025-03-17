@@ -21,7 +21,7 @@
   hosts: all
   gather_facts: true
   vars:
-    svcnames: "['WinHttpAutoProxySvc','spooler']"
+    svcnames: "['WinHttpAutoProxySvc','spooler','sp2']"
  
   tasks:
     - name: loop services
