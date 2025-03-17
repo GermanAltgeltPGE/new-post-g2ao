@@ -32,13 +32,13 @@
 
     - name: var1
       debug:
-        msg:  servicesinfo.results
+        msg:  '{{servicesinfo.results}}'
       
     - name: var2
       debug:
-        msg:  servicesinfo.results.item
+        msg:  '{{servicesinfo.results.item}}'
 
-    - name: message 2
+    - name: message 1
       debug:
-        msg:  '{{servicesinfo}}'
+        var:  servicesinfo
  
