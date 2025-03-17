@@ -33,4 +33,4 @@
     - name: check servicesinfo
       debug:
         var: servicesinfo
-      when: servicesinfo exists
+      when: servicesinfo is defined
