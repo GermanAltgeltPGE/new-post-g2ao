@@ -32,5 +32,4 @@
 
     - name: message
       debug:
-        msg: '[[ item ]]'
-      loop: '{{ servicesinfo.name }}'
+        msg: '[[ servicesinfo ]]'
