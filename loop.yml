@@ -36,5 +36,5 @@
       
     - name: message 2
       debug:
-        msg:  '{{servicesinfo.item}}'
+        msg:  '{{servicesinfo}}'
  
