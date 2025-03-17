@@ -21,15 +21,10 @@
   hosts: all
   gather_facts: true
   vars:
-      servicesinfo: EMPTY service
-      services: EMPTY service
+    services: "['WinHttpAutoProxySvc','spooler']"
  
 
   tasks:
-  #"['inHttpAutoProxySvc','spooler']""
-  - set_fact:
-      services: "['inHttpAutoProxySvc','spooler']"
-  
   - name: Most basic loop
     debug:
       msg: '{{ item }}'
