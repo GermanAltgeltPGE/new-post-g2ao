@@ -32,7 +32,7 @@
 
     - name: var1
       debug:
-        var:  servicesinfo
+        var:  servicesinfo.results
       
     - name: message 2
       debug:
