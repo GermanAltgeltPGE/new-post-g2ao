@@ -32,5 +32,5 @@
 
     - name: check servicesinfo
       debug:
-        msg: ' {{ servicesinfo }}'
+        msg: ' {{ servicesinfo.name }}'
       when: servicesinfo is defined
