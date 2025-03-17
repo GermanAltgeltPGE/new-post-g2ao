@@ -30,9 +30,9 @@
       register: servicesinfo
       loop: '{{ svcnames }}'
 
-    - name: message 1
+    - name: var1
       debug:
-        msg:  '{{servicesinfo}}'
+        var:  servicesinfo
       
     - name: message 2
       debug:
