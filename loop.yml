@@ -21,12 +21,12 @@
   hosts: all
   gather_facts: true
   vars:
-    services: "['WinHttpAutoProxySvc','spooler']"
+    svcnames: "['WinHttpAutoProxySvc','spooler']"
  
 
   tasks:
   - name: Most basic loop
     debug:
       msg: '{{ item }}'
-    loop: '{{ services }}'
+    loop: '{{ svcnames }}'
 
