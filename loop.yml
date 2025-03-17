@@ -1,0 +1,37 @@
+---
+- name: Gather credentials - PB1
+  hosts: all
+  gather_facts: false
+# prerequisites = have a collections folder in your repo
+# with requirements.yml in it with the following:
+#---
+#collections:
+#- pge_util.papm_util
+##
+  tasks:
+# 
+# task needed for credentials in playbookone.yml
+#
+  - name: Include task list in play - import - task 1
+    ansible.builtin.import_tasks:
+      # make sure to have playbookone in your repo 
+      file: playbookone.yml
+
+- name: PB2
+  hosts: all
+  gather_facts: true
+  vars:
+      servicesinfo: EMPTY service
+      services: EMPTY service
+ 
+
+  tasks:
+  
+  - set_fact:
+      numbers: [1,2,3,4,5]
+   
+  - name: Most basic loop
+    debug:
+      msg: '{{ item }}'
+    loop: '{{ numbers }}'
+
