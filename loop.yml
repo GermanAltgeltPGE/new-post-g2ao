@@ -24,9 +24,13 @@
     svcnames: "['WinHttpAutoProxySvc','spooler']"
  
   tasks:
-    block: 
-      - name: Var name
-        debug:
-          msg: '{{ item }}'
-    loop: '{{ svcnames }}'
+    - name: Var name
+      ansible.windows.win_service_info:
+        name: "{{ item }}"
+      register: servicesinfo
+      loop: '{{ svcnames }}'
 
+    - name: check servicesinfo
+      debug:
+        var: servicesinfo
+      when: servicesinfo exists
