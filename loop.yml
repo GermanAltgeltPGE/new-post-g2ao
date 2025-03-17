@@ -21,7 +21,7 @@
   hosts: all
   gather_facts: true
   vars:
-    svcnames: "['WinHttpAutoProxySvc','spooler','sp2']"
+    svcnames: "['WinHttpAutoProxySvc','spooler','UmRdpService'.'TapiSrv','snmptrap','msiscsi']"
  
   tasks:
     - name: loop services
@@ -30,7 +30,3 @@
       register: servicesinfo
       loop: '{{ svcnames }}'
 
-    - name: check servicesinfo
-      debug:
-        msg: ' {{ servicesinfo.name }}'
-      when: servicesinfo is defined
