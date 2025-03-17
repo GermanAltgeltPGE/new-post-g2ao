@@ -28,9 +28,5 @@
       - name: Var name
         debug:
           msg: '{{ item }}'
-      - name: Check service
-        ansible.windows.win_service_info:
-          name: '{{ item }}'
-        register: servicesinfo
     loop: '{{ svcnames }}'
 
