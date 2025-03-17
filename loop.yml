@@ -31,8 +31,8 @@
       loop: '{{ svcnames }}'
 
     - name: message 1
-       debug:
-         msg:  '{{servicesinfo}}'
+      debug:
+        msg:  '{{servicesinfo}}'
       
     - name: message 2
       debug:
