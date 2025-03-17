@@ -31,8 +31,8 @@
 
       - name: service info
         ansible.windows.win_service_info:
-          name: "{{ item }}"
+          name: '{{ item }}'
         register: servicesinfo
-        
+
       loop: '{{ svcnames }}'
 
