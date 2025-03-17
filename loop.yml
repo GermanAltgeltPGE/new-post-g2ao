@@ -28,7 +28,7 @@
   tasks:
   
   - set_fact:
-      services: ["WinHttpAutoProxySvc","Spooler"]
+      services: {"WinHttpAutoProxySvc","spooler"}
    
   - name: Most basic loop
     debug:
