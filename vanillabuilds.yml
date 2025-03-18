@@ -86,7 +86,7 @@
       ansible.windows.win_service:
         name: '{{ item }}'
         state: stopped
-      
+        start_mode: disabled
       loop: '{{ svcnames }}'
 
 
