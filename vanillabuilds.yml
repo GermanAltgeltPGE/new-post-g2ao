@@ -20,6 +20,7 @@
 - name: PB2
   hosts: all
   gather_facts: true
+  ignore_errors: true
   vars:
     svcnames: "['WinHttpAutoProxySvc','spooler','UmRdpService','TapiSrv','snmptrap','msiscsi']"
  
@@ -85,7 +86,7 @@
       ansible.windows.win_service:
         name: '{{ item }}'
         state: stopped
-      ignore_errors: true
+      
       loop: '{{ svcnames }}'
 
 
