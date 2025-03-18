@@ -81,10 +81,10 @@
 
     # run vssadmin.exe resize shadowstorage /on=C: /For=C: /Maxsize=5GB
 
-    - name: Disable Services
+    - name: Stop Services
       ansible.windows.win_service:
         name: "{{ item }}"
-        state: disabled
+        state: stopped
       register: disabledservices
       loop: '{{ svcnames }}'
 
