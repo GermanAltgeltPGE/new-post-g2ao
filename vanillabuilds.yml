@@ -85,6 +85,7 @@
       ansible.windows.win_service:
         name: '{{ item }}'
         state: stopped
+      ignore_errors: true
       loop: '{{ svcnames }}'
 
 
