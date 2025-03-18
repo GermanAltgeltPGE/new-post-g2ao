@@ -83,10 +83,9 @@
 
     - name: Stop Services
       ansible.windows.win_service:
-        name: "{{ item }}"
+        name: spooler
         state: stopped
-      register: disabledservices
-      loop: '{{ svcnames }}'
+
 
 
  
