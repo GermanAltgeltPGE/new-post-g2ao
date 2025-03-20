@@ -23,18 +23,7 @@
   ignore_errors: true
   vars:
     disablesvcs: "['WinHttpAutoProxySvc','spooler','UmRdpService','TapiSrv','snmptrap','msiscsi']"
-    regvalkeys: {
-      { 
-      path: 'HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System', 
-      name: 'EnableLua', 
-      value: '0', 
-      datatype: 'dword'} , 
-      { 
-      path: 'HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System', 
-      name: 'EnableLua',
-      value: '0',
-      datatype: 'dword'
-      }}
+    regvalkeys: {{ path: 'HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System', name: 'EnableLua', value: '0', atatype: 'dword'}}
     reg1:
       path: 'HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System'
       name: 'EnableLua'
