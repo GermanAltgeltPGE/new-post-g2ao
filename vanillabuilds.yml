@@ -23,6 +23,18 @@
   ignore_errors: true
   vars:
     disablesvcs: "['WinHttpAutoProxySvc','spooler','UmRdpService','TapiSrv','snmptrap','msiscsi']"
+    regvalkeys: {
+      { 
+      path: 'HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System', 
+      name: 'EnableLua', 
+      value: '0', 
+      datatype: 'dword'} , 
+      { 
+      path: 'HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System', 
+      name: 'EnableLua',
+      value: '0',
+      datatype: 'dword'
+      }}
     reg1:
       path: 'HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System'
       name: 'EnableLua'
@@ -33,6 +45,7 @@
       name: 'EnableLua'
       value: 0
       datatype: dword
+    
     
  
   tasks:
@@ -99,7 +112,7 @@
         name: "{{ item.name }}"
         data: "{{ item.value }}"
         type: "{{ item.datatype }}"
-      loop: '{{ regvals }}'
+      loop: '{{ regvalkeys }}'
 
     # run vssadmin.exe resize shadowstorage /on=C: /For=C: /Maxsize=5GB
 
