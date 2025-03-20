@@ -38,7 +38,7 @@
   tasks:
     - name: Combine regval1 and regval2 into a regvals var
       ansible.builtin.set_fact:
-        regvals: "{{ reg1 | ansible.builtin.combine(reg2) }}"
+        regvals: "{{ reg1 + reg2 }}"
 
     - name: rename computer
       debug: 
