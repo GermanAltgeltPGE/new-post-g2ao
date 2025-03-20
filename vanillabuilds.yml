@@ -23,12 +23,12 @@
   ignore_errors: true
   vars:
     disablesvcs: "['WinHttpAutoProxySvc','spooler','UmRdpService','TapiSrv','snmptrap','msiscsi']"
-    regval1:
+    reg1:
       path: 'HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System'
       name: 'EnableLua'
       value: 0
       datatype: dword
-    regval2:
+    reg2:
       path: 'HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System'
       name: 'EnableLua'
       value: 0
@@ -38,7 +38,7 @@
   tasks:
     - name: Combine regval1 and regval2 into a regvals var
       ansible.builtin.set_fact:
-        regvals: "{{ regval11 | ansible.builtin.combine(regval2) }}"
+        regvals: "{{ reg1 | ansible.builtin.combine(reg2) }}"
 
     - name: rename computer
       debug: 
