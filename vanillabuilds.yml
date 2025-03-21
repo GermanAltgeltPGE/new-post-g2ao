@@ -44,22 +44,48 @@
       debug: 
         msg: Change CDROM/DVD to I
 
-    # DELL Related software
-    - name: Only DELL
+
+    #- name: Copy software
+
+    - name: install SCOM
       debug: 
-        msg: is a DELL  {{ ansible_system_vendor }}
-      when: ansible_system_vendor == "Dell Inc."
+        msg: install SCOM
     
+    # DELL Related software
     - name: Only Dell BLOCK
       when: ansible_system_vendor == "Dell Inc."
       block:
-        - name: Block DELL 1
+        - name: Install Dell Openmanage 9.4 CAS0005E,Dell OpenManage
           debug: 
-            msg: Block DELL 1
-        - name: Block DELL 2
+            msg: Install Dell Openmanage 9.4 CAS0005E,Dell OpenManage
+          register: DELL1
+        - name: Install HDLM 8.0 CAS0005D,Emulex and HDLM
           debug: 
-            msg: Block DELL 2
-      
+            msg: Install HDLM 8.0 CAS0005D,Emulex and HDLM
+        - name: Install HDLM 8.0 CAS0005D,Emulex and HDLM
+          debug: 
+            msg: Install HDLM 8.0 CAS0005D,Emulex and HDLM
+          register: DELL2
+        - name: Install Emulex One Command CAS0005D,Emulex and HDLM
+          debug: 
+            msg: Install Emulex One Command CAS0005D,Emulex and HDLM
+          register: DELL3
+        - name: Install Mainboard Controller CAS002FC,SEL 3355
+          debug: 
+            msg: Install Mainboard Controller CAS002FC,SEL 3355
+          register: DELL4
+        - name:  Install SysMon Install 1 - does not exist
+          debug: 
+            msg:  Install SysMon Install 1 - does not exist
+          register: DELL5
+        - name:  Install SysMon Install 2
+          debug: 
+            msg:  Install SysMon Install 2
+          register: DELL6
+            - name:  Install SysMon Install 3
+          debug: 
+            msg:  Install SysMon Install 3
+          register: DELL6
       rescue:
         - name: rescue
           debug: 
@@ -80,6 +106,16 @@
         type: "{{ item.datatype }}"
       loop: '{{ regvals }}'
 
+    # create admin and installs directories
+    - name: Create directory structure
+      win_file:
+        path: "{{ item.path }}"
+        state: directory
+      loop: 
+        - path: 'c:\admin'
+        - path: 'd:\installs'  
+        - path: 'd:\temp\g2ao\temp'
+        
     # the bottom does not run unless the shadow storage is created
     # run vssadmin.exe resize shadowstorage /on=C: /For=C: /Maxsize=5GB
     
