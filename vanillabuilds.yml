@@ -45,15 +45,16 @@
         msg: Change CDROM/DVD to I
 
     # DELL Related software
-    - name: Only DEll 
+    - name: Only DELL
       debug: 
-        msg: Assign User rights
+        var: ansible_facts
+        
     # end of DELL software
 
     # managed settings - user  rights
     - name: Assign User rights
       debug: 
-        var: ansible_facts
+        msg: Assign User rights
 
     # modify registry entries
     - name: EnableLUA
