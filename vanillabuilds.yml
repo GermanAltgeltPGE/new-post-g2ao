@@ -127,8 +127,6 @@
         data: "{{ item.value }}"
         type: "{{ item.datatype }}"
       loop: '{{ regvals }}'
-
-
         
     # the bottom does not run unless the shadow storage is created
     # run vssadmin.exe resize shadowstorage /on=C: /For=C: /Maxsize=5GB
@@ -140,6 +138,19 @@
         start_mode: disabled
       loop: '{{ disablesvcs }}'
 
-
-
- 
+   # install applications on all servers 
+    - name: Elastic endgame 3.60.3
+      debug: 
+        msg: Elastic endgame 3.60.3
+    - name: Tenable Nessus Agent
+      debug: 
+        msg: Tenable Nessus Agent
+    - name: FlexNet Inventory Agent
+      debug: 
+        msg: FlexNet Inventory Agent
+    - name: Tripwire Axion Agent - IF NERC
+      debug: 
+        msg: Tripwire Axion Agent - IF NERC
+    - name: SCOM 2019 Agent UR3
+      debug: 
+        msg: SCOM 2019 Agent UR3        
