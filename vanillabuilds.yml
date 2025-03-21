@@ -23,10 +23,10 @@
   ignore_errors: true
   vars:
     disablesvcs: "['WinHttpAutoProxySvc','spooler','UmRdpService','TapiSrv','snmptrap','msiscsi']"
-    #regvals: {path: 'HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System', name: 'EnableLua', value: '0', atatype: 'dword'}
     regvals:
       - {path: 'HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System', name: 'EnableLua', value: '0', atatype: 'dword'}
       - {path: 'HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System', name: 'EnableLua', value: '0', atatype: 'dword'}
+
   tasks:
     - name: rename computer
       debug: 
@@ -45,42 +45,17 @@
         msg: Change CDROM/DVD to I
 
     # DELL Related software
-    - name: Install Dell Openmanage 9.4) if physical
+    - name: Only DEll 
       debug: 
-        msg: Install Dell OpenManage 9.4
-    
-    - name: Install HDLM 8.0 if physical
-      debug: 
-        msg: Install HDLM 8.0
-
-    - name: Install Emulex One Command if physical
-      debug: 
-        msg: Install Emulex One Command
-    
-    - name: Install Mainboard Controller if physical
-      debug: 
-        msg: Install Mainboard Controller
-
-    - name: Install SysMon Install 1 if physical
-      debug: 
-        msg: Install SysMon Install 1
-
-    - name: Install MSysMon Install 2 if physical
-      debug: 
-        msg: Install SysMon Install 2
-
-    - name: Install SysMon Install 3 if physical
-      debug: 
-        msg: Install SysMon Install 3
-
+        msg: Assign User rights
     # end of DELL software
+
     # managed settings - user  rights
     - name: Assign User rights
       debug: 
-        msg: Assign User rights
+        var: ansible_facts
 
-    # modify registry enableLUA 
-    # reg add HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System /v EnableLUA /t REG_DWORD /d 0 /f
+    # modify registry entries
     - name: EnableLUA
       ansible.windows.win_regedit:
         path: "{{ item.path }}"
@@ -89,8 +64,9 @@
         type: "{{ item.datatype }}"
       loop: '{{ regvals }}'
 
+    # the bottom does not run unless the shadow storage is created
     # run vssadmin.exe resize shadowstorage /on=C: /For=C: /Maxsize=5GB
-
+    
     - name: Stop and disable Services
       ansible.windows.win_service:
         name: '{{ item }}'
