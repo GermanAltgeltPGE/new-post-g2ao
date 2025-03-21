@@ -59,8 +59,6 @@
         - name: Block DELL 2
           debug: 
             msg: Block DELL 2
-        - name: Force a failure
-     
         
     # end of DELL software
 
