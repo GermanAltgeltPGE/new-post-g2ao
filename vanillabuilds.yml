@@ -47,12 +47,13 @@
     # DELL Related software
     - name: Only DELL
       debug: 
-        msg: is a DELL 
+        msg: is a DELL  {{ ansible_system_vendor }}
       when: ansible_system_vendor == "Dell Inc."
         
-    - name: Only DELL2
+    - name: Only non DELL
       debug: 
-        msg: "{{ansible_system_vendor}}"
+        msg: is not a DELL  {{ ansible_system_vendor }}
+      when: ansible_system_vendor != "Dell Inc."
        
         
     # end of DELL software
