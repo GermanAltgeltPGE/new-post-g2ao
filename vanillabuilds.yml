@@ -59,7 +59,11 @@
         - name: Block DELL 2
           debug: 
             msg: Block DELL 2
-        
+      
+      rescue:
+        - name: rescue
+          debug: 
+            msg: "If error"      
     # end of DELL software
 
     # managed settings - user  rights
