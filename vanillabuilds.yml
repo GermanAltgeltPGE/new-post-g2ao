@@ -23,25 +23,12 @@
   ignore_errors: true
   vars:
     disablesvcs: "['WinHttpAutoProxySvc','spooler','UmRdpService','TapiSrv','snmptrap','msiscsi']"
-    regvalkeys: {{path: 'HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System', name: 'EnableLua', value: '0', atatype: 'dword'},{path: 'HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System', name: 'EnableLua', value: '0', atatype: 'dword'}}
-    reg1:
-      path: 'HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System'
-      name: 'EnableLua'
-      value: 0
-      datatype: dword
-    reg2:
-      path: 'HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System'
-      name: 'EnableLua'
-      value: 0
-      datatype: dword
+    regvals: {path: 'HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System', name: 'EnableLua', value: '0', atatype: 'dword'}
+
     
     
  
   tasks:
-    - name: Combine regval1 and regval2 into a regvals var
-      ansible.builtin.set_fact:
-        regvals: "{{ reg1 + reg2 }}"
-
     - name: rename computer
       debug: 
         msg: rename computer
@@ -101,7 +88,7 @@
         name: "{{ item.name }}"
         data: "{{ item.value }}"
         type: "{{ item.datatype }}"
-      loop: '{{ regvalkeys }}'
+      loop: '{{ regvals }}'
 
     # run vssadmin.exe resize shadowstorage /on=C: /For=C: /Maxsize=5GB
 
