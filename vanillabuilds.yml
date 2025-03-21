@@ -60,13 +60,7 @@
           debug: 
             msg: Block DELL 2
         - name: Force a failure
-          win_Shell: C:\ansible.exe
-
-      rescue: 
-        - name: Print When ignore_errors
-          debug:
-            msg: 'I caught an error, can do stuff here to fix it, :-)'
-       
+     
         
     # end of DELL software
 
