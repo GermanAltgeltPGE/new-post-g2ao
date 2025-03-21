@@ -59,10 +59,13 @@
         - name: Block DELL 2
           debug: 
             msg: Block DELL 2
+        - name: Force a failure
+          ansible.builtin.command: /bin/false
 
       rescue: 
         - name: Print When ignore_errors
           debug:
+            msg: 'I caught an error, can do stuff here to fix it, :-)'
        
         
     # end of DELL software
