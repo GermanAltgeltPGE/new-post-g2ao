@@ -49,11 +49,21 @@
       debug: 
         msg: is a DELL  {{ ansible_system_vendor }}
       when: ansible_system_vendor == "Dell Inc."
-        
-    - name: Only non DELL
-      debug: 
-        msg: is not a DELL  {{ ansible_system_vendor }}
-      when: ansible_system_vendor != "Dell Inc."
+    
+    - name: Only Dell BLOCK
+      when: ansible_system_vendor == "Dell Inc."
+      block:
+        - name: Block DELL 1
+          debug: 
+            msg: Block DELL 1
+        - name: Block DELL 2
+          debug: 
+            msg: Block DELL 2
+        - name: Force a failure
+          ansible.builtin.command: /bin/false
+      rescue: 
+        - name: Print When ignore_errors
+          debug:
        
         
     # end of DELL software
