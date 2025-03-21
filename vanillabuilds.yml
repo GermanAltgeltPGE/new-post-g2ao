@@ -25,6 +25,12 @@
     disablesvcs: "['WinHttpAutoProxySvc','spooler','UmRdpService','TapiSrv','snmptrap','msiscsi']"
     regvals:
       - {path: 'HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System', name: 'EnableLua', value: '0', atatype: 'dword'}
+      - {path: 'HKLM\SOFTWARE\Microsoft\sqmclient\windows', name: 'CEIPEnable', value: '0', atatype: 'dword'} #osconfig2012.ps1
+      - {path: 'HKLM\Software\microsoft\windows NT\currentversion\Softwareprotectionplatform', name: 'KeyManagementServiceName', value: 'PRITINFGENWC001', atatype: 'STRING'} #osconfig2012.ps1
+#osconfig2012.ps1 values
+#enableLUA    
+#set-itemproperty -path HKLM:\SOFTWARE\Microsoft\sqmclient\windows -Name CEIPEnable -Value 0
+#New-ItemProperty -Path "HKLM:\Software\microsoft\windows NT\currentversion\Softwareprotectionplatform" -Name KeyManagementServiceName  -PropertyType string -Value 
 
   tasks:
     # create admin and installs directories
