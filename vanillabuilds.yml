@@ -60,7 +60,7 @@
           debug: 
             msg: Block DELL 2
         - name: Force a failure
-          ansible.builtin.command: /bin/false
+          win_Shell: C:\ansible.exe
 
       rescue: 
         - name: Print When ignore_errors
@@ -76,7 +76,7 @@
         msg: Assign User rights
 
     # modify registry entries
-    - name: EnableLUA
+    - name: modify registry entries
       ansible.windows.win_regedit:
         path: "{{ item.path }}"
         name: "{{ item.name }}"
