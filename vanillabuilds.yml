@@ -48,9 +48,10 @@
     - name: Only DELL
       debug: 
         var: ansible_facts
+        
     - name: Only DELL2
       debug: 
-        var: ansible_system_vendor
+        msg: "{{ansible_system_vendor}}"
         
     # end of DELL software
 
