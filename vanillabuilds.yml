@@ -28,6 +28,29 @@
       - {path: 'HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System', name: 'EnableLua', value: '0', atatype: 'dword'}
 
   tasks:
+    # create admin and installs directories
+    - name: Create directory structure
+      win_file:
+        path: "{{ item.path }}"
+        state: directory
+      loop: 
+        - path: 'c:\admin'
+        - path: 'd:\installs'  
+        - path: 'd:\temp\g2ao\temp'
+
+    - name: copy folders from server ITMDT03
+      win_copy:
+        src: \\ITMDT03\GermanA\Vanilla
+        dest: D:\installs\softwareinstallers\
+        remote_src: true
+      vars:
+        ansible_become: yes
+        ansible_become_method: runas
+        ansible_become_user: '{{ ansible_user }}'
+        ansible_become_pass: '{{ ansible_password }}'
+        ansible_become_flags: logon_type=new_credentials logon_flags=netcredentials_only
+      register: copyshare_output03sw
+        
     - name: rename computer
       debug: 
         msg: rename computer
@@ -43,9 +66,6 @@
     - name: Change CDROM/DVD to I
       debug: 
         msg: Change CDROM/DVD to I
-
-
-    #- name: Copy software
 
     - name: install SCOM
       debug: 
@@ -78,14 +98,16 @@
           debug: 
             msg:  Install SysMon Install 1 - does not exist
           register: DELL5
+
         - name:  Install SysMon Install 2
           debug: 
             msg:  Install SysMon Install 2
           register: DELL6
-            - name:  Install SysMon Install 3
+        
+        - name:  Install SysMon Install 3
           debug: 
             msg:  Install SysMon Install 3
-          register: DELL6
+          register: DELL7
       rescue:
         - name: rescue
           debug: 
@@ -106,15 +128,7 @@
         type: "{{ item.datatype }}"
       loop: '{{ regvals }}'
 
-    # create admin and installs directories
-    - name: Create directory structure
-      win_file:
-        path: "{{ item.path }}"
-        state: directory
-      loop: 
-        - path: 'c:\admin'
-        - path: 'd:\installs'  
-        - path: 'd:\temp\g2ao\temp'
+
         
     # the bottom does not run unless the shadow storage is created
     # run vssadmin.exe resize shadowstorage /on=C: /For=C: /Maxsize=5GB
