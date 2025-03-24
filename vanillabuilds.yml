@@ -23,14 +23,16 @@
   ignore_errors: true
   vars:
     disablesvcs: "['WinHttpAutoProxySvc','spooler','UmRdpService','TapiSrv','snmptrap','msiscsi']"
+# registry changes
+#enableLUA    
+#set-itemproperty -path HKLM:\SOFTWARE\Microsoft\sqmclient\windows -Name CEIPEnable -Value 0
+#New-ItemProperty -Path "HKLM:\Software\microsoft\windows NT\currentversion\Softwareprotectionplatform" -Name KeyManagementServiceName  -PropertyType string -Value 
     regvals:
       - {path: 'HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System', name: 'EnableLua', value: '0', atatype: 'dword'}
       - {path: 'HKLM\SOFTWARE\Microsoft\sqmclient\windows', name: 'CEIPEnable', value: '0', atatype: 'dword'} #osconfig2012.ps1
       - {path: 'HKLM\Software\microsoft\windows NT\currentversion\Softwareprotectionplatform', name: 'KeyManagementServiceName', value: 'PRITINFGENWC001', atatype: 'STRING'} #osconfig2012.ps1
-#osconfig2012.ps1 values
-#enableLUA    
-#set-itemproperty -path HKLM:\SOFTWARE\Microsoft\sqmclient\windows -Name CEIPEnable -Value 0
-#New-ItemProperty -Path "HKLM:\Software\microsoft\windows NT\currentversion\Softwareprotectionplatform" -Name KeyManagementServiceName  -PropertyType string -Value 
+
+
 
   tasks:
     # create admin and installs directories
@@ -46,7 +48,7 @@
     - name: copy folders from server ITMDT03
       win_copy:
         src: \\ITMDT03\GermanA\Vanilla
-        dest: D:\installs\softwareinstallers\
+        dest: D:\installs\Vanilla
         remote_src: true
       vars:
         ansible_become: yes
@@ -71,6 +73,19 @@
     - name: Change CDROM/DVD to I
       debug: 
         msg: Change CDROM/DVD to I
+
+# chimney and rss settiungs (netsh int tcp show global)
+# chimney deprecated? https://learn.microsoft.com/en-us/windows-server/networking/technologies/network-subsystem/net-sub-performance-tuning-nics
+# Do not use the offload features IPsec Task Offload or TCP Chimney Offload. These technologies are deprecated in Windows Server 2016, and might adversely affect server and networking performance. In addition, these technologies might not be supported by Microsoft in the future.
+#    - name: Disable chimney
+#      ansible.windows.win_command:
+#        cmd: netsh int tcp set global chimney=disabled
+#      register: netshchimney
+#
+    - name: Disable RSS
+      ansible.windows.win_command:
+        cmd: netsh int tcp set global rss=disabled
+      register: netshRSS
 
     - name: install SCOM
       debug: 
