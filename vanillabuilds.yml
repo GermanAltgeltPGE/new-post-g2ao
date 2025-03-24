@@ -86,6 +86,8 @@
       ansible.windows.win_command:
         cmd: netsh int tcp set global rss=disabled
       register: netshRSS
+      become: yes
+      become_user: Administrator
 
     - name: install SCOM
       debug: 
